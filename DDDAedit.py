@@ -23,7 +23,7 @@ class Header:
     # unsigned int u5;       //Always 1079398965
 
     def __init__(self, fi):
-        buf = fi.read(4*8)
+        buf = fi.read(4 * 8)
         self.u1: int = 0
         self.realsize: int = 0
         self.compressedsize: int = 0
@@ -51,16 +51,26 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi("DDDAedit.ui", self)
         self.data: Optional[ET.Element] = None
 
-        vocations = picwidgets.PicGrid(
+        ve = QtWidgets.QWidget()
+        vl = QtWidgets.QHBoxLayout()
+        ve.setLayout(vl)
+        vo = picwidgets.PicGrid(
             [['resources/DDicon_fighter.webp', 'resources/DDicon_strider.webp', 'resources/DDicon_mage.webp'],
              ['resources/DDicon_assassin.webp', 'resources/DDicon_magicarcher.webp', 'resources/DDicon_magicknight.webp'],
              ['resources/DDicon_warrior.webp', 'resources/DDicon_ranger.webp', 'resources/DDicon_sorcerer.webp']
-            ])
-        self.vocations.parent().layout().replaceWidget(self.vocations, vocations)
-        vocations.selec.connect(self.on_vocation_selec)
+             ])
+        vo.selec.connect(self.on_vocation_selec)
+        vl.addWidget(vo)
+        se = picwidgets.StarEditor(max_count=9)
+        se.editing_finished.connect(self.on_vocation_level)
+        vl.addWidget(se)
+        self.vocations.parent().layout().replaceWidget(self.vocations, ve)
 
     def on_vocation_selec(self, param):
         print(param)
+
+    def on_vocation_level(self, level):
+        print(level)
 
     @QtCore.pyqtSlot()
     def on_load_clicked(self):
