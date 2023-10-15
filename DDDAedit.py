@@ -1,15 +1,37 @@
 # import pprint
 import struct
 import zlib
+import sys
 from typing import Optional
 import xml.etree.ElementTree as ET
 
 # import xmltodict
 from PyQt6 import uic, QtWidgets, QtCore, QtGui
 
-import sys
-
 import picwidgets
+
+
+class Pers(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        vl = QtWidgets.QHBoxLayout()
+        self.setLayout(vl)
+        vo = picwidgets.PicGrid(
+            [['resources/DDicon_fighter.webp', 'resources/DDicon_strider.webp', 'resources/DDicon_mage.webp'],
+             ['resources/DDicon_assassin.webp', 'resources/DDicon_magicarcher.webp', 'resources/DDicon_magicknight.webp'],
+             ['resources/DDicon_warrior.webp', 'resources/DDicon_ranger.webp', 'resources/DDicon_sorcerer.webp']
+             ])
+        vo.selec.connect(self.on_vocation_selec)
+        vl.addWidget(vo)
+        se = picwidgets.StarEditor(max_count=9)
+        se.editing_finished.connect(self.on_vocation_level)
+        vl.addWidget(se)
+
+    def on_vocation_selec(self, param):
+        print(param)
+
+    def on_vocation_level(self, level):
+        print(level)
 
 
 class Header:
@@ -44,13 +66,30 @@ class MainWindow(QtWidgets.QMainWindow):
         self.dddasav: Optional[QtWidgets.QLineEdit] = None
         self.load: Optional[QtWidgets.QPushButton] = None
         self.xml: Optional[QtWidgets.QPlainTextEdit] = None
+        self.main: Optional[QtWidgets.QWidget] = None
         self.pers: Optional[QtWidgets.QComboBox] = None
         self.name: Optional[QtWidgets.QLabel] = None
         self.level: Optional[QtWidgets.QSpinBox] = None
         self.vocations: Optional[QtWidgets.QWidget] = None
+        self.actionOpen: Optional[QtGui.QAction] = None
+        self.actionSave: Optional[QtGui.QAction] = None
+        self.actionSavex: Optional[QtGui.QAction] = None
         uic.loadUi("DDDAedit.ui", self)
         self.data: Optional[ET.Element] = None
 
+        self.actionOpen.triggered.connect(self.on_open_triggered)
+        self.actionSavex.triggered.connect(self.on_savex_triggered)
+
+        self.edit_action = QtGui.QAction(QtGui.QIcon.fromTheme("text-editor"), 'Edit...')
+        self.edit_action.triggered.connect(self.on_dddasav_edit)
+
+        self.load_action = QtGui.QAction(QtGui.QIcon.fromTheme("document-open"), 'Open...')
+        self.load_action.triggered.connect(self.on_dddasav_load)
+
+        self.dddasav.setPlaceholderText('Find your save file')
+        self.dddasav.addAction(self.edit_action, QtWidgets.QLineEdit.ActionPosition.TrailingPosition)
+
+        # ---- Vocation editing ----
         ve = QtWidgets.QWidget()
         vl = QtWidgets.QHBoxLayout()
         ve.setLayout(vl)
@@ -66,42 +105,45 @@ class MainWindow(QtWidgets.QMainWindow):
         vl.addWidget(se)
         self.vocations.parent().layout().replaceWidget(self.vocations, ve)
 
-    def on_vocation_selec(self, param):
-        print(param)
+    def on_dddasav_edit(self):
+        qfd = QtWidgets.QFileDialog()
+        qfd.setFileMode(QtWidgets.QFileDialog.FileMode.ExistingFile)
+        qfd.setNameFilter("Savefiles (*.sav)")
+        if qfd.exec():
+            self.dddasav.setText(qfd.selectedFiles()[0])
+        self.dddasav.removeAction(self.load_action)
+        if self.dddasav.text():
+            self.dddasav.addAction(self.load_action, QtWidgets.QLineEdit.ActionPosition.TrailingPosition)
 
-    def on_vocation_level(self, level):
-        print(level)
+    def on_open_triggered(self):
+        if not self.dddasav.text():
+            self.on_dddasav_edit()
+        if self.dddasav.text():
+            self.on_dddasav_load()
+
+    def on_dddasav_load(self):
+        self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.WaitCursor))
+        with open(self.dddasav.text(), "rb") as fi:
+            hdr = Header(fi)
+            buf = fi.read(hdr.compressedsize)
+        xml = zlib.decompress(buf)
+        xml = xml.decode()
+        self.data = ET.fromstring(xml)
+        # ET.indent(self.data)
+        self.xml.setPlainText(ET.tostring(self.data).decode())
+        self.unsetCursor()
+        self.main.setEnabled(True)
+        self.actionSavex.setEnabled(True)
 
     @QtCore.pyqtSlot()
-    def on_load_clicked(self):
-        if self.load.text() == "Select":
-            self.load.setText("Load")
-            qfd = QtWidgets.QFileDialog()
-            qfd.setFileMode(QtWidgets.QFileDialog.FileMode.ExistingFile)
-            qfd.setNameFilter("Savefiles (*.sav)")
-            if qfd.exec():
-                self.dddasav.setText(qfd.selectedFiles()[0])
-        elif self.load.text() == "Load":
-            self.load.setText("Save")
-            self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.WaitCursor))
-            with open(self.dddasav.text(), "rb") as fi:
-                hdr = Header(fi)
-                buf = fi.read(hdr.compressedsize)
-            xml = zlib.decompress(buf)
-            xml = xml.decode()
-            self.data = ET.fromstring(xml)
-            # ET.indent(self.data)
+    def on_savex_triggered(self):
+        # dic = xmltodict.parse(self.xml.toPlainText())
+        # self.xml.setPlainText(pprint.pformat(dic, 4))
+        if self.data:
+            tree = ET.ElementTree(self.data)
+            ET.indent(tree)
+            tree.write('DDDA.xml')
             self.xml.setPlainText(ET.tostring(self.data).decode())
-            self.unsetCursor()
-        else:
-            self.load.setText("Select")
-            # dic = xmltodict.parse(self.xml.toPlainText())
-            # self.xml.setPlainText(pprint.pformat(dic, 4))
-            if self.data:
-                tree = ET.ElementTree(self.data)
-                ET.indent(tree)
-                tree.write('DDDA.xml')
-                self.xml.setPlainText(ET.tostring(self.data).decode())
 
     @QtCore.pyqtSlot(str)
     def on_pers_currentTextChanged(self, txt):

@@ -38,61 +38,18 @@
       </property>
      </spacer>
     </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="load">
-      <property name="text">
-       <string>Select</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0">
      <widget class="QLineEdit" name="dddasav">
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
       <property name="placeholderText">
        <string>Click to select</string>
       </property>
-      <property name="clearButtonEnabled">
-       <bool>true</bool>
-      </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QComboBox" name="pers">
-      <property name="currentText">
-       <string/>
+    <item row="1" column="1" rowspan="3">
+     <widget class="QWidget" name="main" native="true">
+      <property name="enabled">
+       <bool>false</bool>
       </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="placeholderText">
-       <string>Select person</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Player</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Main Pawn</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Pawn A</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Pawn B</string>
-       </property>
-      </item>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QWidget" name="widget" native="true">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -100,56 +57,64 @@
        </size>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="0" colspan="4">
-        <widget class="QWidget" name="widget_2" native="true">
-         <property name="minimumSize">
-          <size>
-           <width>100</width>
-           <height>100</height>
-          </size>
-         </property>
-         <property name="sizeIncrement">
-          <size>
-           <width>4</width>
-           <height>0</height>
-          </size>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="1">
-           <widget class="QPushButton" name="pushButton">
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QWidget" name="vocations" native="true"/>
-          </item>
-         </layout>
-        </widget>
+       <item row="2" column="1">
+        <widget class="QWidget" name="vocations" native="true"/>
        </item>
-       <item row="0" column="2">
+       <item row="1" column="2">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Level:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
+       <item row="0" column="1">
+        <widget class="QComboBox" name="pers">
+         <property name="currentText">
+          <string/>
+         </property>
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+         <property name="placeholderText">
+          <string>Select person</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Player</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Main Pawn</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pawn A</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pawn B</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
         <widget class="QLabel" name="label">
          <property name="text">
           <string>Name:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="1">
         <widget class="QLineEdit" name="name">
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="0" column="3">
+       <item row="1" column="3">
         <widget class="QSpinBox" name="level">
          <property name="minimum">
           <number>1</number>
@@ -173,8 +138,47 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSavex"/>
+   </widget>
+   <addaction name="menuFile"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset theme="document-open"/>
+   </property>
+   <property name="text">
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="document-save"/>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSavex">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="document-save-as"/>
+   </property>
+   <property name="text">
+    <string>Save XML</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

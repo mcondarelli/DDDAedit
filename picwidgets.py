@@ -1,11 +1,12 @@
 import math
 
-from PyQt6.QtCore import pyqtSignal, QObject, QPointF, QSize, Qt
-from PyQt6.QtGui import QPainter, QPixmap, QColor, QPolygonF, QMouseEvent
+from PyQt6.QtCore import pyqtSignal, QPointF, QSize, Qt
+from PyQt6.QtGui import QPainter, QPixmap, QColor, QPolygonF, QMouseEvent, QBrush
 from PyQt6.QtWidgets import QAbstractButton, QWidget, QGridLayout
 
 
 class PicButton(QAbstractButton):
+
     def mouseReleaseEvent(self, e):
         super().mouseReleaseEvent(e)
         if self.delegate is not None and self.underMouse():
@@ -22,7 +23,7 @@ class PicButton(QAbstractButton):
         cname = PicButton._names[PicButton._currc]
         return QColor(cname)
 
-    def __init__(self, pixmap=None, parent=None, data=None, delegate=None):
+    def __init__(self, pixmap=None, parent=None, data=None, delegate=None, border=0):
         super().__init__(parent)
         if pixmap is None:
             pixmap = QPixmap(50, 50)
@@ -31,14 +32,26 @@ class PicButton(QAbstractButton):
             pixmap = QPixmap(pixmap)
         self.pixmap = pixmap
         self.data = data
+        self.border = border
         self.delegate = delegate
+        self.setCheckable(True)
+        self.setChecked(False)
+        self.setAutoExclusive(True)
 
     def paintEvent(self, event):
+        rect = event.rect()
         painter = QPainter(self)
-        painter.drawPixmap(event.rect(), self.pixmap)
+        if self.border > 0:
+            c = QColor('red' if self.isChecked() else 'green')
+            painter.setBrush(QBrush(c))
+            painter.drawRect(rect)
+            rect.adjust(self.border, self.border, -self.border, -self.border)
+        painter.drawPixmap(rect, self.pixmap)
 
     def sizeHint(self):
-        return self.pixmap.size()
+        size = self.pixmap.size()
+        size += QSize(self.border*2, self.border*2)
+        return size
 
 
 class PicGrid(QWidget):
@@ -51,12 +64,13 @@ class PicGrid(QWidget):
         super().__init__(parent)
         data = data or [[None, None, None], [None, None, None], [None, None, None]]
         layout = QGridLayout(self)
+        layout.setSpacing(0)
         for row, r in enumerate(data):
             for col, c in enumerate(r):
                 if isinstance(c, dict):
-                    pb = PicButton(c.get('file'), delegate=self.delegate, data=c)
+                    pb = PicButton(c.get('file'), delegate=self.delegate, data=c, border=3)
                 else:
-                    pb = PicButton(c, delegate=self.delegate, data=c)
+                    pb = PicButton(c, delegate=self.delegate, data=c, border=3)
                 if pb is not None:
                     layout.addWidget(pb, row, col)
 
@@ -175,3 +189,29 @@ class StarEditor(QWidget):
             return -1
 
         return star
+
+
+if __name__ == '__main__':
+    from PyQt6.QtWidgets import QApplication, QVBoxLayout
+    import sys
+
+
+    class MainWindow(QWidget):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.setWindowTitle('Vocations')
+
+            layout = QVBoxLayout()
+            self.setLayout(layout)
+            self.vo = PicGrid(
+                [['resources/DDicon_fighter.webp', 'resources/DDicon_strider.webp', 'resources/DDicon_mage.webp'],
+                 ['resources/DDicon_assassin.webp', 'resources/DDicon_magicarcher.webp', 'resources/DDicon_magicknight.webp'],
+                 ['resources/DDicon_warrior.webp', 'resources/DDicon_ranger.webp', 'resources/DDicon_sorcerer.webp']
+                 ])
+            layout.addWidget(self.vo)
+
+
+    app = QApplication(sys.argv)
+    win = MainWindow()
+    win.show()
+    sys.exit(app.exec())
