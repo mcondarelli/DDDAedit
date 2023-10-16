@@ -1,11 +1,9 @@
-import struct
-import zlib
 import sys
 from typing import Optional
-import xml.etree.ElementTree as ET
 
 from PyQt6 import uic, QtWidgets, QtCore, QtGui
 
+import DDDAfile
 import picwidgets
 
 
@@ -22,7 +20,7 @@ class Pers(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.data = None
+        self.data: Optional[DDDAfile.DDDAfile] = None
         vl = QtWidgets.QGridLayout()
         self.setLayout(vl)
         l1 = QtWidgets.QLabel('name')
@@ -33,6 +31,8 @@ class Pers(QtWidgets.QWidget):
         l1 = QtWidgets.QLabel('level')
         vl.addWidget(l1, 0, 2)
         self.level = QtWidgets.QSpinBox()
+        self.level.setMinimum(1)
+        self.level.setMaximum(200)
         vl.addWidget(self.level, 0, 3)
         self.vo = picwidgets.PicGrid(
             [[Pers.vocs[0], Pers.vocs[1], Pers.vocs[2]],
@@ -41,14 +41,24 @@ class Pers(QtWidgets.QWidget):
              ])
         self.vo.selec.connect(self.on_vocation_selec)
         vl.addWidget(self.vo, 1, 0, 2, 3)
-        se = picwidgets.StarEditor(max_count=9)
+        self.se = picwidgets.StarEditor(max_count=9)
         # se.setSizePolicy(QSizePolicy(QSizePolicy.Policy.MinimumExpanding,QSizePolicy.Policy.Minimum))
-        se.editing_finished.connect(self.on_vocation_level)
-        vl.addWidget(se, 1, 3)
+        self.se.editing_finished.connect(self.on_vocation_level)
+        vl.addWidget(self.se, 1, 3)
 
-    def enable(self, data):
+    def set_data(self, data: DDDAfile.DDDAfile):
         self.data = data
-        self.setEnabled(bool(data))
+        data.dataChanged.connect(lambda : self.setEnabled(self.data.valid))
+        data.persChanged.connect(self.on_pers_changed)
+        data.pnamChanged.connect(lambda v: self.name.setText(v))
+        data.plevChanged.connect(lambda v: self.level.setValue(v))
+        data.pvocChanged.connect(lambda v: self.vo.select(v))
+        data.pvolChanged.connect(lambda v: self.se.set_stars(v))
+
+    def on_pers_changed(self):
+        # self.name.setText(self.data.pname)
+        # self.level.setValue(self.data.plevel)
+        pass
 
     def set_pers(self, pers):
         name = ''
@@ -77,32 +87,6 @@ class Pers(QtWidgets.QWidget):
         print(level)
 
 
-class Header:
-    # unsigned int u1;       //Version (21 for DDDA console and DDDA PC, and 5 for original DD on console)
-    # unsigned int realSize; //Real size of compressed save game data
-    # unsigned int compressedSize;
-    # unsigned int u2;       //Always 860693325
-    # unsigned int u3;       //Always 0
-    # unsigned int u4;       //Always 860700740
-    # unsigned int hash;     //Checksum of compressed save data
-    # unsigned int u5;       //Always 1079398965
-
-    def __init__(self, fi):
-        buf = fi.read(4 * 8)
-        self.u1: int = 0
-        self.realsize: int = 0
-        self.compressedsize: int = 0
-        self.u2: int = 0
-        self.u3: int = 0
-        self.u4: int = 0
-        self.hash: int = 0
-        self.u5: int = 0
-        self.u1, self.realsize, self.compressedsize, self.u2, self.u3, self.u4, self.hash, self.u5 = (
-            struct.unpack('<IIIIIIII', buf))
-        if self.u1 != 21 or self.u2 != 860693325 or self.u3 != 0 or self.u4 != 860700740 or self.u5 != 1079398965:
-            raise AssertionError('Bad header')
-
-
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -116,7 +100,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.actionSave: Optional[QtGui.QAction] = None
         self.actionSavex: Optional[QtGui.QAction] = None
         uic.loadUi("DDDAedit.ui", self)
-        self.data: Optional[ET.Element] = None
+        self.data = DDDAfile.DDDAfile(self)
+        self.vocations.set_data(self.data)
 
         self.actionOpen.triggered.connect(self.on_open_triggered)
         self.actionSavex.triggered.connect(self.on_savex_triggered)
@@ -154,47 +139,22 @@ class MainWindow(QtWidgets.QMainWindow):
             self.on_dddasav_load()
 
     def on_dddasav_load(self):
-        self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.WaitCursor))
-        with open(self.dddasav.text(), "rb") as fi:
-            hdr = Header(fi)
-            buf = fi.read(hdr.compressedsize)
-        xml = zlib.decompress(buf)
-        xml = xml.decode()
-        self.data = ET.fromstring(xml)
-        # ET.indent(self.data)
-        self.xml.setPlainText(ET.tostring(self.data).decode())
+        self.data.fname = self.dddasav.text()
+        self.xml.setPlainText(self.data.pretty)
         self.unsetCursor()
         self.main.setEnabled(True)
         self.actionSavex.setEnabled(True)
-        self.vocations.enable(self.data)
 
     @QtCore.pyqtSlot()
     def on_savex_triggered(self):
         # dic = xmltodict.parse(self.xml.toPlainText())
         # self.xml.setPlainText(pprint.pformat(dic, 4))
         if self.data:
-            tree = ET.ElementTree(self.data)
-            ET.indent(tree)
-            tree.write('DDDA.xml')
-            self.xml.setPlainText(ET.tostring(self.data).decode())
+            self.data.savex()
 
     @QtCore.pyqtSlot(str)
     def on_pers_currentTextChanged(self, txt):
-        pers = None
-        if txt == 'Player':
-            pers = self.data.find(".//class[@name='mPl']")
-        elif txt == 'Main Pawn':
-            pers = self.data.find(".//class[@type='cSAVE_DATA_CMC']/..[@name='mCmc']")[0]
-        elif txt == 'Pawn A':
-            pers = self.data.find(".//class[@type='cSAVE_DATA_CMC']/..[@name='mCmc']")[1]
-        elif txt == 'Pawn B':
-            pers = self.data.find(".//class[@type='cSAVE_DATA_CMC']/..[@name='mCmc']")[2]
-        else:
-            pass
-        if pers is None:
-            print(f'{txt} not found')
-        else:
-            self.vocations.set_pers(pers)
+        self.data.pers = txt
 
 
 def main():

@@ -197,6 +197,9 @@ class StarEditor(QWidget):
 
         return star
 
+    def set_stars(self, stars):
+        self.star_rating.star_count = stars
+
 
 if __name__ == '__main__':
     from PyQt6.QtWidgets import QApplication, QVBoxLayout
