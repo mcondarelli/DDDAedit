@@ -62,7 +62,10 @@ class PicGrid(QWidget):
 
     def __init__(self, data=None, parent=None):
         super().__init__(parent)
-        data = data or [[None, None, None], [None, None, None], [None, None, None]]
+        if data is not None:
+            self.set_data(data)
+
+    def set_data(self, data):
         layout = QGridLayout(self)
         layout.setSpacing(0)
         self.array = []
@@ -142,7 +145,7 @@ class StarEditor(QWidget):
     # A signal to tell the delegate when we've finished editing.
     editing_finished = pyqtSignal(int)
 
-    def __init__(self, parent=None, max_count=5, count=1):
+    def __init__(self, parent=None, max_count=9, count=1):
         """ Initialize the editor object, making sure we can watch mouse
             events.
         """
@@ -151,6 +154,9 @@ class StarEditor(QWidget):
         self.rating = None
         self.setMouseTracking(True)
         self.setAutoFillBackground(True)
+        self.star_rating = StarRating(star_count=count, max_star_count=max_count)
+
+    def set_stars(self, max_count, count):
         self.star_rating = StarRating(star_count=count, max_star_count=max_count)
 
     def sizeHint(self):

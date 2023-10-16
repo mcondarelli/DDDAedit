@@ -21,44 +21,55 @@ class Pers(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.data: Optional[DDDAfile.DDDAfile] = None
-        vl = QtWidgets.QGridLayout()
-        self.setLayout(vl)
-        l1 = QtWidgets.QLabel('name')
-        vl.addWidget(l1, 0, 0)
-        self.name = QtWidgets.QLineEdit()
-        self.name.setReadOnly(True)
-        vl.addWidget(self.name, 0, 1)
-        l1 = QtWidgets.QLabel('level')
-        vl.addWidget(l1, 0, 2)
-        self.level = QtWidgets.QSpinBox()
-        self.level.setMinimum(1)
-        self.level.setMaximum(200)
-        vl.addWidget(self.level, 0, 3)
-        self.vo = picwidgets.PicGrid(
+        self.item_data: Optional[DDDAfile.ItemData] = None
+        # self.items = None
+
+        self.name: Optional[QtWidgets.QLineEdit] = None
+        self.level: Optional[QtWidgets.QSpinBox] = None
+        self.vo: Optional[picwidgets.PicGrid] = None
+        self.se: Optional[picwidgets.StarEditor] = None
+        self.items: Optional[QtWidgets.QTableWidget] = None
+        uic.loadUi("Pers.ui", self)
+        header = self.items.horizontalHeader()
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Stretch)
+        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+        header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+
+        self.vo.set_data(
             [[Pers.vocs[0], Pers.vocs[1], Pers.vocs[2]],
              [Pers.vocs[3], Pers.vocs[4], Pers.vocs[5]],
              [Pers.vocs[6], Pers.vocs[7], Pers.vocs[8]]
              ])
         self.vo.selec.connect(self.on_vocation_selec)
-        vl.addWidget(self.vo, 1, 0, 2, 3)
-        self.se = picwidgets.StarEditor(max_count=9)
-        # se.setSizePolicy(QSizePolicy(QSizePolicy.Policy.MinimumExpanding,QSizePolicy.Policy.Minimum))
+        # self.se.set_stars(9, 1)
         self.se.editing_finished.connect(self.on_vocation_level)
-        vl.addWidget(self.se, 1, 3)
 
     def set_data(self, data: DDDAfile.DDDAfile):
         self.data = data
-        data.dataChanged.connect(lambda : self.setEnabled(self.data.valid))
+        data.dataChanged.connect(self.on_data_changed)
         data.persChanged.connect(self.on_pers_changed)
         data.pnamChanged.connect(lambda v: self.name.setText(v))
         data.plevChanged.connect(lambda v: self.level.setValue(v))
         data.pvocChanged.connect(lambda v: self.vo.select(v))
         data.pvolChanged.connect(lambda v: self.se.set_stars(v))
 
-    def on_pers_changed(self):
-        # self.name.setText(self.data.pname)
-        # self.level.setValue(self.data.plevel)
-        pass
+    def on_data_changed(self, data):
+        self.item_data = DDDAfile.ItemData(data)
+        self.setEnabled(self.data.valid)
+
+    def on_pers_changed(self, pers):
+        items = self.item_data.get_pers_items(pers)
+        self.items.setRowCount(len(items))
+        for r, item in enumerate(items):
+            it = QtWidgets.QTableWidgetItem(str(item['item']['id']))
+            it.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+            self.items.setItem(r, 0, it)
+            self.items.setItem(r, 1, QtWidgets.QTableWidgetItem(item['item']['name']))
+            self.items.setItem(r, 2, QtWidgets.QTableWidgetItem(item['item']['type']))
+            it = QtWidgets.QTableWidgetItem(str(item['num']))
+            it.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+            self.items.setItem(r, 3, it)
 
     def set_pers(self, pers):
         name = ''
@@ -96,6 +107,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.pers: Optional[QtWidgets.QComboBox] = None
         self.pers_commit: Optional[QtWidgets.QPushButton] = None
         self.vocations: Optional[Pers] = None
+        self.items: Optional[QtWidgets.QTableWidget]
         self.actionOpen: Optional[QtGui.QAction] = None
         self.actionSave: Optional[QtGui.QAction] = None
         self.actionSavex: Optional[QtGui.QAction] = None
