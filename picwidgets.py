@@ -65,6 +65,8 @@ class PicGrid(QWidget):
         data = data or [[None, None, None], [None, None, None], [None, None, None]]
         layout = QGridLayout(self)
         layout.setSpacing(0)
+        self.array = []
+        self.dict = {}
         for row, r in enumerate(data):
             for col, c in enumerate(r):
                 if isinstance(c, dict):
@@ -73,6 +75,11 @@ class PicGrid(QWidget):
                     pb = PicButton(c, delegate=self.delegate, data=c, border=3)
                 if pb is not None:
                     layout.addWidget(pb, row, col)
+                    self.array.append(pb)
+                    self.dict[c] = pb
+
+    def select(self, idx):
+        self.array[idx-1].setChecked(True)
 
 
 class StarRating(object):
