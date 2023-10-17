@@ -131,6 +131,7 @@ class MainWindow(QtWidgets.QMainWindow):
         file = self.settings.value('file/savefile')
         if file:
             self.dddasav.setText(file)
+            QtWidgets.QApplication.processEvents()
             self.on_dddasav_load()
 
     def on_dddasav_edit(self):
@@ -171,8 +172,13 @@ class MainWindow(QtWidgets.QMainWindow):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
+    pixmap = QtGui.QPixmap('resources/dark-arisen.jpg')
+    splash = QtWidgets.QSplashScreen(pixmap)
+    splash.show()
+    app.processEvents()
     mw = MainWindow()
     mw.show()
+    splash.finish(mw)
     sys.exit(app.exec())
 
 
