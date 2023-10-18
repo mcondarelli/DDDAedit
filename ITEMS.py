@@ -1,1632 +1,1921 @@
-_items = [
-          {'type': 'item', 'id': 0, 'name': 'Airtight Flask '},
-          {'type': 'item', 'id': 1, 'name': 'Scrag of Beast '},
-          {'type': 'item', 'id': 2, 'name': 'Beast-Steak '},
-          {'type': 'item', 'id': 3, 'name': 'Ambrosial Meat '},
-          {'type': 'item', 'id': 4, 'name': 'Sour Scrag of Beast '},
-          {'type': 'item', 'id': 5, 'name': 'Sour Beast-Steak '},
-          {'type': 'item', 'id': 6, 'name': 'Sour Ambrosial Meat '},
-          {'type': 'item', 'id': 7, 'name': 'Rotten Scrag of Beast '},
-          {'type': 'item', 'id': 8, 'name': 'Rotten Beast-Steak '},
-          {'type': 'item', 'id': 9, 'name': 'Rotten Ambrosial Meat '},
-          {'type': 'item', 'id': 10, 'name': 'Small Fish '},
-          {'type': 'item', 'id': 11, 'name': 'Large Fish '},
-          {'type': 'item', 'id': 12, 'name': 'Giant Fish '},
-          {'type': 'item', 'id': 13, 'name': 'Small Rank Fish '},
-          {'type': 'item', 'id': 14, 'name': 'Large Rank Fish '},
-          {'type': 'item', 'id': 15, 'name': 'Giant Rank Fish '},
-          {'type': 'item', 'id': 16, 'name': 'Small Rotten Fish '},
-          {'type': 'item', 'id': 17, 'name': 'Large Rotten Fish '},
-          {'type': 'item', 'id': 18, 'name': 'Giant Rotten Fish '},
-          {'type': 'item', 'id': 19, 'name': 'Berry '},
-          {'type': 'item', 'id': 20, 'name': 'Apple '},
-          {'type': 'item', 'id': 21, 'name': 'Grandgrapes '},
-          {'type': 'item', 'id': 22, 'name': 'Moldy Berry '},
-          {'type': 'item', 'id': 23, 'name': 'Moldy Apple '},
-          {'type': 'item', 'id': 24, 'name': 'Moldy Grandgrapes '},
-          {'type': 'item', 'id': 25, 'name': 'Rotten Berry '},
-          {'type': 'item', 'id': 26, 'name': 'Rotten Apple '},
-          {'type': 'item', 'id': 27, 'name': 'Rotten Grandgrapes '},
-          {'type': 'item', 'id': 28, 'name': 'Twigbean '},
-          {'type': 'item', 'id': 29, 'name': 'Carrot '},
-          {'type': 'item', 'id': 30, 'name': 'Pumpkin '},
-          {'type': 'item', 'id': 31, 'name': 'Moldy Twigbean '},
-          {'type': 'item', 'id': 32, 'name': 'Moldy Carrot '},
-          {'type': 'item', 'id': 33, 'name': 'Moldy Pumpkin '},
-          {'type': 'item', 'id': 34, 'name': 'Rotten Twigbean '},
-          {'type': 'item', 'id': 35, 'name': 'Rotten Carrot '},
-          {'type': 'item', 'id': 36, 'name': 'Rotten Pumpkin '},
-          {'type': 'item', 'id': 37, 'name': 'Egg '},
-          {'type': 'item', 'id': 38, 'name': 'Golden Egg '},
-          {'type': 'item', 'id': 39, 'name': 'Rotten Egg '},
-          {'type': 'item', 'id': 40, 'name': 'Sunbright '},
-          {'type': 'item', 'id': 41, 'name': 'Moonglow '},
-          {'type': 'item', 'id': 42, 'name': 'Wilted Blossom '},
-          {'type': 'item', 'id': 43, 'name': 'Greenwarish '},
-          {'type': 'item', 'id': 44, 'name': 'Potent Greenwarish '},
-          {'type': 'item', 'id': 45, 'name': 'Mushroom '},
-          {'type': 'item', 'id': 46, 'name': 'Large Mushroom '},
-          {'type': 'item', 'id': 47, 'name': 'Avernal Mushroom '},
-          {'type': 'item', 'id': 48, 'name': 'Mithridate '},
-          {'type': 'item', 'id': 49, 'name': 'Bringbout '},
-          {'type': 'item', 'id': 50, 'name': 'Small Nut '},
-          {'type': 'item', 'id': 51, 'name': 'Large Nut '},
-          {'type': 'item', 'id': 52, 'name': 'Copper Ore '},
-          {'type': 'item', 'id': 53, 'name': 'Silver Ore '},
-          {'type': 'item', 'id': 54, 'name': 'Gold Ore '},
-          {'type': 'item', 'id': 55, 'name': 'Fuligin Ore '},
-          {'type': 'item', 'id': 56, 'name': 'Hemp '},
-          {'type': 'item', 'id': 57, 'name': 'Wool-Cloth '},
-          {'type': 'item', 'id': 58, 'name': 'Silk '},
-          {'type': 'item', 'id': 59, 'name': 'Argence '},
-          {'type': 'item', 'id': 60, 'name': 'Pine Branch '},
-          {'type': 'legs', 'id': 61, 'name': 'Cedar Branch '},
-          {'type': 'item', 'id': 62, 'name': 'Chestnut Branch '},
-          {'type': 'item', 'id': 63, 'name': 'Beech Branch '},
-          {'type': 'item', 'id': 64, 'name': 'Lantern '},
-          {'type': 'item', 'id': 65, 'name': 'Lantern (Half-Full) '},
-          {'type': 'item', 'id': 66, 'name': 'Ferrystone '},
-          {'type': 'item', 'id': 67, 'name': 'Empty Flask '},
-          {'type': 'item', 'id': 68, 'name': 'Flask of Water '},
-          {'type': 'item', 'id': 69, 'name': 'Flask of Oil '},
-          {'type': 'item', 'id': 70, 'name': 'Kindling '},
-          {'type': 'unknown', 'id': 71, 'name': 'Torch '},
-          {'type': 'item', 'id': 72, 'name': 'Ceramic Jug '},
-          {'type': 'item', 'id': 73, 'name': 'Rock '},
-          {'type': 'item', 'id': 74, 'name': 'Skull '},
-          {'type': 'item', 'id': 75, 'name': 'Pickaxe '},
-          {'type': 'item', 'id': 76, 'name': 'Lantern (No Fuel) '},
-          {'type': 'unknown', 'id': 77, 'name': 'Sturdy Pickaxe '},
-          {'type': 'unknown', 'id': 78, 'name': 'Irrefrangible Pickaxe '},
-          {'type': 'item', 'id': 79, 'name': 'Throwblast '},
-          {'type': 'item', 'id': 80, 'name': "Dragon's Spit "},
-          {'type': 'unknown', 'id': 81, 'name': 'Charcoal '},
-          {'type': 'item', 'id': 82, 'name': 'Smother Sap '},
-          {'type': 'item', 'id': 83, 'name': 'Harspud Milk '},
-          {'type': 'item', 'id': 84, 'name': 'Harspud Juice '},
-          {'type': 'item', 'id': 85, 'name': 'Harspud Sauce '},
-          {'type': 'item', 'id': 86, 'name': 'Interventive '},
-          {'type': 'item', 'id': 87, 'name': 'Spicy Mushroom Tea '},
-          {'type': 'item', 'id': 88, 'name': 'Light-Cure '},
-          {'type': 'unknown', 'id': 89, 'name': 'Twinge Eel Treacle '},
-          {'type': 'item', 'id': 90, 'name': 'Panacea '},
-          {'type': 'item', 'id': 91, 'name': 'White Wine '},
-          {'type': 'item', 'id': 92, 'name': 'Red Wine '},
-          {'type': 'item', 'id': 93, 'name': 'Poison Flask '},
-          {'type': 'item', 'id': 94, 'name': 'Absorbent Rag '},
-          {'type': 'item', 'id': 95, 'name': 'Clean Cloth '},
-          {'type': 'item', 'id': 97, 'name': 'Secret Softener '},
-          {'type': 'item', 'id': 98, 'name': 'Liquid Vim '},
-          {'type': 'item', 'id': 99, 'name': 'Salubrious Brew '},
-          {'type': 'item', 'id': 100, 'name': 'Bottled Haste '},
-          {'type': 'item', 'id': 101, 'name': 'Eyedropper '},
-          {'type': 'item', 'id': 102, 'name': 'Throat Drops '},
-          {'type': 'item', 'id': 104, 'name': 'Placative Brew '},
-          {'type': 'item', 'id': 105, 'name': 'Liberating Brew '},
-          {'type': 'item', 'id': 106, 'name': 'Purifying Brew '},
-          {'type': 'item', 'id': 108, 'name': 'Dose of Strength '},
-          {'type': 'item', 'id': 109, 'name': 'Dose of Courage '},
-          {'type': 'item', 'id': 110, 'name': "Warlock's Draught "},
-          {'type': 'item', 'id': 111, 'name': "Cleric's Draught "},
-          {'type': 'item', 'id': 112, 'name': "Conqueror's Periapt "},
-          {'type': 'item', 'id': 113, 'name': "Angel's Periapt "},
-          {'type': 'item', 'id': 114, 'name': "Demon's Periapt "},
-          {'type': 'item', 'id': 115, 'name': "Mage's Periapt "},
-          {'type': 'item', 'id': 116, 'name': "Monk's Periapt "},
-          {'type': 'item', 'id': 117, 'name': "Veteran's Periapt "},
-          {'type': 'item', 'id': 118, 'name': "Banker's Periapt "},
-          {'type': 'item', 'id': 119, 'name': 'Isometricine '},
-          {'type': 'item', 'id': 120, 'name': 'Foreign Knife '},
-          {'type': 'unknown', 'id': 130, 'name': 'Wooden Arrow '},
-          {'type': 'item', 'id': 131, 'name': 'Poison Arrow '},
-          {'type': 'item', 'id': 132, 'name': 'Blinder Arrow '},
-          {'type': 'item', 'id': 133, 'name': 'Silencer Arrow '},
-          {'type': 'item', 'id': 134, 'name': 'Sleeper Arrow '},
-          {'type': 'item', 'id': 135, 'name': 'Oil Arrow '},
-          {'type': 'item', 'id': 137, 'name': 'Petrifying Arrow '},
-          {'type': 'item', 'id': 139, 'name': 'Blast Arrow '},
-          {'type': 'item', 'id': 140, 'name': "Maker's Finger "},
-          {'type': 'unknown', 'id': 141, 'name': "Soldier's Uniform "},
-          {'type': 'item', 'id': 142, 'name': 'First Key To Salvation '},
-          {'type': 'item', 'id': 143, 'name': 'Second Key To Salvation '},
-          {'type': 'item', 'id': 144, 'name': 'First Gem of Salvation '},
-          {'type': 'item', 'id': 145, 'name': 'Second Gem of Salvation '},
-          {'type': 'item', 'id': 146, 'name': 'Third Gem of Salvation '},
-          {'type': 'item', 'id': 147, 'name': 'Fourth Gem of Salvation '},
-          {'type': 'item', 'id': 148, 'name': "Watergod's Altar Key "},
-          {'type': 'item', 'id': 149, 'name': 'Quarry Key '},
-          {'type': 'item', 'id': 150, 'name': 'Portcrystal '},
-          {'type': 'item', 'id': 151, 'name': 'Wakestone '},
-          {'type': 'item', 'id': 152, 'name': 'Wyrm Hunt License '},
-          {'type': 'item', 'id': 153, 'name': "Gardener's Permit "},
-          {'type': 'item', 'id': 154, 'name': 'Ancient Slate '},
-          {'type': 'item', 'id': 155, 'name': 'Wakestone Shard '},
-          {'type': 'unknown', 'id': 156, 'name': 'Petition '},
-          {'type': 'unknown', 'id': 157, 'name': 'Red Maidenswear '},
-          {'type': 'item', 'id': 158, 'name': 'Incriminating Contract '},
-          {'type': 'unknown', 'id': 159, 'name': 'Blue Maidenswear '},
-          {'type': 'unknown', 'id': 160, 'name': 'Yellow Maidenswear '},
-          {'type': 'unknown', 'id': 161, 'name': "Traveler's Journal "},
-          {'type': 'item', 'id': 162, 'name': "Salomet's Grimoire "},
-          {'type': 'item', 'id': 163, 'name': 'Confidential Letter '},
-          {'type': 'item', 'id': 164, 'name': 'Parcel '},
-          {'type': 'unknown', 'id': 165, 'name': 'Green Maidenswear '},
-          {'type': 'item', 'id': 166, 'name': 'Altar Slate '},
-          {'type': 'item', 'id': 167, 'name': "Maul's Badge Of Amity "},
-          {'type': 'item', 'id': 168, 'name': "Ophis's Badge Of Amity "},
-          {'type': 'unknown', 'id': 169, 'name': "Maidservant's Vesture "},
-          {'type': 'item', 'id': 170, 'name': 'Gold Idol '},
-          {'type': 'item', 'id': 171, 'name': 'Blessed Flower '},
-          {'type': 'item', 'id': 172, 'name': 'Dead Flower '},
-          {'type': 'item', 'id': 173, 'name': 'Ancient Tablet '},
-          {'type': 'item', 'id': 174, 'name': 'Fifth Gem of Salvation '},
-          {'type': 'item', 'id': 175, 'name': 'Godsbane '},
-          {'type': 'item', 'id': 176, 'name': 'Windbluff Tower Key '},
-          {'type': 'item', 'id': 177, 'name': "Arisen's Bond "},
-          {'type': 'unknown', 'id': 178, 'name': "Prisoner's Drabs "},
-          {'type': 'item', 'id': 179, 'name': "Watergod's Altar Lever "},
-          {'type': 'item', 'id': 180, 'name': 'Shadow Fort Lever '},
-          {'type': 'item', 'id': 181, 'name': 'Wyrmward Perfume '},
-          {'type': 'unknown', 'id': 182, 'name': "Goodfisher's Clothes "},
-          {'type': 'unknown', 'id': 183, 'name': 'Salvation Habit '},
-          {'type': 'item', 'id': 184, 'name': "Seeker's Token "},
-          {'type': 'item', 'id': 185, 'name': 'Badge of Vows '},
-          {'type': 'unknown', 'id': 186, 'name': 'Celestial Vesture '},
-          {'type': 'item', 'id': 187, 'name': 'Engraved Lever '},
-          {'type': 'unknown', 'id': 188, 'name': 'Affidavit of Innocence '},
-          {'type': 'unknown', 'id': 189, 'name': 'Affidavit of Guilt '},
-          {'type': 'item', 'id': 190, 'name': 'First Journal Entry '},
-          {'type': 'item', 'id': 191, 'name': 'Second Journal Entry '},
-          {'type': 'item', 'id': 192, 'name': 'Third Journal Entry '},
-          {'type': 'item', 'id': 193, 'name': 'Fourth Journal Entry '},
-          {'type': 'item', 'id': 194, 'name': 'Fifth Journal Entry '},
-          {'type': 'item', 'id': 195, 'name': 'Final Journal Entry '},
-          {'type': 'item', 'id': 196, 'name': 'Unsigned Letter '},
-          {'type': 'item', 'id': 197, 'name': 'Tightly Folded Letter '},
-          {'type': 'item', 'id': 198, 'name': 'Silver Idol '},
-          {'type': 'item', 'id': 199, 'name': 'Bronze Idol '},
-          {'type': 'unknown', 'id': 200, 'name': 'Resolve '},
-          {'type': 'unknown', 'id': 201, 'name': 'Promise '},
-          {'type': 'item', 'id': 202, 'name': 'Godsbane '},
-          {'type': 'item', 'id': 203, 'name': 'Coin Purse of Charity '},
-          {'type': 'item', 'id': 204, 'name': 'Scriptures '},
-          {'type': 'item', 'id': 205, 'name': 'Promissory Note '},
-          {'type': 'item', 'id': 206, 'name': 'Antique Panoply '},
-          {'type': 'item', 'id': 207, 'name': 'Matured Greenwarish '},
-          {'type': 'item', 'id': 208, 'name': 'Pretty Stone '},
-          {'type': 'item', 'id': 209, 'name': "Champion's Writ "},
-          {'type': 'item', 'id': 210, 'name': "Warden's Writ "},
-          {'type': 'item', 'id': 211, 'name': "Archmage's Writ "},
-          {'type': 'item', 'id': 212, 'name': "Quina's Note "},
-          {'type': 'item', 'id': 213, 'name': "Pilgrim's Charm "},
-          {'type': 'unknown', 'id': 214, 'name': 'Unbowed Tree '},
-          {'type': 'unknown', 'id': 215, 'name': 'Eager Fang '},
-          {'type': 'unknown', 'id': 216, 'name': 'Gran Soren Uniform '},
-          {'type': 'item', 'id': 217, 'name': 'Strongwarish '},
-          {'type': 'item', 'id': 218, 'name': 'Badge of Merit '},
-          {'type': 'item', 'id': 219, 'name': 'Rift Crystal '},
-          {'type': 'item', 'id': 221, 'name': "Salvation's Badge "},
-          {'type': 'item', 'id': 222, 'name': 'Manse Key '},
-          {'type': 'item', 'id': 223, 'name': 'Skeleton Key '},
-          {'type': 'item', 'id': 224, 'name': 'Love-In-The-Rough '},
-          {'type': 'item', 'id': 225, 'name': "Ne'er-Do-Part "},
-          {'type': 'unknown', 'id': 226, 'name': 'Petition of Guilt '},
-          {'type': 'item', 'id': 229, 'name': "Wyrmking's Ring "},
-          {'type': 'item', 'id': 230, 'name': 'Kept Scrag of Beast '},
-          {'type': 'item', 'id': 231, 'name': 'Kept Beast-Steak '},
-          {'type': 'item', 'id': 232, 'name': 'Kept Ambrosial Meat '},
-          {'type': 'item', 'id': 233, 'name': 'Kept Sour Scrag of Beast '},
-          {'type': 'item', 'id': 234, 'name': 'Kept Sour Beast-Steak '},
-          {'type': 'item', 'id': 235, 'name': 'Kept Sour Ambrosial Meat '},
-          {'type': 'item', 'id': 236, 'name': 'Kept Rotten Scrag of Beast '},
-          {'type': 'item', 'id': 237, 'name': 'Kept Rotten Beast-Steak '},
-          {'type': 'item', 'id': 238, 'name': 'Kept Rotten Ambrosial Meat '},
-          {'type': 'item', 'id': 239, 'name': 'Kept Small Fish '},
-          {'type': 'item', 'id': 240, 'name': 'Kept Large Fish '},
-          {'type': 'item', 'id': 241, 'name': 'Kept Giant Fish '},
-          {'type': 'item', 'id': 242, 'name': 'Kept Small Rank Fish '},
-          {'type': 'item', 'id': 243, 'name': 'Kept Large Rank Fish '},
-          {'type': 'item', 'id': 244, 'name': 'Kept Giant Rank Fish '},
-          {'type': 'item', 'id': 245, 'name': 'Kept Small Rotten Fish '},
-          {'type': 'item', 'id': 246, 'name': 'Kept Large Rotten Fish '},
-          {'type': 'item', 'id': 247, 'name': 'Kept Giant Rotten Fish '},
-          {'type': 'item', 'id': 248, 'name': 'Kept Berry '},
-          {'type': 'item', 'id': 249, 'name': 'Kept Apple '},
-          {'type': 'item', 'id': 250, 'name': 'Kept Grandgrapes '},
-          {'type': 'item', 'id': 251, 'name': 'Kept Moldy Berry '},
-          {'type': 'item', 'id': 252, 'name': 'Kept Moldy Apple '},
-          {'type': 'item', 'id': 253, 'name': 'Kept Moldy Grandgrapes '},
-          {'type': 'item', 'id': 254, 'name': 'Kept Rotten Berry '},
-          {'type': 'item', 'id': 255, 'name': 'Kept Rotten Apple '},
-          {'type': 'item', 'id': 256, 'name': 'Kept Rotten Grandgrapes '},
-          {'type': 'item', 'id': 257, 'name': 'Kept Twigbean '},
-          {'type': 'item', 'id': 258, 'name': 'Kept Carrot '},
-          {'type': 'item', 'id': 259, 'name': 'Kept Pumpkin '},
-          {'type': 'item', 'id': 260, 'name': 'Kept Moldy Twigbean '},
-          {'type': 'item', 'id': 261, 'name': 'Kept Moldy Carrot '},
-          {'type': 'item', 'id': 262, 'name': 'Kept Moldy Pumpkin '},
-          {'type': 'item', 'id': 263, 'name': 'Kept Rotten Twigbean '},
-          {'type': 'item', 'id': 264, 'name': 'Kept Rotten Carrot '},
-          {'type': 'item', 'id': 265, 'name': 'Kept Rotten Pumpkin '},
-          {'type': 'item', 'id': 266, 'name': 'Kept Egg '},
-          {'type': 'item', 'id': 267, 'name': 'Kept Golden Egg '},
-          {'type': 'item', 'id': 268, 'name': 'Kept Rotten Egg '},
-          {'type': 'item', 'id': 269, 'name': 'Kept Sunbright '},
-          {'type': 'item', 'id': 270, 'name': 'Kept Moonglow '},
-          {'type': 'item', 'id': 271, 'name': 'Kept Wilted Blossom '},
-          {'type': 'item', 'id': 272, 'name': 'Ferrystone '},
-          {'type': 'item', 'id': 273, 'name': "Maker's Finger "},
-          {'type': 'item', 'id': 274, 'name': 'Portcrystal '},
-          {'type': 'item', 'id': 275, 'name': 'Wakestone '},
-          {'type': 'item', 'id': 276, 'name': 'Wakestone Shard '},
-          {'type': 'item', 'id': 277, 'name': 'Wyrmward Perfume '},
-          {'type': 'item', 'id': 278, 'name': "Salomet's Grimoire Forgery "},
-          {'type': 'item', 'id': 279, 'name': 'Gold Idol Forgery '},
-          {'type': 'item', 'id': 280, 'name': 'Silver Idol Forgery '},
-          {'type': 'item', 'id': 281, 'name': 'Bronze Idol Forgery '},
-          {'type': 'item', 'id': 282, 'name': "Wyrmking's Ring Forgery "},
-          {'type': 'item', 'id': 283, 'name': 'Rift Fragment '},
-          {'type': 'item', 'id': 284, 'name': 'Rift Cluster '},
-          {'type': 'item', 'id': 285, 'name': "Dragon's Gaze "},
-          {'type': 'item', 'id': 286, 'name': 'Confidential Letter Forgery '},
-          {'type': 'sword', 'id': 301, 'name': 'Iron Sword'},
-          {'type': 'sword', 'id': 302, 'name': 'Cutlass'},
-          {'type': 'sword', 'id': 303, 'name': 'Silver Rapier'},
-          {'type': 'sword', 'id': 304, 'name': 'Golden Rapier'},
-          {'type': 'sword', 'id': 305, 'name': 'Aneled Rapier'},
-          {'type': 'sword', 'id': 306, 'name': 'Broadsword'},
-          {'type': 'sword', 'id': 307, 'name': 'Trusty Sword'},
-          {'type': 'sword', 'id': 308, 'name': 'Undulant Sword'},
-          {'type': 'sword', 'id': 309, 'name': 'Undulant Gold'},
-          {'type': 'sword', 'id': 310, 'name': 'Undulant Black'},
-          {'type': 'sword', 'id': 311, 'name': 'Crossed Clinquedea'},
-          {'type': 'sword', 'id': 312, 'name': "Dragon's Dogma"},
-          {'type': 'sword', 'id': 313, 'name': 'Bastard Sword'},
-          {'type': 'sword', 'id': 314, 'name': 'Golden Bastard'},
-          {'type': 'sword', 'id': 315, 'name': 'Aneled Bastard'},
-          {'type': 'sword', 'id': 316, 'name': 'Carnation'},
-          {'type': 'sword', 'id': 317, 'name': 'Tight Cinquedea'},
-          {'type': 'sword', 'id': 318, 'name': 'Ascalon'},
-          {'type': 'sword', 'id': 319, 'name': 'Wounded Fury'},
-          {'type': 'sword', 'id': 320, 'name': 'Force Hatchet'},
-          {'type': 'sword', 'id': 321, 'name': 'Rusted Sword'},
-          {'type': 'mace', 'id': 322, 'name': 'Mace'},
-          {'type': 'mace', 'id': 323, 'name': 'Thousand Troops'},
-          {'type': 'mace', 'id': 324, 'name': 'Obliteratrix'},
-          {'type': 'mace', 'id': 325, 'name': 'Golden Obliteratrix'},
-          {'type': 'mace', 'id': 326, 'name': 'Aneled Obliteratrix'},
-          {'type': 'mace', 'id': 327, 'name': 'Steel Beak'},
-          {'type': 'mace', 'id': 328, 'name': 'Beak of Gold'},
-          {'type': 'mace', 'id': 329, 'name': 'Aneled Beak'},
-          {'type': 'mace', 'id': 330, 'name': 'Threaded Cudgel'},
-          {'type': 'mace', 'id': 331, 'name': "Dragon's Toll"},
-          {'type': 'mace', 'id': 332, 'name': 'Morgenstern'},
-          {'type': 'mace', 'id': 333, 'name': 'Bloodthirsty Beak'},
-          {'type': 'mace', 'id': 334, 'name': 'Thousand Stings'},
-          {'type': 'mace', 'id': 335, 'name': 'Golden Stings'},
-          {'type': 'mace', 'id': 336, 'name': 'Aneled Stings'},
-          {'type': 'mace', 'id': 337, 'name': 'Ingot Club'},
-          {'type': 'mace', 'id': 338, 'name': 'Totem Mace'},
-          {'type': 'mace', 'id': 339, 'name': "Dragon's Presence"},
-          {'type': 'mace', 'id': 340, 'name': 'Sickening Skull'},
-          {'type': 'mace', 'id': 341, 'name': 'Royal Alms'},
-          {'type': 'mace', 'id': 342, 'name': 'Rusted Mace'},
-          {'type': 'sword', 'id': 343, 'name': 'Two-Hander'},
-          {'type': 'sword', 'id': 344, 'name': 'Steel Greatsword'},
-          {'type': 'sword', 'id': 345, 'name': 'Lifetaker'},
-          {'type': 'sword', 'id': 346, 'name': 'Soultaker'},
-          {'type': 'sword', 'id': 347, 'name': 'Soulbreaker'},
-          {'type': 'sword', 'id': 348, 'name': 'War Blade'},
-          {'type': 'sword', 'id': 349, 'name': 'Flamberge'},
-          {'type': 'sword', 'id': 350, 'name': 'Cassardi Flamberge'},
-          {'type': 'sword', 'id': 351, 'name': 'Saving Grace'},
-          {'type': 'sword', 'id': 352, 'name': 'Dwells-In-Light'},
-          {'type': 'sword', 'id': 353, 'name': "Dragon's Bite"},
-          {'type': 'sword', 'id': 354, 'name': "Lancer's Sword"},
-          {'type': 'sword', 'id': 355, 'name': 'Golden Lance'},
-          {'type': 'sword', 'id': 356, 'name': 'Aneled Lance'},
-          {'type': 'sword', 'id': 357, 'name': 'Gryphic Victory'},
-          {'type': 'sword', 'id': 358, 'name': 'Gryphic Gold'},
-          {'type': 'sword', 'id': 359, 'name': 'Gryphic Black'},
-          {'type': 'sword', 'id': 360, 'name': 'Wounded Heart'},
-          {'type': 'mace', 'id': 361, 'name': "Dragon's Flight"},
-          {'type': 'sword', 'id': 362, 'name': 'Iraklis'},
-          {'type': 'sword', 'id': 363, 'name': 'Rusted Greatsword'},
-          {'type': 'mace', 'id': 364, 'name': 'Judgment'},
-          {'type': 'mace', 'id': 365, 'name': 'Mounted Pale'},
-          {'type': 'mace', 'id': 366, 'name': 'Golden Pale'},
-          {'type': 'mace', 'id': 367, 'name': 'Aneled Pale'},
-          {'type': 'mace', 'id': 368, 'name': 'Cyclops Sigil'},
-          {'type': 'mace', 'id': 369, 'name': 'Golden Cyclops Sigil'},
-          {'type': 'mace', 'id': 370, 'name': 'Aneled Cyclops Sigil'},
-          {'type': 'mace', 'id': 371, 'name': 'Triple Tooth'},
-          {'type': 'mace', 'id': 372, 'name': 'Teeth of Gold'},
-          {'type': 'mace', 'id': 373, 'name': 'Aneled Tooth'},
-          {'type': 'mace', 'id': 374, 'name': 'Ferric Talon'},
-          {'type': 'mace', 'id': 375, 'name': 'Bloody Thistle'},
-          {'type': 'mace', 'id': 376, 'name': 'Steel Urchin'},
-          {'type': 'mace', 'id': 377, 'name': "Angel's Fist"},
-          {'type': 'mace', 'id': 378, 'name': "Dragon's Repast"},
-          {'type': 'mace', 'id': 379, 'name': 'Black Matter'},
-          {'type': 'mace', 'id': 380, 'name': 'Chestcaver'},
-          {'type': 'mace', 'id': 382, 'name': "Cyclop's Bane"},
-          {'type': 'mace', 'id': 383, 'name': 'Stamina Hammer'},
-          {'type': 'mace', 'id': 384, 'name': 'Rusted Warhammer'},
-          {'type': 'dagger', 'id': 385, 'name': 'Throatcutters '},
-          {'type': 'dagger', 'id': 386, 'name': 'Signs of Valor '},
-          {'type': 'dagger', 'id': 387, 'name': 'Crimson Teeth '},
-          {'type': 'dagger', 'id': 388, 'name': 'Bardiche Daggers '},
-          {'type': 'dagger', 'id': 389, 'name': 'Golden Bardiches '},
-          {'type': 'dagger', 'id': 390, 'name': 'Aneled Bardiches '},
-          {'type': 'dagger', 'id': 391, 'name': 'Vouge Daggers '},
-          {'type': 'dagger', 'id': 392, 'name': 'Divine Razors '},
-          {'type': 'dagger', 'id': 393, 'name': 'Stilettos '},
-          {'type': 'dagger', 'id': 394, 'name': 'Golden Stilettos '},
-          {'type': 'dagger', 'id': 395, 'name': 'Aneled Stilettos '},
-          {'type': 'dagger', 'id': 396, 'name': 'Criteria '},
-          {'type': 'dagger', 'id': 397, 'name': "Dragon's Vein "},
-          {'type': 'dagger', 'id': 398, 'name': "Dragon's Pain "},
-          {'type': 'dagger', 'id': 399, 'name': 'Snagdaggers '},
-          {'type': 'dagger', 'id': 400, 'name': 'Snags of Gold '},
-          {'type': 'dagger', 'id': 401, 'name': 'Aneled Snags '},
-          {'type': 'dagger', 'id': 403, 'name': 'Saurian Bane '},
-          {'type': 'dagger', 'id': 404, 'name': 'Dowsing Spikes '},
-          {'type': 'dagger', 'id': 405, 'name': 'Rusted Daggers '},
-          {'type': 'staff', 'id': 406, 'name': 'Wooden Staff '},
-          {'type': 'staff', 'id': 407, 'name': 'Favored Flower '},
-          {'type': 'staff', 'id': 408, 'name': 'Volant White '},
-          {'type': 'staff', 'id': 409, 'name': 'Unfettered Claw '},
-          {'type': 'staff', 'id': 410, 'name': 'Golden Claw '},
-          {'type': 'staff', 'id': 411, 'name': 'Aneled Claw '},
-          {'type': 'staff', 'id': 412, 'name': 'Cast Stone '},
-          {'type': 'staff', 'id': 413, 'name': "Dragon's Nous "},
-          {'type': 'staff', 'id': 414, 'name': 'Ironclad Staff '},
-          {'type': 'staff', 'id': 415, 'name': 'Unspoken Grace '},
-          {'type': 'staff', 'id': 416, 'name': 'Golden Grace '},
-          {'type': 'staff', 'id': 417, 'name': 'Aneled Grace '},
-          {'type': 'staff', 'id': 418, 'name': 'Anchor To Heaven '},
-          {'type': 'staff', 'id': 419, 'name': 'Path To Heaven '},
-          {'type': 'staff', 'id': 420, 'name': 'Gleam Of Heaven '},
-          {'type': 'staff', 'id': 421, 'name': 'Favored Canopy '},
-          {'type': 'staff', 'id': 422, 'name': 'Frigid Finger '},
-          {'type': 'staff', 'id': 424, 'name': 'Goblin Bane '},
-          {'type': 'staff', 'id': 425, 'name': "Legion's Might "},
-          {'type': 'staff', 'id': 426, 'name': 'Rusted Staff '},
-          {'type': 'staff', 'id': 427, 'name': 'Common Archistaff '},
-          {'type': 'staff', 'id': 428, 'name': 'Favored Branches '},
-          {'type': 'staff', 'id': 429, 'name': 'Talarian White '},
-          {'type': 'staff', 'id': 430, 'name': 'Plucked Heart '},
-          {'type': 'staff', 'id': 431, 'name': 'Solar Providence '},
-          {'type': 'staff', 'id': 432, 'name': 'Eclipsed Providence '},
-          {'type': 'staff', 'id': 433, 'name': "Dragon's Wit "},
-          {'type': 'staff', 'id': 434, 'name': "Keen Dragon's Wit "},
-          {'type': 'staff', 'id': 435, 'name': 'Grievous Horns '},
-          {'type': 'staff', 'id': 436, 'name': 'Grievous Gold '},
-          {'type': 'staff', 'id': 437, 'name': 'Grevious Black '},
-          {'type': 'staff', 'id': 438, 'name': 'Meniscus '},
-          {'type': 'staff', 'id': 439, 'name': 'Golden Meniscus '},
-          {'type': 'staff', 'id': 440, 'name': 'Aneled Meniscus '},
-          {'type': 'staff', 'id': 441, 'name': 'Helical Archistaff '},
-          {'type': 'staff', 'id': 442, 'name': 'Solar Numen '},
-          {'type': 'staff', 'id': 443, 'name': 'Dragons Risen '},
-          {'type': 'staff', 'id': 445, 'name': 'Evil Eyesight '},
-          {'type': 'staff', 'id': 446, 'name': 'Caged Fury '},
-          {'type': 'staff', 'id': 447, 'name': 'Rusted Archistaff '},
-          {'type': 'sword', 'id': 448, 'name': "Eden's Warden"},
-          {'type': 'sword', 'id': 449, 'name': 'Caladbolg'},
-          {'type': 'sword', 'id': 450, 'name': 'Almace'},
-          {'type': 'mace', 'id': 451, 'name': 'Crescending Roar'},
-          {'type': 'mace', 'id': 452, 'name': 'Font of Fire'},
-          {'type': 'sword', 'id': 453, 'name': 'Malignance'},
-          {'type': 'sword', 'id': 454, 'name': 'Ardent Will'},
-          {'type': 'mace', 'id': 455, 'name': 'Fiery Talon'},
-          {'type': 'mace', 'id': 456, 'name': 'Rooted Gloom'},
-          {'type': 'staff', 'id': 457, 'name': 'Crimson Glare '},
-          {'type': 'staff', 'id': 458, 'name': 'Thunderclap '},
-          {'type': 'staff', 'id': 459, 'name': 'Divine Axis '},
-          {'type': 'staff', 'id': 460, 'name': 'Algid Bloom '},
-          {'type': 'shield', 'id': 461, 'name': 'Iron Shield '},
-          {'type': 'shield', 'id': 462, 'name': 'Pelta '},
-          {'type': 'shield', 'id': 463, 'name': 'Round Shield '},
-          {'type': 'shield', 'id': 464, 'name': 'Gran Sorean Shield '},
-          {'type': 'shield', 'id': 465, 'name': 'Mark of the Chimera '},
-          {'type': 'shield', 'id': 466, 'name': 'Orilux Shield '},
-          {'type': 'shield', 'id': 467, 'name': 'Lustrous Targe '},
-          {'type': 'shield', 'id': 468, 'name': 'Sable Sentinel '},
-          {'type': 'shield', 'id': 469, 'name': "Dragon's Aegis "},
-          {'type': 'shield', 'id': 470, 'name': 'Feather-Light Pelta '},
-          {'type': 'shield', 'id': 471, 'name': 'Scarred Sentinel '},
-          {'type': 'shield', 'id': 472, 'name': "Dragon's Den "},
-          {'type': 'shield', 'id': 473, 'name': 'Hellfang '},
-          {'type': 'shield', 'id': 474, 'name': 'Brutish Wall '},
-          {'type': 'shield', 'id': 475, 'name': 'Rusted Shield '},
-          {'type': 'shield', 'id': 476, 'name': 'Wooden Wall '},
-          {'type': 'shield', 'id': 477, 'name': 'Magick Buckler '},
-          {'type': 'shield', 'id': 478, 'name': 'Fine Magick Bucklers '},
-          {'type': 'shield', 'id': 479, 'name': 'Lustrous Greatshield '},
-          {'type': 'shield', 'id': 480, 'name': 'Blute Kite Shield '},
-          {'type': 'shield', 'id': 481, 'name': "Wizard's Vizard "},
-          {'type': 'shield', 'id': 482, 'name': "Knight's Honor "},
-          {'type': 'shield', 'id': 483, 'name': "Angel's Sanctum "},
-          {'type': 'shield', 'id': 484, 'name': 'Dark Buckler '},
-          {'type': 'shield', 'id': 485, 'name': "Dragon's Faith "},
-          {'type': 'shield', 'id': 488, 'name': 'Zombiebane '},
-          {'type': 'shield', 'id': 489, 'name': 'Brilliance '},
-          {'type': 'shield', 'id': 490, 'name': 'Rusted Magick Shield '},
-          {'type': 'bow', 'id': 491, 'name': 'Shortbow '},
-          {'type': 'bow', 'id': 492, 'name': 'Direwolf Bow '},
-          {'type': 'bow', 'id': 493, 'name': 'Sylvan Bow '},
-          {'type': 'bow', 'id': 494, 'name': 'Fluted Bow '},
-          {'type': 'bow', 'id': 495, 'name': "Dragon's Rancor "},
-          {'type': 'bow', 'id': 496, 'name': "Hunter's Bow "},
-          {'type': 'bow', 'id': 497, 'name': 'Pleached Limbs '},
-          {'type': 'bow', 'id': 498, 'name': 'Fey Whisper '},
-          {'type': 'bow', 'id': 500, 'name': 'Stalwart Bow '},
-          {'type': 'bow', 'id': 502, 'name': 'Griffinbane '},
-          {'type': 'bow', 'id': 503, 'name': 'Repeller Bow '},
-          {'type': 'bow', 'id': 504, 'name': 'Rusted Bow '},
-          {'type': 'bow', 'id': 505, 'name': 'Plain Longbow '},
-          {'type': 'bow', 'id': 506, 'name': 'Reinforced Longbow '},
-          {'type': 'bow', 'id': 507, 'name': 'Bespoke Longbow '},
-          {'type': 'bow', 'id': 508, 'name': 'Noble Limbs '},
-          {'type': 'bow', 'id': 509, 'name': "Veteran's Arc "},
-          {'type': 'bow', 'id': 510, 'name': "Dragon's Blink "},
-          {'type': 'bow', 'id': 511, 'name': 'Savage Fang '},
-          {'type': 'bow', 'id': 517, 'name': 'Hydra Husk '},
-          {'type': 'bow', 'id': 518, 'name': 'Bezel Crown '},
-          {'type': 'bow', 'id': 519, 'name': 'Rusted Longbow '},
-          {'type': 'bow', 'id': 520, 'name': 'Gimble Gyre '},
-          {'type': 'bow', 'id': 521, 'name': 'Terminal Gyre '},
-          {'type': 'bow', 'id': 522, 'name': "Herald's Helix "},
-          {'type': 'bow', 'id': 523, 'name': "Master's Merle "},
-          {'type': 'bow', 'id': 524, 'name': "Dragon's Breath "},
-          {'type': 'bow', 'id': 525, 'name': "Dragon's Quickening "},
-          {'type': 'bow', 'id': 526, 'name': 'Magian Crutch '},
-          {'type': 'bow', 'id': 527, 'name': 'Metered Catharsis '},
-          {'type': 'bow', 'id': 528, 'name': 'Militant Dove '},
-          {'type': 'bow', 'id': 529, 'name': 'Rusted Spellbow '},
-          {'type': 'unknown', 'id': 530, 'name': 'Leather Quiver '},
-          {'type': 'unknown', 'id': 531, 'name': "Seeker's Quiver "},
-          {'type': 'unknown', 'id': 532, 'name': 'Horn Quiver '},
-          {'type': 'unknown', 'id': 533, 'name': 'Solid Quiver '},
-          {'type': 'unknown', 'id': 534, 'name': 'Safety Quiver '},
-          {'type': 'unknown', 'id': 535, 'name': 'Glistering Quiver '},
-          {'type': 'shield', 'id': 538, 'name': 'Scorched Pelta '},
-          {'type': 'shield', 'id': 539, 'name': 'Lament Shield '},
-          {'type': 'shield', 'id': 540, 'name': 'Thunder Kite Shield '},
-          {'type': 'dagger', 'id': 541, 'name': 'Scalding Razors '},
-          {'type': 'dagger', 'id': 542, 'name': 'Kunai '},
-          {'type': 'dagger', 'id': 543, 'name': 'Galvanic Razors '},
-          {'type': 'dagger', 'id': 544, 'name': 'Chilling Razors '},
-          {'type': 'dagger', 'id': 545, 'name': "Heaven's Key "},
-          {'type': 'staff', 'id': 546, 'name': 'Frozen Tomorrow '},
-          {'type': 'staff', 'id': 547, 'name': 'Stagnant Surge '},
-          {'type': 'sword', 'id': 548, 'name': 'Thousandlimbs'},
-          {'type': 'sword', 'id': 549, 'name': "White Hawk's Talon"},
-          {'type': 'chest', 'id': 551, 'name': 'Plebian Shirt'},
-          {'type': 'legsc', 'id': 552, 'name': 'Plebian Trousers '},
-          {'type': 'chestc', 'id': 553, 'name': 'Faded Vest '},
-          {'type': 'chestc', 'id': 554, 'name': "Traveler's Shirt "},
-          {'type': 'chestc', 'id': 555, 'name': 'Tunic '},
-          {'type': 'chestc', 'id': 556, 'name': 'Bandages '},
-          {'type': 'chestc', 'id': 557, 'name': 'Cassardi Shift '},
-          {'type': 'chestc', 'id': 558, 'name': 'Fine Cassardi Shirt '},
-          {'type': 'chestc', 'id': 559, 'name': 'Hemp Shirt '},
-          {'type': 'chestc', 'id': 560, 'name': 'Leather Chestguard '},
-          {'type': 'unknown', 'id': 561, 'name': 'Shirt & Leather Bands '},
-          {'type': 'chestc', 'id': 562, 'name': 'Linen Shirt '},
-          {'type': 'chestc', 'id': 563, 'name': 'Riveted Coat '},
-          {'type': 'chestc', 'id': 564, 'name': 'Assembled Vest '},
-          {'type': 'chestc', 'id': 565, 'name': 'Quilted Jerkin '},
-          {'type': 'chestc', 'id': 566, 'name': 'Cotton Tunic '},
-          {'type': 'chestc', 'id': 567, 'name': "Lady's Corset "},
-          {'type': 'chestc', 'id': 568, 'name': 'Chain Mail '},
-          {'type': 'chestc', 'id': 569, 'name': 'Braided Shirt '},
-          {'type': 'chestc', 'id': 570, 'name': 'Chainmail Bracers '},
-          {'type': 'chestc', 'id': 571, 'name': 'Bliaut '},
-          {'type': 'chestc', 'id': 572, 'name': 'Light Outfit '},
-          {'type': 'chestc', 'id': 573, 'name': 'Iron Vest '},
-          {'type': 'chestc', 'id': 574, 'name': 'Blessed Vest '},
-          {'type': 'chestc', 'id': 575, 'name': 'Brigandine Jerkin '},
-          {'type': 'chestc', 'id': 576, 'name': 'Hard Leather Plate '},
-          {'type': 'chestc', 'id': 577, 'name': 'Trooper Outfit '},
-          {'type': 'unknown', 'id': 578, 'name': 'Chainmail Bracers '},
-          {'type': 'chestc', 'id': 579, 'name': "Maiden's Camisole "},
-          {'type': 'unknown', 'id': 580, 'name': 'Alchemickal Coat '},
-          {'type': 'chestc', 'id': 581, 'name': 'Silver Vest '},
-          {'type': 'chestc', 'id': 582, 'name': 'Silver Chestplate '},
-          {'type': 'chestc', 'id': 583, 'name': 'Forest Tunic '},
-          {'type': 'chestc', 'id': 584, 'name': 'Alchemick Vest '},
-          {'type': 'chestc', 'id': 585, 'name': 'Plated Coat '},
-          {'type': 'chestc', 'id': 586, 'name': "Hunter's Shirt "},
-          {'type': 'chestc', 'id': 587, 'name': 'Gambeson '},
-          {'type': 'chestc', 'id': 588, 'name': 'Doublet '},
-          {'type': 'chestc', 'id': 589, 'name': "Noblewoman's Corset "},
-          {'type': 'chestc', 'id': 590, 'name': 'Dragonleather Vest '},
-          {'type': 'unknown', 'id': 591, 'name': 'Dragonskin '},
-          {'type': 'chestc', 'id': 592, 'name': 'Abyssinal Outfit '},
-          {'type': 'chestc', 'id': 593, 'name': 'Crimson Jerkin '},
-          {'type': 'chestc', 'id': 594, 'name': 'Silver Cuirass '},
-          {'type': 'chestc', 'id': 595, 'name': "Marshal's Bracers "},
-          {'type': 'chestc', 'id': 596, 'name': "Swordsman's Shirt "},
-          {'type': 'chestc', 'id': 597, 'name': 'White Hawk Tunic '},
-          {'type': 'unknown', 'id': 601, 'name': 'Illusory Broadsword '},
-          {'type': 'unknown', 'id': 602, 'name': 'Illusory Mark of the Chimera '},
-          {'type': 'unknown', 'id': 603, 'name': 'Illusory Brigandine Jerkin '},
-          {'type': 'unknown', 'id': 604, 'name': "Illusory Laborer's Breeches "},
-          {'type': 'unknown', 'id': 605, 'name': 'Illusory Divine Surcoat '},
-          {'type': 'unknown', 'id': 606, 'name': 'Illusory Shadow Gauntlets '},
-          {'type': 'unknown', 'id': 607, 'name': 'Illusory Shadow Greaves '},
-          {'type': 'unknown', 'id': 608, 'name': 'Illusory Tattered Mantle '},
-          {'type': 'unknown', 'id': 609, 'name': 'Illusory Crossed Cinquedea '},
-          {'type': 'unknown', 'id': 610, 'name': 'Illusory Scarred Sentinel '},
-          {'type': 'unknown', 'id': 611, 'name': 'Illusory Plated Coat '},
-          {'type': 'unknown', 'id': 612, 'name': "Illusory Laborer's Breeches "},
-          {'type': 'unknown', 'id': 613, 'name': 'Illusory Clerical Cap'},
-          {'type': 'unknown', 'id': 614, 'name': 'Illusory Grand Surcoat'},
-          {'type': 'unknown', 'id': 615, 'name': 'Illusory Steel Gauntlets'},
-          {'type': 'unknown', 'id': 616, 'name': 'Illusory Steel Sabatons'},
-          {'type': 'unknown', 'id': 617, 'name': 'Illusory Vouge Daggers'},
-          {'type': 'unknown', 'id': 618, 'name': 'Illusory Shortbow'},
-          {'type': 'unknown', 'id': 619, 'name': 'Illusory Quiver'},
-          {'type': 'unknown', 'id': 620, 'name': 'Illusory Chainmail Bracers'},
-          {'type': 'unknown', 'id': 621, 'name': 'Illusory Translucent Hosen'},
-          {'type': 'unknown', 'id': 622, 'name': 'Illusory Chestguard'},
-          {'type': 'unknown', 'id': 623, 'name': "Illusory Bandit's Glove"},
-          {'type': 'unknown', 'id': 624, 'name': 'Illusory Chainmail Skirt'},
-          {'type': 'unknown', 'id': 625, 'name': 'Illusory Ironclad Staff'},
-          {'type': 'unknown', 'id': 626, 'name': 'Illusory Forest Tunic'},
-          {'type': 'unknown', 'id': 627, 'name': 'Illusory Fine Cassardi Hosen'},
-          {'type': 'unknown', 'id': 628, 'name': "Illusory Wizard's Helm"},
-          {'type': 'unknown', 'id': 629, 'name': 'Illusory Missionary痴 Robe'},
-          {'type': 'unknown', 'id': 630, 'name': 'Illusory Runic Bangles'},
-          {'type': 'unknown', 'id': 631, 'name': 'Illusory Leather Shoes'},
-          {'type': 'legsc', 'id': 632, 'name': 'Short Pants '},
-          {'type': 'legsc', 'id': 633, 'name': "Traveler's Tights "},
-          {'type': 'legsc', 'id': 634, 'name': 'Cotton Hose '},
-          {'type': 'legsc', 'id': 635, 'name': 'Leather Bandings '},
-          {'type': 'legsc', 'id': 636, 'name': 'Cassardi Trousers '},
-          {'type': 'legsc', 'id': 637, 'name': 'Fine Cassardi Hosen '},
-          {'type': 'unknown', 'id': 638, 'name': 'Cloth Shortpants'},
-          {'type': 'legsc', 'id': 639, 'name': 'Hemp Hosen '},
-          {'type': 'legsc', 'id': 640, 'name': "Worker's Pants "},
-          {'type': 'legsc', 'id': 641, 'name': 'Yellow Gaiters '},
-          {'type': 'legsc', 'id': 642, 'name': 'Half Chain Hosen '},
-          {'type': 'legsc', 'id': 643, 'name': 'Laced Leggings '},
-          {'type': 'legsc', 'id': 644, 'name': 'Brown Leathers '},
-          {'type': 'legsc', 'id': 645, 'name': 'Evening Tights '},
-          {'type': 'legsc', 'id': 646, 'name': 'Bandit Stalkers '},
-          {'type': 'legsc', 'id': 647, 'name': 'Urban Hose '},
-          {'type': 'legsc', 'id': 648, 'name': 'Twisted Leathers '},
-          {'type': 'legsc', 'id': 649, 'name': 'Seeker Tights '},
-          {'type': 'legsc', 'id': 687, 'name': "Laborer's Breeches "},
-          {'type': 'legsc', 'id': 688, 'name': 'White Stockings '},
-          {'type': 'legsc', 'id': 689, 'name': 'Full Chain Hosen '},
-          {'type': 'legsc', 'id': 690, 'name': 'Black Gaiters '},
-          {'type': 'legsc', 'id': 691, 'name': "Huntsman's Trousers "},
-          {'type': 'legsc', 'id': 692, 'name': 'Braided Hosen '},
-          {'type': 'legsc', 'id': 693, 'name': 'Brown Laced Leggings '},
-          {'type': 'legsc', 'id': 694, 'name': 'Iron Bandings '},
-          {'type': 'legsc', 'id': 695, 'name': 'Silver Hosen '},
-          {'type': 'legsc', 'id': 696, 'name': 'Alchemickal Hosen '},
-          {'type': 'legsc', 'id': 697, 'name': 'Denim Hosen '},
-          {'type': 'legsc', 'id': 698, 'name': 'Silk Lingerie '},
-          {'type': 'legsc', 'id': 699, 'name': "Swordsman's Pants "},
-          {'type': 'head', 'id': 700, 'name': 'White Hawk Leggings '},
-          {'type': 'head', 'id': 715, 'name': 'Leather Cap '},
-          {'type': 'head', 'id': 716, 'name': 'Circlet '},
-          {'type': 'head', 'id': 717, 'name': 'Leather Hood '},
-          {'type': 'head', 'id': 718, 'name': 'Chain Coif '},
-          {'type': 'head', 'id': 719, 'name': 'Faerie Hood '},
-          {'type': 'head', 'id': 720, 'name': 'Bronze Sallet '},
-          {'type': 'head', 'id': 721, 'name': 'Feather Hood '},
-          {'type': 'head', 'id': 722, 'name': 'Verdant Hood '},
-          {'type': 'head', 'id': 723, 'name': 'White Cap '},
-          {'type': 'head', 'id': 724, 'name': "Skulker's Mask "},
-          {'type': 'head', 'id': 725, 'name': 'Horned Helm '},
-          {'type': 'head', 'id': 726, 'name': 'Cyclops Veil '},
-          {'type': 'head', 'id': 727, 'name': 'Red Leather Cap '},
-          {'type': 'head', 'id': 728, 'name': 'Red Leather Hood '},
-          {'type': 'head', 'id': 729, 'name': 'Dragon Band '},
-          {'type': 'head', 'id': 730, 'name': "Wizard's Helm "},
-          {'type': 'head', 'id': 731, 'name': 'Lupine Veil '},
-          {'type': 'head', 'id': 732, 'name': 'Incognito Mask '},
-          {'type': 'head', 'id': 733, 'name': "Bandit's Mask "},
-          {'type': 'head', 'id': 734, 'name': 'Barreled Helm '},
-          {'type': 'head', 'id': 735, 'name': 'Leather Circlet '},
-          {'type': 'head', 'id': 736, 'name': 'Iron Helm '},
-          {'type': 'head', 'id': 737, 'name': 'Gryphic Helm '},
-          {'type': 'head', 'id': 738, 'name': "Assassin's Mask "},
-          {'type': 'head', 'id': 739, 'name': 'Iron Headgear '},
-          {'type': 'head', 'id': 740, 'name': 'Twilight Hood '},
-          {'type': 'head', 'id': 741, 'name': "Guardian's Hood "},
-          {'type': 'head', 'id': 742, 'name': "Gossip's Mask "},
-          {'type': 'head', 'id': 743, 'name': 'Summery Cowl '},
-          {'type': 'head', 'id': 744, 'name': 'Chimeric Armet '},
-          {'type': 'head', 'id': 745, 'name': "Lion-Lord's Helm "},
-          {'type': 'head', 'id': 746, 'name': 'Crowned Hood '},
-          {'type': 'head', 'id': 747, 'name': 'Clerical Cap '},
-          {'type': 'head', 'id': 748, 'name': 'Meloirean Helm '},
-          {'type': 'head', 'id': 749, 'name': 'Steel Sallet '},
-          {'type': 'head', 'id': 750, 'name': 'Coupled Headgear '},
-          {'type': 'head', 'id': 751, 'name': "Archwizard's Helm "},
-          {'type': 'head', 'id': 752, 'name': 'Autumn Hood '},
-          {'type': 'head', 'id': 753, 'name': 'Laurel Circlet '},
-          {'type': 'head', 'id': 754, 'name': 'Meloirean Cyclops Veil '},
-          {'type': 'head', 'id': 755, 'name': 'Direwolf Veil '},
-          {'type': 'head', 'id': 756, 'name': 'Sultry Cowl '},
-          {'type': 'head', 'id': 757, 'name': 'Crimson Armet'},
-          {'type': 'head', 'id': 758, 'name': 'Grisly Skull'},
-          {'type': 'head', 'id': 759, 'name': 'Golden Lion Helm'},
-          {'type': 'head', 'id': 760, 'name': "Dragon Knight's Helm"},
-          {'type': 'head', 'id': 761, 'name': "Sage's Hood"},
-          {'type': 'head', 'id': 762, 'name': "Barbarian Chief's Helm"},
-          {'type': 'head', 'id': 763, 'name': 'Twilight Mask'},
-          {'type': 'head', 'id': 764, 'name': 'Diadem'},
-          {'type': 'head', 'id': 765, 'name': 'Dragonroar'},
-          {'type': 'head', 'id': 766, 'name': "Hero's Hood"},
-          {'type': 'head', 'id': 767, 'name': 'Chaos Helm'},
-          {'type': 'head', 'id': 768, 'name': 'Emissary Hood'},
-          {'type': 'head', 'id': 769, 'name': 'Monomi Mask'},
-          {'type': 'head', 'id': 770, 'name': 'Ancient Circlet'},
-          {'type': 'head', 'id': 771, 'name': 'Heresy Hood'},
-          {'type': 'head', 'id': 772, 'name': 'Beowulf Mask'},
-          {'type': 'head', 'id': 773, 'name': 'Apollo Mask'},
-          {'type': 'head', 'id': 774, 'name': 'Siegfried Mask'},
-          {'type': 'head', 'id': 775, 'name': 'Saint George Mask'},
-          {'type': 'head', 'id': 776, 'name': 'Silver Eyeglasses'},
-          {'type': 'head', 'id': 777, 'name': 'Gold Eyeglasses'},
-          {'type': 'head', 'id': 778, 'name': 'Black Eyeglasses'},
-          {'type': 'head', 'id': 779, 'name': 'Red Eyeglasses'},
-          {'type': 'head', 'id': 780, 'name': 'Farewell Hood'},
-          {'type': 'head', 'id': 781, 'name': 'Wyrmfyre Vizard'},
-          {'type': 'head', 'id': 782, 'name': 'Dragonseye Band'},
-          {'type': 'head', 'id': 783, 'name': 'Dragonspulse Circlet'},
-          {'type': 'head', 'id': 784, 'name': 'White Hawk Sallet'},
-          {'type': 'unknown', 'id': 800, 'name': 'Cloth Shirt'},
-          {'type': 'chest', 'id': 801, 'name': 'Skull Belts'},
-          {'type': 'chest', 'id': 802, 'name': 'Leather Jacket'},
-          {'type': 'chest', 'id': 803, 'name': 'Shabby Robe'},
-          {'type': 'chest', 'id': 804, 'name': 'Bone Armor'},
-          {'type': 'chest', 'id': 805, 'name': 'Bone Plate Armor'},
-          {'type': 'chest', 'id': 806, 'name': 'Leather Belts'},
-          {'type': 'chest', 'id': 807, 'name': 'Sectional Armor'},
-          {'type': 'chest', 'id': 808, 'name': 'Chestguard'},
-          {'type': 'chest', 'id': 809, 'name': "Scholar's Coat"},
-          {'type': 'chest', 'id': 810, 'name': "Healer's Robe"},
-          {'type': 'chest', 'id': 811, 'name': 'Bronze Cuirass'},
-          {'type': 'chest', 'id': 812, 'name': 'Leather Waistwrap'},
-          {'type': 'chest', 'id': 813, 'name': "Mummer's Wear"},
-          {'type': 'chest', 'id': 814, 'name': 'Bronze Lorica'},
-          {'type': 'chest', 'id': 815, 'name': 'Hide Armor'},
-          {'type': 'chest', 'id': 816, 'name': 'Surcoat'},
-          {'type': 'chest', 'id': 817, 'name': "Hunter's Jacket"},
-          {'type': 'chest', 'id': 818, 'name': 'Red Leather Armor'},
-          {'type': 'unknown', 'id': 819, 'name': "Archmage's Robe"},
-          {'type': 'chest', 'id': 820, 'name': "Missionary's Robe"},
-          {'type': 'chest', 'id': 821, 'name': 'Frame Plate'},
-          {'type': 'chest', 'id': 822, 'name': 'Padded Armor'},
-          {'type': 'chest', 'id': 823, 'name': 'Sectional Iron Plate'},
-          {'type': 'chest', 'id': 824, 'name': 'Gryphic Armor'},
-          {'type': 'chest', 'id': 825, 'name': 'Iron Lorica'},
-          {'type': 'chest', 'id': 826, 'name': 'Weak Guard'},
-          {'type': 'chest', 'id': 827, 'name': "Magician's Surcoat"},
-          {'type': 'chest', 'id': 828, 'name': 'Dalmatica'},
-          {'type': 'chest', 'id': 829, 'name': 'Grand Surcoat'},
-          {'type': 'chest', 'id': 830, 'name': 'Summery Pareo'},
-          {'type': 'chest', 'id': 831, 'name': "Recluse's Robe"},
-          {'type': 'chest', 'id': 832, 'name': "Maiden's Petticoat"},
-          {'type': 'chest', 'id': 833, 'name': 'Flutter Padding'},
-          {'type': 'chest', 'id': 834, 'name': 'Chimeric Half Plate'},
-          {'type': 'chest', 'id': 835, 'name': 'Scale Coat'},
-          {'type': 'chest', 'id': 836, 'name': 'Rex Lion Padding'},
-          {'type': 'chest', 'id': 837, 'name': "Sage's Robe"},
-          {'type': 'chest', 'id': 838, 'name': 'Animistic Robe'},
-          {'type': 'chest', 'id': 839, 'name': 'Meloirean Plate'},
-          {'type': 'chest', 'id': 840, 'name': 'Steel Cuirass'},
-          {'type': 'chest', 'id': 841, 'name': 'Lamellar Jacket'},
-          {'type': 'chest', 'id': 842, 'name': 'Cardinal Surcoat'},
-          {'type': 'chest', 'id': 843, 'name': 'Royal Surcoat'},
-          {'type': 'chest', 'id': 844, 'name': 'Divine Surcoat'},
-          {'type': 'chest', 'id': 845, 'name': 'Golden Belt'},
-          {'type': 'chest', 'id': 846, 'name': 'Sultry Pareo'},
-          {'type': 'chest', 'id': 847, 'name': 'Crimson Robe'},
-          {'type': 'chest', 'id': 848, 'name': "Archer's Culottes"},
-          {'type': 'chest', 'id': 849, 'name': 'Crimson Plate'},
-          {'type': 'chest', 'id': 850, 'name': 'Grisly Bone Armor'},
-          {'type': 'chest', 'id': 851, 'name': 'Golden Lion Padding'},
-          {'type': 'chest', 'id': 852, 'name': 'Matte Robe'},
-          {'type': 'chest', 'id': 853, 'name': "Philosopher's Robe"},
-          {'type': 'chest', 'id': 854, 'name': 'Red Dragon Scale'},
-          {'type': 'chest', 'id': 855, 'name': 'Dark Lorica'},
-          {'type': 'chest', 'id': 856, 'name': 'Berserkin'},
-          {'type': 'chest', 'id': 857, 'name': "Hero's Surcoat"},
-          {'type': 'chest', 'id': 858, 'name': 'Chaos Armor'},
-          {'type': 'chest', 'id': 859, 'name': 'Emissary Armor'},
-          {'type': 'chest', 'id': 860, 'name': 'Monomi Coat'},
-          {'type': 'chest', 'id': 861, 'name': 'Ancient Robe'},
-          {'type': 'chest', 'id': 862, 'name': 'Heresy Armor'},
-          {'type': 'chest', 'id': 863, 'name': 'Abyssinal Coat'},
-          {'type': 'chest', 'id': 864, 'name': 'Solar Armor'},
-          {'type': 'chest', 'id': 865, 'name': 'Asura Armor'},
-          {'type': 'chest', 'id': 866, 'name': 'Leather Protector'},
-          {'type': 'chest', 'id': 867, 'name': "Swordsman's Plate"},
-          {'type': 'chest', 'id': 868, 'name': 'White Hawk Half-Plate'},
-          {'type': 'arms', 'id': 908, 'name': 'Wooden Bands'},
-          {'type': 'arms', 'id': 909, 'name': 'Talismanic Beads'},
-          {'type': 'arms', 'id': 910, 'name': "Novice's Bracers"},
-          {'type': 'arms', 'id': 911, 'name': 'Funnybone Guards'},
-          {'type': 'arms', 'id': 912, 'name': "Bandit's Glove"},
-          {'type': 'arms', 'id': 913, 'name': "Scholar's Bangle"},
-          {'type': 'arms', 'id': 914, 'name': 'Navy Leather Gloves'},
-          {'type': 'arms', 'id': 915, 'name': 'Bronze Gauntlets'},
-          {'type': 'arms', 'id': 916, 'name': 'Hand Covers'},
-          {'type': 'arms', 'id': 917, 'name': 'Bronze Bangles'},
-          {'type': 'arms', 'id': 918, 'name': 'Scale Armguard'},
-          {'type': 'arms', 'id': 919, 'name': "Assailant's Bracers"},
-          {'type': 'arms', 'id': 920, 'name': 'Iron Bracers'},
-          {'type': 'arms', 'id': 921, 'name': 'Red Leather Glove'},
-          {'type': 'arms', 'id': 922, 'name': 'Tiger Bangle'},
-          {'type': 'arms', 'id': 923, 'name': 'Silver Bands'},
-          {'type': 'arms', 'id': 924, 'name': 'Iron Armguard'},
-          {'type': 'arms', 'id': 925, 'name': 'Gryphic Gauntlets'},
-          {'type': 'arms', 'id': 926, 'name': 'Iron Manicae'},
-          {'type': 'arms', 'id': 927, 'name': 'Assembled Sleeves'},
-          {'type': 'unknown', 'id': 928, 'name': 'Iron Rings'},
-          {'type': 'arms', 'id': 929, 'name': 'Runic Bangles'},
-          {'type': 'arms', 'id': 930, 'name': 'Leather Gloves'},
-          {'type': 'arms', 'id': 931, 'name': "Master's Bracers"},
-          {'type': 'arms', 'id': 932, 'name': 'Chimeric Gauntlets'},
-          {'type': 'arms', 'id': 933, 'name': 'Arm Crest'},
-          {'type': 'arms', 'id': 934, 'name': 'Scarlet Hand Covers'},
-          {'type': 'arms', 'id': 935, 'name': 'Jade Bangles'},
-          {'type': 'arms', 'id': 936, 'name': 'Meloirean Armguard'},
-          {'type': 'arms', 'id': 937, 'name': 'Steel Gauntlets'},
-          {'type': 'arms', 'id': 938, 'name': "Assassin's Armguards"},
-          {'type': 'arms', 'id': 939, 'name': 'Alchemickal Bangles'},
-          {'type': 'arms', 'id': 940, 'name': "Champion's Bangles"},
-          {'type': 'arms', 'id': 941, 'name': 'Black Leather Gloves'},
-          {'type': 'arms', 'id': 942, 'name': 'Darkened Gloves'},
-          {'type': 'arms', 'id': 943, 'name': 'Crimson Gauntlets'},
-          {'type': 'arms', 'id': 944, 'name': 'Grisly Bracers'},
-          {'type': 'arms', 'id': 945, 'name': 'Twilight Manicae'},
-          {'type': 'arms', 'id': 946, 'name': 'Burnished Bracers'},
-          {'type': 'arms', 'id': 947, 'name': 'Gleaming Bangles'},
-          {'type': 'arms', 'id': 948, 'name': 'Golden Wristbands'},
-          {'type': 'arms', 'id': 949, 'name': 'Dragonscale Arm'},
-          {'type': 'arms', 'id': 950, 'name': 'Emissary Bracers'},
-          {'type': 'arms', 'id': 951, 'name': 'Shadow Gauntlets'},
-          {'type': 'arms', 'id': 952, 'name': "Hero's Gauntlets"},
-          {'type': 'arms', 'id': 953, 'name': 'Chaos Gauntlets'},
-          {'type': 'arms', 'id': 954, 'name': 'Monomi Bracers'},
-          {'type': 'arms', 'id': 955, 'name': 'Ancient Bangles'},
-          {'type': 'arms', 'id': 956, 'name': 'Heresy Armguards'},
-          {'type': 'arms', 'id': 957, 'name': 'Abyssinal Bracers'},
-          {'type': 'arms', 'id': 958, 'name': 'Farewell Gloves'},
-          {'type': 'arms', 'id': 959, 'name': 'Gloves of Might'},
-          {'type': 'arms', 'id': 960, 'name': "Swordsman's Bracers"},
-          {'type': 'arms', 'id': 961, 'name': 'White Hawk Gauntlets'},
-          {'type': 'unknown', 'id': 969, 'name': 'Plebian Trousers'},
-          {'type': 'legs', 'id': 970, 'name': 'Budget Greaves '},
-          {'type': 'legs', 'id': 971, 'name': 'Leather Cuisses '},
-          {'type': 'legs', 'id': 972, 'name': 'Leather Shoes '},
-          {'type': 'legs', 'id': 973, 'name': 'Novice Breeches '},
-          {'type': 'legs', 'id': 974, 'name': 'Cassardi Greaves '},
-          {'type': 'legs', 'id': 975, 'name': 'Metal Greaves '},
-          {'type': 'legs', 'id': 976, 'name': 'Fur Greaves '},
-          {'type': 'legs', 'id': 977, 'name': "Scholar's Boots "},
-          {'type': 'legs', 'id': 978, 'name': 'Iron Leg Guards '},
-          {'type': 'legs', 'id': 979, 'name': 'Steel-Toed Boots '},
-          {'type': 'legs', 'id': 980, 'name': 'Bronze Sabatons '},
-          {'type': 'legs', 'id': 981, 'name': 'Fur & Cuisses '},
-          {'type': 'legs', 'id': 982, 'name': 'Riveted Boots '},
-          {'type': 'legs', 'id': 983, 'name': 'Blue Longkilt '},
-          {'type': 'legs', 'id': 984, 'name': 'Dusk Shoes '},
-          {'type': 'legs', 'id': 985, 'name': 'Steel Sabatons '},
-          {'type': 'legs', 'id': 986, 'name': 'Battle Greaves '},
-          {'type': 'legs', 'id': 987, 'name': 'Downcuffs & Cuisses '},
-          {'type': 'legs', 'id': 988, 'name': "Mage's Shoes "},
-          {'type': 'legs', 'id': 990, 'name': 'Over-Knee Boots '},
-          {'type': 'legs', 'id': 991, 'name': 'Scale Greaves '},
-          {'type': 'legs', 'id': 992, 'name': 'Iron Boots '},
-          {'type': 'legs', 'id': 993, 'name': 'Iron Cuisses '},
-          {'type': 'legs', 'id': 994, 'name': 'Gryphic Greaves '},
-          {'type': 'legs', 'id': 995, 'name': 'Chainmail Skirt '},
-          {'type': 'legs', 'id': 996, 'name': 'Assembled Breeches '},
-          {'type': 'legs', 'id': 997, 'name': "Wizard's Boots "},
-          {'type': 'legs', 'id': 998, 'name': 'Red Longkilt '},
-          {'type': 'legs', 'id': 999, 'name': 'Fine Over-Knee Boots '},
-          {'type': 'legs', 'id': 1000, 'name': 'Raptor Cuisses '},
-          {'type': 'legs', 'id': 1001, 'name': 'Gloaming Shoes '},
-          {'type': 'legs', 'id': 1002, 'name': 'Chimeric Sabatons '},
-          {'type': 'legs', 'id': 1003, 'name': 'Thick Fur Greaves '},
-          {'type': 'legs', 'id': 1004, 'name': "Assassin's Breeches "},
-          {'type': 'legs', 'id': 1005, 'name': 'Nimble Cuisses '},
-          {'type': 'legs', 'id': 1006, 'name': 'Red Over-Knee Boots '},
-          {'type': 'legs', 'id': 1007, 'name': 'Meloirean Greaves '},
-          {'type': 'legs', 'id': 1008, 'name': 'Leather Ocreae '},
-          {'type': 'legs', 'id': 1009, 'name': "Striker's Greaves "},
-          {'type': 'legs', 'id': 1010, 'name': 'Royal Cuisses '},
-          {'type': 'legs', 'id': 1011, 'name': 'Purple Longkilt '},
-          {'type': 'legs', 'id': 1012, 'name': 'Molten Boots '},
-          {'type': 'legs', 'id': 1013, 'name': 'Dark Over-Knee Boots '},
-          {'type': 'legs', 'id': 1014, 'name': 'Flame Skirt '},
-          {'type': 'legs', 'id': 1015, 'name': 'Superior Cuisses '},
-          {'type': 'legs', 'id': 1016, 'name': 'Crimson Sabatons '},
-          {'type': 'legs', 'id': 1017, 'name': 'Grisly Greaves '},
-          {'type': 'legs', 'id': 1018, 'name': 'Carmine Breeches '},
-          {'type': 'legs', 'id': 1019, 'name': 'Exotic High Boots '},
-          {'type': 'legs', 'id': 1020, 'name': 'Shadow Greaves '},
-          {'type': 'legs', 'id': 1021, 'name': 'Dragonbeards '},
-          {'type': 'legs', 'id': 1022, 'name': 'Twilight Greaves '},
-          {'type': 'legs', 'id': 1023, 'name': 'Holy Cuisses '},
-          {'type': 'legs', 'id': 1024, 'name': 'Holy Cuisses '},
-          {'type': 'legs', 'id': 1025, 'name': "Hero's Cuisses "},
-          {'type': 'legs', 'id': 1026, 'name': 'Chaos Greaves '},
-          {'type': 'legs', 'id': 1027, 'name': 'Emissary Greaves '},
-          {'type': 'legs', 'id': 1028, 'name': 'Monomi Greaves '},
-          {'type': 'legs', 'id': 1029, 'name': 'Ancient Greaves '},
-          {'type': 'legs', 'id': 1030, 'name': 'Heresy Greaves '},
-          {'type': 'legs', 'id': 1031, 'name': 'Abyssinal Greaves '},
-          {'type': 'legs', 'id': 1032, 'name': "Swordsman's Greaves "},
-          {'type': 'legs', 'id': 1033, 'name': 'White Hawk Cuisses '},
-          {'type': 'unknown', 'id': 1036, 'name': 'White Hawk Cape'},
-          {'type': 'item', 'id': 1048, 'name': 'Dragonwing Circlet'},
-          {'type': 'cape', 'id': 1058, 'name': 'Leather Cape '},
-          {'type': 'cape', 'id': 1059, 'name': 'Shed Cape '},
-          {'type': 'cape', 'id': 1060, 'name': 'Shoulder Cape '},
-          {'type': 'cape', 'id': 1061, 'name': 'Ebon Neck Wrap '},
-          {'type': 'cape', 'id': 1062, 'name': "Scholar's Cape "},
-          {'type': 'cape', 'id': 1063, 'name': 'Mahogany Cape '},
-          {'type': 'cape', 'id': 1064, 'name': 'Direwolf Cape '},
-          {'type': 'cape', 'id': 1065, 'name': 'Adventurer`s Cloak '},
-          {'type': 'cape', 'id': 1066, 'name': 'Feather Cape '},
-          {'type': 'cape', 'id': 1067, 'name': "Knight's Mantle "},
-          {'type': 'cape', 'id': 1068, 'name': 'Harpy Cloak '},
-          {'type': 'cape', 'id': 1069, 'name': 'Alchemickal Cloak '},
-          {'type': 'cape', 'id': 1070, 'name': 'Violet Neck Wrap '},
-          {'type': 'cape', 'id': 1071, 'name': "Paladin's Mantle "},
-          {'type': 'cape', 'id': 1072, 'name': 'Gryphic Cloak '},
-          {'type': 'cape', 'id': 1073, 'name': 'Scarlet Cape '},
-          {'type': 'cape', 'id': 1074, 'name': 'Pauldron '},
-          {'type': 'cape', 'id': 1075, 'name': 'Feral Cape '},
-          {'type': 'cape', 'id': 1076, 'name': 'Royal Mantle '},
-          {'type': 'cape', 'id': 1077, 'name': 'Dignified Cape '},
-          {'type': 'cape', 'id': 1078, 'name': "Dragon Knight's Cloak "},
-          {'type': 'cape', 'id': 1079, 'name': 'Ancient Cape '},
-          {'type': 'cape', 'id': 1080, 'name': 'lordly Cloak '},
-          {'type': 'cape', 'id': 1081, 'name': "Hero's Cape "},
-          {'type': 'cape', 'id': 1082, 'name': 'Monomi Neck Wrap '},
-          {'type': 'cape', 'id': 1083, 'name': 'heresy Cloak '},
-          {'type': 'cape', 'id': 1084, 'name': 'Nebula Cape '},
-          {'type': 'cape', 'id': 1085, 'name': 'Magnanimous Cloak '},
-          {'type': 'cape', 'id': 1086, 'name': 'Farewell Cloak '},
-          {'type': 'ring', 'id': 1087, 'name': 'Baleful Nails'},
-          {'type': 'ring', 'id': 1088, 'name': 'Ogre Bone'},
-          {'type': 'unknown', 'id': 1089, 'name': 'Reinforced Nails'},
-          {'type': 'ring', 'id': 1090, 'name': 'Barbed Nails'},
-          {'type': 'ring', 'id': 1091, 'name': 'Ring of Gules'},
-          {'type': 'ring', 'id': 1092, 'name': 'Ring of Azure'},
-          {'type': 'ring', 'id': 1093, 'name': 'Ring of Purpure'},
-          {'type': 'ring', 'id': 1094, 'name': 'Ring of Sable'},
-          {'type': 'ring', 'id': 1095, 'name': 'Ring or Argent'},
-          {'type': 'ring', 'id': 1096, 'name': 'Ring of Ruby'},
-          {'type': 'ring', 'id': 1097, 'name': 'Ring of Sapphire'},
-          {'type': 'ring', 'id': 1098, 'name': 'Ring of Amethyst'},
-          {'type': 'ring', 'id': 1099, 'name': 'Ring of Pearl'},
-          {'type': 'ring', 'id': 1100, 'name': 'Ring of Onyx'},
-          {'type': 'ring', 'id': 1101, 'name': 'Rose Ring'},
-          {'type': 'ring', 'id': 1102, 'name': 'Iris Ring'},
-          {'type': 'ring', 'id': 1103, 'name': 'Violet Ring'},
-          {'type': 'ring', 'id': 1104, 'name': 'Lily Ring'},
-          {'type': 'ring', 'id': 1105, 'name': 'Aeonium Ring'},
-          {'type': 'ring', 'id': 1106, 'name': 'Cleansing Earring'},
-          {'type': 'ring', 'id': 1107, 'name': 'Restless Earring'},
-          {'type': 'ring', 'id': 1108, 'name': 'Nimble Earring'},
-          {'type': 'ring', 'id': 1109, 'name': 'Free-Spoken Earring'},
-          {'type': 'ring', 'id': 1110, 'name': 'Benevolent Earring'},
-          {'type': 'ring', 'id': 1111, 'name': 'Sight Earring'},
-          {'type': 'ring', 'id': 1112, 'name': 'Faithful Earring'},
-          {'type': 'ring', 'id': 1113, 'name': 'Exuberant Earring'},
-          {'type': 'ring', 'id': 1114, 'name': 'Stalwart Earring'},
-          {'type': 'ring', 'id': 1115, 'name': 'Noble Earring'},
-          {'type': 'ring', 'id': 1116, 'name': 'Haromnious Earring'},
-          {'type': 'ring', 'id': 1117, 'name': 'Dignified Earring'},
-          {'type': 'ring', 'id': 1118, 'name': 'Indomitable Earring'},
-          {'type': 'ring', 'id': 1119, 'name': 'Dragonblood'},
-          {'type': 'ring', 'id': 1120, 'name': 'Silver Ring'},
-          {'type': 'ring', 'id': 1121, 'name': 'Golden Ring'},
-          {'type': 'ring', 'id': 1122, 'name': 'Platinum Ring'},
-          {'type': 'ring', 'id': 1123, 'name': 'Red Star Ring'},
-          {'type': 'ring', 'id': 1124, 'name': 'Red Star Earring'},
-          {'type': 'ring', 'id': 1125, 'name': 'Green Star Ring'},
-          {'type': 'ring', 'id': 1126, 'name': 'Green Star Earring'},
-          {'type': 'ring', 'id': 1127, 'name': 'Blue Star Ring'},
-          {'type': 'ring', 'id': 1128, 'name': 'Blue Star Earring'},
-          {'type': 'ring', 'id': 1129, 'name': 'Premium Ring'},
-          {'type': 'ring', 'id': 1130, 'name': 'Premium Earring'},
-          {'type': 'cape', 'id': 1131, 'name': 'Wyrm Hunt Mantle '},
-          {'type': 'cape', 'id': 1132, 'name': 'Beastly Mantle '},
-          {'type': 'cape', 'id': 1133, 'name': "Conqueror's Mantle "},
-          {'type': 'cape', 'id': 1134, 'name': 'Tattered Mantle '},
-          {'type': 'cape', 'id': 1135, 'name': "Swordsman's Mantle "},
-          {'type': 'cape', 'id': 1136, 'name': 'White Hawk Cape '},
-          {'type': 'set', 'id': 1181, 'name': 'Set of Servant`s Garb '},
-          {'type': 'set', 'id': 1182, 'name': "Set of Duke's Clothing "},
-          {'type': 'set', 'id': 1183, 'name': 'Set of Salvation Robes '},
-          {'type': 'set', 'id': 1184, 'name': "Set of Fisherman's Garb "},
-          {'type': 'set', 'id': 1185, 'name': "Set of Fisherman's Tatters "},
-          {'type': 'set', 'id': 1186, 'name': 'Set of Royal Guard Armor '},
-          {'type': 'set', 'id': 1187, 'name': "Set of Lady's Garb "},
-          {'type': 'set', 'id': 1191, 'name': "Set of Prisoner's Rags "},
-          {'type': 'set', 'id': 1192, 'name': "Set of Jester's Motley "},
-          {'type': 'set', 'id': 1193, 'name': 'Nameless Armor Set '},
-          {'type': 'set', 'id': 1194, 'name': "Captain's Armor Set "},
-          {'type': 'unknown', 'id': 1201, 'name': 'Decorative Sword'},
-          {'type': 'unknown', 'id': 1202, 'name': 'Decorative Shield'},
-          {'type': 'unknown', 'id': 1203, 'name': "Torturer's Hammer"},
-          {'type': 'item', 'id': 1204, 'name': 'Royal Banner '},
-          {'type': 'item', 'id': 1205, 'name': 'Enlistment Corps Banner '},
-          {'type': 'item', 'id': 1206, 'name': 'War Bugle '},
-          {'type': 'item', 'id': 1207, 'name': 'Fishing Bob '},
-          {'type': 'item', 'id': 1208, 'name': 'Bucket '},
-          {'type': 'item', 'id': 1209, 'name': 'Hoe '},
-          {'type': 'item', 'id': 1210, 'name': 'Spade '},
-          {'type': 'item', 'id': 1211, 'name': 'Scythe '},
-          {'type': 'item', 'id': 1212, 'name': 'Hammer '},
-          {'type': 'item', 'id': 1213, 'name': 'Trowel '},
-          {'type': 'item', 'id': 1214, 'name': 'Work Table '},
-          {'type': 'item', 'id': 1215, 'name': 'Quill '},
-          {'type': 'item', 'id': 1216, 'name': 'Wooden Board '},
-          {'type': 'item', 'id': 1217, 'name': 'Tray '},
-          {'type': 'item', 'id': 1218, 'name': 'Sconce '},
-          {'type': 'item', 'id': 1219, 'name': 'Blank Scroll '},
-          {'type': 'item', 'id': 1220, 'name': 'Broom '},
-          {'type': 'item', 'id': 1221, 'name': 'Ancient Scroll '},
-          {'type': 'item', 'id': 1222, 'name': 'Shackle '},
-          {'type': 'item', 'id': 1223, 'name': 'Large Coin Pouch '},
-          {'type': 'item', 'id': 1224, 'name': 'Coin Pouch '},
-          {'type': 'item', 'id': 1225, 'name': 'Small Coin Pouch '},
-          {'type': 'item', 'id': 1226, 'name': 'Giant Coin Pouch '},
-          {'type': 'item', 'id': 1227, 'name': 'Hunk of Ore '},
-          {'type': 'item', 'id': 1228, 'name': 'Goblin Horn '},
-          {'type': 'item', 'id': 1229, 'name': 'Wormwood Sap '},
-          {'type': 'item', 'id': 1230, 'name': 'Iron Blade Piece '},
-          {'type': 'item', 'id': 1231, 'name': 'Slate-Colored Horn '},
-          {'type': 'item', 'id': 1232, 'name': 'Curious Wine '},
-          {'type': 'item', 'id': 1233, 'name': 'Ebon Blade Piece '},
-          {'type': 'item', 'id': 1234, 'name': 'Night Terror痴 Horn '},
-          {'type': 'item', 'id': 1235, 'name': 'Blood Decanter '},
-          {'type': 'item', 'id': 1236, 'name': 'Small Fang '},
-          {'type': 'item', 'id': 1237, 'name': 'Wolf Pelt '},
-          {'type': 'item', 'id': 1238, 'name': 'Large Fang '},
-          {'type': 'item', 'id': 1239, 'name': 'Direwolf Pelt '},
-          {'type': 'item', 'id': 1240, 'name': 'Hellhound Fang '},
-          {'type': 'item', 'id': 1241, 'name': 'Hellhound Pelt '},
-          {'type': 'item', 'id': 1242, 'name': 'Ember Crystal '},
-          {'type': 'item', 'id': 1243, 'name': 'Saurian Scale '},
-          {'type': 'item', 'id': 1244, 'name': 'Poison Sac '},
-          {'type': 'item', 'id': 1245, 'name': 'Fisheye Stone '},
-          {'type': 'item', 'id': 1246, 'name': 'Saurian Tail '},
-          {'type': 'item', 'id': 1247, 'name': 'Striped Saurian Skin '},
-          {'type': 'item', 'id': 1248, 'name': 'Yellow Poison Sac '},
-          {'type': 'item', 'id': 1249, 'name': 'Incarnadine Scale '},
-          {'type': 'item', 'id': 1250, 'name': 'Inky Saurian Skin '},
-          {'type': 'item', 'id': 1251, 'name': 'Acid Sac '},
-          {'type': 'item', 'id': 1252, 'name': 'Snowy Saurian Skin '},
-          {'type': 'item', 'id': 1253, 'name': 'Argentine Sac '},
-          {'type': 'item', 'id': 1254, 'name': 'Purpure Crystal '},
-          {'type': 'item', 'id': 1255, 'name': 'Harpy Pinion '},
-          {'type': 'item', 'id': 1256, 'name': 'Harpy Rectrix '},
-          {'type': 'item', 'id': 1257, 'name': 'Elongated Claw '},
-          {'type': 'item', 'id': 1258, 'name': 'Glacial Pinion '},
-          {'type': 'item', 'id': 1259, 'name': 'Glacial Rectrix '},
-          {'type': 'item', 'id': 1260, 'name': 'Spurious Wing '},
-          {'type': 'item', 'id': 1261, 'name': 'Sinistone '},
-          {'type': 'item', 'id': 1262, 'name': 'Petrifactor '},
-          {'type': 'item', 'id': 1263, 'name': 'Bastard Wing '},
-          {'type': 'item', 'id': 1264, 'name': 'Shroud '},
-          {'type': 'item', 'id': 1265, 'name': 'Putrid Gold Tooth '},
-          {'type': 'item', 'id': 1266, 'name': 'Necrophagous Loin '},
-          {'type': 'item', 'id': 1267, 'name': 'Rusted Plate '},
-          {'type': 'item', 'id': 1268, 'name': 'Aged Insignia '},
-          {'type': 'item', 'id': 1269, 'name': 'Hex Runes '},
-          {'type': 'item', 'id': 1270, 'name': 'Brawn Runes '},
-          {'type': 'item', 'id': 1271, 'name': 'Miasmite Shard '},
-          {'type': 'item', 'id': 1272, 'name': 'Miasmite '},
-          {'type': 'item', 'id': 1273, 'name': 'Eldricite Shard '},
-          {'type': 'item', 'id': 1274, 'name': 'Eldricite '},
-          {'type': 'item', 'id': 1275, 'name': 'Astracite Shard '},
-          {'type': 'item', 'id': 1276, 'name': 'Astracite '},
-          {'type': 'item', 'id': 1277, 'name': 'Black Crystal '},
-          {'type': 'item', 'id': 1278, 'name': 'Immortelle '},
-          {'type': 'item', 'id': 1279, 'name': 'Vengeful Mirror '},
-          {'type': 'item', 'id': 1280, 'name': 'Wailing Crystal '},
-          {'type': 'item', 'id': 1281, 'name': 'Craft Bone '},
-          {'type': 'item', 'id': 1282, 'name': 'Scrap Iron '},
-          {'type': 'item', 'id': 1283, 'name': 'Hard Bone '},
-          {'type': 'item', 'id': 1284, 'name': 'Dark Peridot '},
-          {'type': 'item', 'id': 1285, 'name': "Fell-Lord's Bone "},
-          {'type': 'item', 'id': 1286, 'name': 'Lordly Emblem '},
-          {'type': 'item', 'id': 1287, 'name': 'Mandrake '},
-          {'type': 'item', 'id': 1288, 'name': 'Torn Grimoire Preface '},
-          {'type': 'item', 'id': 1289, 'name': 'Torn Grimoire Appendix '},
-          {'type': 'item', 'id': 1290, 'name': 'Agate '},
-          {'type': 'item', 'id': 1291, 'name': 'Forgotten Arcanum '},
-          {'type': 'item', 'id': 1292, 'name': "Pigeon's Blood "},
-          {'type': 'item', 'id': 1293, 'name': 'Rugged Bone '},
-          {'type': 'item', 'id': 1294, 'name': 'Rugged Tusk '},
-          {'type': 'item', 'id': 1295, 'name': 'Misshapen Eye '},
-          {'type': 'item', 'id': 1296, 'name': 'Ogre Spur '},
-          {'type': 'item', 'id': 1297, 'name': 'Ogre Tooth '},
-          {'type': 'item', 'id': 1298, 'name': 'Unspeakable Meat '},
-          {'type': 'item', 'id': 1299, 'name': 'Dappled Ore '},
-          {'type': 'item', 'id': 1300, 'name': 'Magick Medal '},
-          {'type': 'item', 'id': 1301, 'name': 'Hunk of Gold Ore '},
-          {'type': 'item', 'id': 1302, 'name': 'Electrum '},
-          {'type': 'item', 'id': 1303, 'name': 'Griffin Pinion '},
-          {'type': 'item', 'id': 1304, 'name': 'Great Griffin Claw '},
-          {'type': 'item', 'id': 1305, 'name': 'Slick Black Pinion '},
-          {'type': 'item', 'id': 1306, 'name': 'Cockatrice Beak '},
-          {'type': 'item', 'id': 1307, 'name': "Hydra's Lifeblood "},
-          {'type': 'item', 'id': 1308, 'name': 'Poison Hydra Fang '},
-          {'type': 'item', 'id': 1309, 'name': 'Black Hydra Scale '},
-          {'type': 'item', 'id': 1310, 'name': 'White Hydra Scale '},
-          {'type': 'item', 'id': 1311, 'name': 'Hydra Gallstone '},
-          {'type': 'item', 'id': 1312, 'name': 'Freakish Claw '},
-          {'type': 'item', 'id': 1313, 'name': 'Freakish Mane '},
-          {'type': 'item', 'id': 1314, 'name': 'Freakish Scale '},
-          {'type': 'item', 'id': 1315, 'name': 'Black Freakish Claw '},
-          {'type': 'item', 'id': 1316, 'name': 'Black Freakish Mane '},
-          {'type': 'item', 'id': 1317, 'name': 'Black Freakish Horn '},
-          {'type': 'item', 'id': 1318, 'name': 'Black Freakish Scale '},
-          {'type': 'item', 'id': 1319, 'name': 'Malecryst '},
-          {'type': 'item', 'id': 1320, 'name': 'Evil Eyeball '},
-          {'type': 'item', 'id': 1321, 'name': 'Malecryst Shard '},
-          {'type': 'item', 'id': 1322, 'name': 'Dragon Scale '},
-          {'type': 'item', 'id': 1323, 'name': 'Crimson Dragon Scale '},
-          {'type': 'item', 'id': 1324, 'name': 'Putrid Dragon Scale '},
-          {'type': 'item', 'id': 1325, 'name': 'Great Dragon Horn '},
-          {'type': 'item', 'id': 1326, 'name': 'Great Dragon Alula '},
-          {'type': 'item', 'id': 1327, 'name': 'Great Dragon Claw '},
-          {'type': 'item', 'id': 1328, 'name': 'Great Dragon Fang '},
-          {'type': 'item', 'id': 1329, 'name': 'Indurated Dragonsblood '},
-          {'type': 'item', 'id': 1330, 'name': 'Dragon Horn '},
-          {'type': 'item', 'id': 1331, 'name': 'Dragon Claw '},
-          {'type': 'item', 'id': 1332, 'name': 'Azure Dragon Scale '},
-          {'type': 'item', 'id': 1333, 'name': 'Amber Dragon Scale '},
-          {'type': 'item', 'id': 1334, 'name': 'Virid Dragon Scale '},
-          {'type': 'item', 'id': 1335, 'name': 'Rabbit Pelt '},
-          {'type': 'item', 'id': 1336, 'name': 'Snakeskin '},
-          {'type': 'item', 'id': 1337, 'name': 'Spider Venom '},
-          {'type': 'item', 'id': 1339, 'name': 'Desiccated Herbs '},
-          {'type': 'item', 'id': 1340, 'name': 'Stone-Moss Poultice '},
-          {'type': 'item', 'id': 1341, 'name': 'Foreign Medicament '},
-          {'type': 'item', 'id': 1342, 'name': 'Pickled Mushrooms '},
-          {'type': 'item', 'id': 1343, 'name': 'Backfat Oil '},
-          {'type': 'item', 'id': 1344, 'name': 'Staminal Drench '},
-          {'type': 'item', 'id': 1345, 'name': 'Crimson Concoction '},
-          {'type': 'item', 'id': 1346, 'name': 'Cerulean Concoction '},
-          {'type': 'item', 'id': 1347, 'name': 'Verdigris Concoction '},
-          {'type': 'item', 'id': 1348, 'name': 'Violet Concoction '},
-          {'type': 'item', 'id': 1349, 'name': 'Balmy Perfume '},
-          {'type': 'item', 'id': 1350, 'name': 'Balmy Incense '},
-          {'type': 'item', 'id': 1351, 'name': 'Rousing Perfume '},
-          {'type': 'item', 'id': 1352, 'name': 'Rousing Incense '},
-          {'type': 'item', 'id': 1353, 'name': 'Herb Ale '},
-          {'type': 'item', 'id': 1354, 'name': 'Select Herb Ale '},
-          {'type': 'item', 'id': 1355, 'name': 'Distilled Herb Ale '},
-          {'type': 'item', 'id': 1356, 'name': 'Secret Herb Ale '},
-          {'type': 'item', 'id': 1357, 'name': 'Finest Herb Ale '},
-          {'type': 'item', 'id': 1358, 'name': 'Fragrant Herb Ale '},
-          {'type': 'item', 'id': 1359, 'name': 'Perfect Herb Ale '},
-          {'type': 'item', 'id': 1360, 'name': 'Detoxicating Powder '},
-          {'type': 'item', 'id': 1361, 'name': 'Oak Leaf Oil '},
-          {'type': 'item', 'id': 1362, 'name': 'Vigilite '},
-          {'type': 'item', 'id': 1363, 'name': 'Throat Remedy '},
-          {'type': 'item', 'id': 1364, 'name': 'Peppermint Seed '},
-          {'type': 'item', 'id': 1365, 'name': 'Nostalgia Dust '},
-          {'type': 'item', 'id': 1366, 'name': 'Drop of Deliverance '},
-          {'type': 'item', 'id': 1367, 'name': 'Frozen Holy Water '},
-          {'type': 'item', 'id': 1368, 'name': 'Cockatrice Liquor '},
-          {'type': 'item', 'id': 1369, 'name': 'Font of Vigor '},
-          {'type': 'item', 'id': 1370, 'name': 'Font of Constitution '},
-          {'type': 'item', 'id': 1371, 'name': "Tagilus's Miracle "},
-          {'type': 'item', 'id': 1372, 'name': 'Steel Nut Salve '},
-          {'type': 'item', 'id': 1373, 'name': "Salomet's Secret "},
-          {'type': 'item', 'id': 1374, 'name': 'Decoction of Bandlily '},
-          {'type': 'item', 'id': 1375, 'name': 'Mushroom Potage '},
-          {'type': 'item', 'id': 1376, 'name': 'Sobering Wine '},
-          {'type': 'item', 'id': 1377, 'name': "Martyr's Talisman "},
-          {'type': 'item', 'id': 1378, 'name': 'Golden Talisman '},
-          {'type': 'item', 'id': 1379, 'name': "Mage's Talisman "},
-          {'type': 'item', 'id': 1380, 'name': 'Iridescent Talisman '},
-          {'type': 'item', 'id': 1381, 'name': 'Vigor Extract '},
-          {'type': 'item', 'id': 1382, 'name': 'Serenity Extract '},
-          {'type': 'item', 'id': 1383, 'name': 'Silverwheat Paste '},
-          {'type': 'item', 'id': 1384, 'name': 'Goldbean Grind '},
-          {'type': 'item', 'id': 1385, 'name': 'Leaden Globe '},
-          {'type': 'item', 'id': 1386, 'name': 'Headless Icon '},
-          {'type': 'item', 'id': 1387, 'name': "Warlock's Incense "},
-          {'type': 'item', 'id': 1388, 'name': "Cleric's Incense "},
-          {'type': 'item', 'id': 1389, 'name': 'Goddess Cameo '},
-          {'type': 'item', 'id': 1390, 'name': 'Wroth Mask '},
-          {'type': 'item', 'id': 1391, 'name': 'Decaying Grimoire '},
-          {'type': 'item', 'id': 1392, 'name': 'The Sundering Spear Tome '},
-          {'type': 'item', 'id': 1393, 'name': 'Fulgurous Lord Tome '},
-          {'type': 'item', 'id': 1394, 'name': "Winter's Path Tome "},
-          {'type': 'item', 'id': 1395, 'name': 'Jewel of Silence '},
-          {'type': 'item', 'id': 1396, 'name': 'Jewel of Darkness '},
-          {'type': 'item', 'id': 1397, 'name': 'Jewel of Time '},
-          {'type': 'item', 'id': 1398, 'name': 'Jewel of Health '},
-          {'type': 'item', 'id': 1399, 'name': 'Jewel of Endurance '},
-          {'type': 'item', 'id': 1400, 'name': 'Jewel of Petrifaction '},
-          {'type': 'item', 'id': 1401, 'name': 'Jewel of Toxicity '},
-          {'type': 'item', 'id': 1402, 'name': 'Jewel of Sleep '},
-          {'type': 'item', 'id': 1403, 'name': 'Jewel of Vicissitude '},
-          {'type': 'item', 'id': 1405, 'name': 'Sweet Pollen '},
-          {'type': 'item', 'id': 1406, 'name': 'Cloudwine '},
-          {'type': 'item', 'id': 1407, 'name': 'Shadowcap '},
-          {'type': 'item', 'id': 1408, 'name': 'Unremarkable Ore '},
-          {'type': 'item', 'id': 1409, 'name': 'White Sage '},
-          {'type': 'item', 'id': 1410, 'name': 'Sand-Layer Ore '},
-          {'type': 'item', 'id': 1411, 'name': 'Stagnant Shroom '},
-          {'type': 'item', 'id': 1412, 'name': 'Purple Anise '},
-          {'type': 'item', 'id': 1413, 'name': 'Firefly Stone '},
-          {'type': 'item', 'id': 1414, 'name': 'Capeflower '},
-          {'type': 'item', 'id': 1415, 'name': 'King Bay Leaf'},
-          {'type': 'item', 'id': 1416, 'name': 'Cassardite'},
-          {'type': 'item', 'id': 1417, 'name': 'Lava Flower'},
-          {'type': 'item', 'id': 1418, 'name': 'Catacomb Gold'},
-          {'type': 'item', 'id': 1419, 'name': 'Flammica'},
-          {'type': 'item', 'id': 1421, 'name': 'Imperial Acid'},
-          {'type': 'item', 'id': 1427, 'name': 'Copperstone'},
-          {'type': 'item', 'id': 1428, 'name': 'Godsthrone Blossom'},
-          {'type': 'item', 'id': 1429, 'name': 'Lodestone'},
-          {'type': 'item', 'id': 1430, 'name': 'Reminishroom'},
-          {'type': 'item', 'id': 1431, 'name': 'Destiny Grass'},
-          {'type': 'item', 'id': 1432, 'name': 'Devilwort'},
-          {'type': 'item', 'id': 1433, 'name': "Fiend's Perch"},
-          {'type': 'item', 'id': 1434, 'name': 'Grandblossom'},
-          {'type': 'item', 'id': 1438, 'name': 'Gloamcap'},
-          {'type': 'item', 'id': 1439, 'name': 'Cragwort'},
-          {'type': 'item', 'id': 1440, 'name': 'Burst-Rock'},
-          {'type': 'item', 'id': 1441, 'name': 'Windmill Flower'},
-          {'type': 'item', 'id': 1442, 'name': 'Scarlet Angelica'},
-          {'type': 'item', 'id': 1443, 'name': 'Nightcry'},
-          {'type': 'item', 'id': 1444, 'name': 'Waterfell Gentian Root'},
-          {'type': 'item', 'id': 1445, 'name': 'Waterfell Gentian Leaf'},
-          {'type': 'item', 'id': 1447, 'name': 'Polar Mushroom'},
-          {'type': 'item', 'id': 1454, 'name': 'Alluvial Yore-Ore'},
-          {'type': 'item', 'id': 1455, 'name': 'Bladeleaf'},
-          {'type': 'item', 'id': 1456, 'name': 'Shiverberry'},
-          {'type': 'item', 'id': 1457, 'name': 'Southron Iron'},
-          {'type': 'item', 'id': 1458, 'name': 'Southron Oregano'},
-          {'type': 'item', 'id': 1459, 'name': 'Thornflower'},
-          {'type': 'item', 'id': 1460, 'name': 'Chaffstem'},
-          {'type': 'item', 'id': 1461, 'name': 'Nurse Log Sap'},
-          {'type': 'item', 'id': 1463, 'name': 'Gransys Herb'},
-          {'type': 'item', 'id': 1464, 'name': 'Toadstool Sitter'},
-          {'type': 'item', 'id': 1465, 'name': 'Spiny Nut'},
-          {'type': 'item', 'id': 1466, 'name': 'Loneflower'},
-          {'type': 'item', 'id': 1467, 'name': 'Anathema Grass'},
-          {'type': 'item', 'id': 1473, 'name': 'Wintry Herb'},
-          {'type': 'item', 'id': 1474, 'name': 'White Orchid'},
-          {'type': 'item', 'id': 1475, 'name': 'Sorrowstone'},
-          {'type': 'item', 'id': 1476, 'name': 'Jasper Blossom'},
-          {'type': 'item', 'id': 1479, 'name': 'Ancient Ore'},
-          {'type': 'item', 'id': 1480, 'name': 'Droughtshroom'},
-          {'type': 'item', 'id': 1481, 'name': 'Cursed Carving'},
-          {'type': 'item', 'id': 1482, 'name': 'Snakeskin Purse'},
-          {'type': 'item', 'id': 1483, 'name': 'Priceless Artifact'},
-          {'type': 'item', 'id': 1484, 'name': 'Brick'},
-          {'type': 'item', 'id': 1485, 'name': 'Festival Pie'},
-          {'type': 'item', 'id': 1486, 'name': 'Gran Soren Rubble'},
-          {'type': 'item', 'id': 1487, 'name': 'Noonflower'},
-          {'type': 'item', 'id': 1489, 'name': 'Tuft of Hair'},
-          {'type': 'item', 'id': 1490, 'name': 'Spring Water'},
-          {'type': 'item', 'id': 1501, 'name': "Symone's Petition"},
-          {'type': 'item', 'id': 1502, 'name': "Fedel's Petition"},
-          {'type': 'item', 'id': 1503, 'name': "Geffrey's Petition"},
-          {'type': 'item', 'id': 1504, 'name': "Jasper's Condemnation"},
-          {'type': 'item', 'id': 1505, 'name': "Sara's Condemnation"},
-          {'type': 'item', 'id': 1506, 'name': "Pip's Condemnation"},
-          {'type': 'item', 'id': 1507, 'name': 'Soiled Affidavit'},
-          {'type': 'item', 'id': 1508, 'name': 'Tattered Affidavit'},
-          {'type': 'item', 'id': 1509, 'name': 'Sweat-Stained Affidavit'},
-          {'type': 'item', 'id': 1510, 'name': 'Blurred Affidavit'},
-          {'type': 'item', 'id': 1511, 'name': "Chamberlain's Affidavit"},
-          {'type': 'item', 'id': 1512, 'name': 'Diry Affidavit'},
-          {'type': 'item', 'id': 1513, 'name': 'Moldy Affidavit'},
-          {'type': 'item', 'id': 1514, 'name': 'Worn Affidavit'},
-          {'type': 'item', 'id': 1515, 'name': 'Ripped Affidavit'},
-          {'type': 'item', 'id': 1516, 'name': 'Gift Ledger'},
-          {'type': 'item', 'id': 1517, 'name': "Drake's Tear"},
-          {'type': 'item', 'id': 1518, 'name': "Wyrm's Tear"},
-          {'type': 'item', 'id': 1519, 'name': "Wyvern's Tear"},
-          {'type': 'item', 'id': 1520, 'name': "Scather's Elixir"},
-          {'type': 'item', 'id': 1521, 'name': "Medicant's Elixir"},
-          {'type': 'item', 'id': 1522, 'name': "Mitigator's Elixir"},
-          {'type': 'item', 'id': 1523, 'name': "Challenger's Elixir"},
-          {'type': 'item', 'id': 1524, 'name': "Utilitarian's Elixir"},
-          {'type': 'item', 'id': 1525, 'name': "Guardian's Elixir"},
-          {'type': 'item', 'id': 1526, 'name': "Nexus's Elixir"},
-          {'type': 'item', 'id': 1527, 'name': "Pioneer's Elixir"},
-          {'type': 'item', 'id': 1528, 'name': "Acquisitor's Elixir"},
-          {'type': 'item', 'id': 1529, 'name': 'Neutralizing Elixir'},
-          {'type': 'item', 'id': 1530, 'name': 'Hobogoblin Tactics'},
-          {'type': 'item', 'id': 1531, 'name': 'Goblin Strategies'},
-          {'type': 'item', 'id': 1532, 'name': 'Wolf Strategy Vol. I'},
-          {'type': 'item', 'id': 1533, 'name': 'Wolf Strategy Vol. 2'},
-          {'type': 'item', 'id': 1534, 'name': 'Wolf Strategy VOl. 3'},
-          {'type': 'item', 'id': 1535, 'name': 'Skeleton Knight Tactics'},
-          {'type': 'item', 'id': 1536, 'name': 'Skeleton Strategies'},
-          {'type': 'item', 'id': 1537, 'name': 'Saurian Tactics Vol. I'},
-          {'type': 'item', 'id': 1538, 'name': 'Saurian Tactics Vol. 2'},
-          {'type': 'item', 'id': 1539, 'name': 'Saurian Strategy Vol. I'},
-          {'type': 'item', 'id': 1540, 'name': 'Saurian Strategy Vol. 2'},
-          {'type': 'item', 'id': 1541, 'name': 'Saurian Strategy Vol. 2'},
-          {'type': 'item', 'id': 1542, 'name': 'Undead Tactics Vol. I'},
-          {'type': 'item', 'id': 1543, 'name': 'Undead Tactics Vol. 2'},
-          {'type': 'item', 'id': 1544, 'name': 'Undead Strategy Vol. I'},
-          {'type': 'item', 'id': 1545, 'name': 'Undead Strategy Vol. 2'},
-          {'type': 'item', 'id': 1546, 'name': 'Harpy Strategies'},
-          {'type': 'item', 'id': 1547, 'name': 'Ghost Tactics Vol. I'},
-          {'type': 'item', 'id': 1548, 'name': 'Ghost Tactics Vol. 2'},
-          {'type': 'item', 'id': 1549, 'name': 'Ghost Strategies'},
-          {'type': 'item', 'id': 1550, 'name': 'Ogre Strategy Vol. I'},
-          {'type': 'item', 'id': 1551, 'name': 'Ogre Strategy Vol. 2'},
-          {'type': 'item', 'id': 1552, 'name': 'Cyclops Tactics'},
-          {'type': 'item', 'id': 1553, 'name': 'Cyclops Strategy Vol. I'},
-          {'type': 'item', 'id': 1554, 'name': 'Cyclops Strategy Vol. 2'},
-          {'type': 'item', 'id': 1555, 'name': 'Golem Tactics'},
-          {'type': 'item', 'id': 1556, 'name': 'Golem Strategy Vol. I'},
-          {'type': 'item', 'id': 1557, 'name': 'Golem Strategy Vol. 2'},
-          {'type': 'item', 'id': 1558, 'name': 'Chimera Tactics'},
-          {'type': 'item', 'id': 1559, 'name': 'Chimera Strategy Vol. I'},
-          {'type': 'item', 'id': 1560, 'name': 'Chimera Strategy Vol. 2'},
-          {'type': 'item', 'id': 1561, 'name': 'Hydra Tactics'},
-          {'type': 'item', 'id': 1562, 'name': 'Hydra Strategy Vol. I'},
-          {'type': 'item', 'id': 1563, 'name': 'Hydra Strategy Vol. 2'},
-          {'type': 'item', 'id': 1564, 'name': 'Griffin Strategy Vol. I'},
-          {'type': 'item', 'id': 1565, 'name': 'Griffin Strategy Vol. 2'},
-          {'type': 'item', 'id': 1566, 'name': 'Griffin Strategy Vol. 3'},
-          {'type': 'item', 'id': 1567, 'name': 'Cockatrice Strategy Vol. I'},
-          {'type': 'item', 'id': 1568, 'name': 'Cockatrice Strategy Vol. 2'},
-          {'type': 'item', 'id': 1569, 'name': 'Evil Eye Strategy Vol. I'},
-          {'type': 'item', 'id': 1570, 'name': 'Evil Eye Strategy Vol. 2'},
-          {'type': 'item', 'id': 1571, 'name': 'Vile Eye Strategy Vol. I'},
-          {'type': 'item', 'id': 1572, 'name': 'Vile Eye Strategy Vol. 2'},
-          {'type': 'item', 'id': 1573, 'name': 'Wight Tactics'},
-          {'type': 'item', 'id': 1574, 'name': 'Lich Tactics'},
-          {'type': 'item', 'id': 1575, 'name': 'Draconian Strategy Vol. I'},
-          {'type': 'item', 'id': 1576, 'name': 'Draconian Strategy Vol. 2'},
-          {'type': 'item', 'id': 1577, 'name': 'Badge of Vows 34'},
-          {'type': 'item', 'id': 1578, 'name': 'Badge of Vows 51'},
-          {'type': 'item', 'id': 1579, 'name': 'Badge of Vows 77'},
-          {'type': 'item', 'id': 1580, 'name': 'Badge of Vows 33'},
-          {'type': 'item', 'id': 1581, 'name': 'Badge of Vows 69'},
-          {'type': 'item', 'id': 1582, 'name': 'Badge of Vows 81'},
-          {'type': 'item', 'id': 1583, 'name': 'Badge of Vows 82'},
-          {'type': 'item', 'id': 1584, 'name': 'Badge of Vows 83'},
-          {'type': 'item', 'id': 1585, 'name': 'Badge of Vows 84'},
-          {'type': 'item', 'id': 1586, 'name': 'Badge of Vows 85'},
-          {'type': 'item', 'id': 1587, 'name': 'Badge of Vows 86'},
-          {'type': 'item', 'id': 1588, 'name': 'Badge of Vows 1'},
-          {'type': 'item', 'id': 1589, 'name': 'Badge of Vows 2'},
-          {'type': 'item', 'id': 1590, 'name': 'Badge of Vows 3'},
-          {'type': 'item', 'id': 1591, 'name': 'Badge of Vows 70'},
-          {'type': 'item', 'id': 1592, 'name': 'Badge of Vows 4'},
-          {'type': 'item', 'id': 1593, 'name': 'Badge of Vows II'},
-          {'type': 'item', 'id': 1594, 'name': 'Badge of Vows 22'},
-          {'type': 'item', 'id': 1595, 'name': 'Badge of Vows 31'},
-          {'type': 'item', 'id': 1596, 'name': 'Badge of Vows 12'},
-          {'type': 'item', 'id': 1597, 'name': 'Badge of Vows 32'},
-          {'type': 'item', 'id': 1598, 'name': 'Badge of Vows 5'},
-          {'type': 'item', 'id': 1599, 'name': 'Badge of Vows 62'},
-          {'type': 'item', 'id': 1600, 'name': 'Badge of Vows 14'},
-          {'type': 'item', 'id': 1601, 'name': 'Badge of Vows 92'},
-          {'type': 'item', 'id': 1602, 'name': 'Badge of Vows 15'},
-          {'type': 'item', 'id': 1603, 'name': 'Badge of Vows 6'},
-          {'type': 'item', 'id': 1604, 'name': 'Badge of Vows 9'},
-          {'type': 'item', 'id': 1605, 'name': 'Badge of Vows 38'},
-          {'type': 'item', 'id': 1606, 'name': 'Badge of Vows 37'},
-          {'type': 'item', 'id': 1607, 'name': 'Badge of Vows 63'},
-          {'type': 'item', 'id': 1608, 'name': 'Badge of Vows 66'},
-          {'type': 'item', 'id': 1609, 'name': 'Badge of Vows 61'},
-          {'type': 'item', 'id': 1610, 'name': 'Badge of Vows 67'},
-          {'type': 'item', 'id': 1611, 'name': 'Badge of Vows 94'},
-          {'type': 'item', 'id': 1612, 'name': 'Badge of Vows 8'},
-          {'type': 'item', 'id': 1613, 'name': 'Vermillion Face Pigment'},
-          {'type': 'item', 'id': 1614, 'name': 'Gold Face Pigment'},
-          {'type': 'item', 'id': 1615, 'name': 'Bright Green Face Pigment'},
-          {'type': 'item', 'id': 1616, 'name': 'Turquoise Face Pigment'},
-          {'type': 'item', 'id': 1617, 'name': 'Blue Face Pigment'},
-          {'type': 'item', 'id': 1618, 'name': 'Lavender Face Pigment'},
-          {'type': 'item', 'id': 1619, 'name': 'White Face Pigment'},
-          {'type': 'item', 'id': 1620, 'name': 'Red Hair Dye'},
-          {'type': 'item', 'id': 1621, 'name': 'Pink Hair Dye'},
-          {'type': 'item', 'id': 1622, 'name': 'Sky Blue Dye'},
-          {'type': 'item', 'id': 1623, 'name': 'Cornflower Blue Hair Dye'},
-          {'type': 'item', 'id': 1624, 'name': 'Pine Green Hair Dye'},
-          {'type': 'item', 'id': 1625, 'name': 'Bright Green Hair Dye'},
-          {'type': 'item', 'id': 1626, 'name': 'Yellow Hair Dye'},
-          {'type': 'item', 'id': 1627, 'name': 'Red Skin Pigment'},
-          {'type': 'item', 'id': 1628, 'name': 'Yellow Skin Pigment'},
-          {'type': 'item', 'id': 1629, 'name': 'Green Skin Pigment'},
-          {'type': 'item', 'id': 1630, 'name': 'Blue Skin Pigment'},
-          {'type': 'item', 'id': 1631, 'name': 'Plum SKin Pigment'},
-          {'type': 'item', 'id': 1632, 'name': 'Ash Gray Skin Pigment'},
-          {'type': 'item', 'id': 1633, 'name': 'Ivory Skin Pigment'},
-          {'type': 'item', 'id': 1634, 'name': 'Art of Metamorphosis'},
-          {'type': 'item', 'id': 1635, 'name': 'Secret of Metamorphosis'},
-          {'type': 'item', 'id': 1636, 'name': 'Badge of Vows 95'},
-          {'type': 'item', 'id': 1637, 'name': 'Badge of Vows 96'},
-          {'type': 'item', 'id': 1638, 'name': 'Badge of Vows 68'},
-          {'type': 'item', 'id': 1639, 'name': 'Badge of Vows 65'},
-          {'type': 'item', 'id': 1640, 'name': 'Badge of Vows 72'},
-          {'type': 'item', 'id': 1641, 'name': 'Badge of Vows 93'},
-          {'type': 'item', 'id': 1642, 'name': 'Badge of Vows 73'},
-          {'type': 'item', 'id': 1643, 'name': 'Badge of Vows 100'},
-          {'type': 'item', 'id': 1644, 'name': 'Badge of Vows 98'},
-          {'type': 'item', 'id': 1645, 'name': 'Badge of Vows 79'},
-          {'type': 'item', 'id': 1646, 'name': 'Badge of Vows 74'},
-          {'type': 'item', 'id': 1647, 'name': 'Badge of Vows 27'},
-          {'type': 'item', 'id': 1648, 'name': 'Badge of Vows 71'},
-          {'type': 'item', 'id': 1649, 'name': 'Badge of Vows 7'},
-          {'type': 'item', 'id': 1650, 'name': 'Badge of Vows 21'},
-          {'type': 'item', 'id': 1651, 'name': 'Badge of Vows 44'},
-          {'type': 'item', 'id': 1652, 'name': 'Badge of Vows 43'},
-          {'type': 'item', 'id': 1653, 'name': 'Badge of Vows 47'},
-          {'type': 'item', 'id': 1654, 'name': 'Badge of Vows 45'},
-          {'type': 'item', 'id': 1655, 'name': 'Badge of Vows 46'},
-          {'type': 'item', 'id': 1656, 'name': 'Badge of Vows 42'},
-          {'type': 'item', 'id': 1657, 'name': 'Badge of Vows 49'},
-          {'type': 'item', 'id': 1658, 'name': 'Badge of Vows 41'},
-          {'type': 'item', 'id': 1659, 'name': 'Badge of Vows 48'},
-          {'type': 'item', 'id': 1660, 'name': 'Badge of Vows 50'},
-          {'type': 'item', 'id': 1661, 'name': 'Badge of Vows 75'},
-          {'type': 'item', 'id': 1662, 'name': 'Badge of Vows 23'},
-          {'type': 'item', 'id': 1663, 'name': 'Badge of Vows 54'},
-          {'type': 'item', 'id': 1664, 'name': 'Badge of Vows 19'},
-          {'type': 'item', 'id': 1665, 'name': 'Badge of Vows 88'},
-          {'type': 'item', 'id': 1666, 'name': 'Badge of Vows 89'},
-          {'type': 'item', 'id': 1667, 'name': 'Badge of Vows 16'},
-          {'type': 'item', 'id': 1668, 'name': 'Badge of Vows 52'},
-          {'type': 'item', 'id': 1669, 'name': 'Badge of Vows 28'},
-          {'type': 'item', 'id': 1670, 'name': 'Badge of Vows 29'},
-          {'type': 'item', 'id': 1671, 'name': 'Badge of Vows 80'},
-          {'type': 'item', 'id': 1672, 'name': 'Badge of Vows 58'},
-          {'type': 'item', 'id': 1673, 'name': 'Badge of Vows 35'},
-          {'type': 'item', 'id': 1674, 'name': 'Badge of Vows 40'},
-          {'type': 'item', 'id': 1675, 'name': 'Badge of Vows 39'},
-          {'type': 'item', 'id': 1676, 'name': 'Badge of Vows 87'},
-          {'type': 'item', 'id': 1677, 'name': 'Badge of vows 56'},
-          {'type': 'item', 'id': 1678, 'name': 'Badge of Vows 55'},
-          {'type': 'item', 'id': 1679, 'name': 'Badge of Vows 17'},
-          {'type': 'item', 'id': 1680, 'name': 'Badge of Vows 30'},
-          {'type': 'item', 'id': 1681, 'name': 'Badge of Vows 64'},
-          {'type': 'item', 'id': 1682, 'name': 'Badge of Vows 60'},
-          {'type': 'item', 'id': 1683, 'name': 'Badge of Vows 97'},
-          {'type': 'item', 'id': 1684, 'name': 'Badge of Vows 20'},
-          {'type': 'item', 'id': 1685, 'name': 'Badge of Vows 13'},
-          {'type': 'item', 'id': 1686, 'name': 'Badge of Vows 36'},
-          {'type': 'item', 'id': 1687, 'name': 'Badge of Vows 59'},
-          {'type': 'item', 'id': 1688, 'name': 'Badge of Vows 57'},
-          {'type': 'item', 'id': 1689, 'name': 'Badge of Vows 24'},
-          {'type': 'item', 'id': 1690, 'name': 'Badge of Vows 18'},
-          {'type': 'item', 'id': 1692, 'name': 'Badge of Vows 26'},
-          {'type': 'item', 'id': 1693, 'name': 'Badge of Vows 53'},
-          {'type': 'item', 'id': 1694, 'name': 'Badge of Vows 99'},
-          {'type': 'item', 'id': 1695, 'name': 'Badge of Vows 90'},
-          {'type': 'item', 'id': 1696, 'name': 'Badge of Vows 10'},
-          {'type': 'item', 'id': 1697, 'name': 'Badge of Vows 76'},
-          {'type': 'item', 'id': 1698, 'name': 'Badge of Vows 78'},
-          {'type': 'item', 'id': 1699, 'name': 'Badge of Vows 91'},
-          {'type': 'unknown', 'id': 1700, 'name': 'Badge of Vows 101'},
-          {'type': 'item', 'id': 1701, 'name': 'Bitterblack Novelty Lv1'},
-          {'type': 'item', 'id': 1702, 'name': 'Bitterblack Novelty Lv2'},
-          {'type': 'item', 'id': 1703, 'name': 'Bitterblack Novelty Lv3'},
-          {'type': 'item', 'id': 1704, 'name': 'Bitterblack Gear Lv1'},
-          {'type': 'item', 'id': 1705, 'name': 'Bitterblack Gear Lv2'},
-          {'type': 'item', 'id': 1706, 'name': 'Bitterblack Gear Lv3'},
-          {'type': 'item', 'id': 1707, 'name': 'Bitterblack Weapon Lv1'},
-          {'type': 'item', 'id': 1708, 'name': 'Bitterblack Weapon Lv2'},
-          {'type': 'item', 'id': 1709, 'name': 'Bitterblack Weapon Lv3'},
-          {'type': 'item', 'id': 1710, 'name': 'Bitterblack Armor Lv1'},
-          {'type': 'item', 'id': 1711, 'name': 'Bitterblack Armor Lv2'},
-          {'type': 'item', 'id': 1712, 'name': 'Bitterblack Armor Lv3'},
-          {'type': 'item', 'id': 1713, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1714, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1715, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1716, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1717, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1718, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1719, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1720, 'name': 'Moonbeam Gem'},
-          {'type': 'item', 'id': 1721, 'name': 'Macabre Sculpture'},
-          {'type': 'item', 'id': 1722, 'name': 'Void Key'},
-          {'type': 'item', 'id': 1723, 'name': 'Fiend-luring Incense'},
-          {'type': 'item', 'id': 1724, 'name': 'Eternal Ferrystone'},
-          {'type': 'item', 'id': 1725, 'name': 'Invalid Message'},
-          {'type': 'item', 'id': 1726, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1727, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1728, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1729, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1730, 'name': 'Lava Rock'},
-          {'type': 'item', 'id': 1731, 'name': 'Hunk of Platinum'},
-          {'type': 'item', 'id': 1732, 'name': 'Moonstone'},
-          {'type': 'item', 'id': 1733, 'name': 'Diamond'},
-          {'type': 'item', 'id': 1734, 'name': 'Rubicite'},
-          {'type': 'item', 'id': 1735, 'name': 'Kingwarish'},
-          {'type': 'item', 'id': 1736, 'name': 'Lunanise'},
-          {'type': 'item', 'id': 1737, 'name': 'Corpse Nettle'},
-          {'type': 'item', 'id': 1738, 'name': 'Nightfall Cresset'},
-          {'type': 'item', 'id': 1739, 'name': 'Cragshadow Morel'},
-          {'type': 'item', 'id': 1740, 'name': 'Crimplecap'},
-          {'type': 'item', 'id': 1741, 'name': 'Pyrepipe'},
-          {'type': 'item', 'id': 1742, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1743, 'name': 'Rift Crystal Speck'},
-          {'type': 'item', 'id': 1744, 'name': 'Rift Crystal Flake'},
-          {'type': 'item', 'id': 1745, 'name': 'Rift Crystal Fragment'},
-          {'type': 'item', 'id': 1746, 'name': 'Rift Crystal Chunk'},
-          {'type': 'item', 'id': 1747, 'name': 'Rift Bicrystal'},
-          {'type': 'item', 'id': 1748, 'name': 'Rift Polycrystal'},
-          {'type': 'item', 'id': 1749, 'name': 'Perfect Rift Crystal'},
-          {'type': 'item', 'id': 1750, 'name': "Daimon's Claw"},
-          {'type': 'item', 'id': 1751, 'name': "Daimon's Horn"},
-          {'type': 'item', 'id': 1752, 'name': 'Vile Wakestone'},
-          {'type': 'item', 'id': 1753, 'name': "Sorcerer's Quartz"},
-          {'type': 'item', 'id': 1754, 'name': 'Violet Carapace'},
-          {'type': 'item', 'id': 1755, 'name': 'Abyssal Eye'},
-          {'type': 'item', 'id': 1756, 'name': 'Cursed Dragon Scale'},
-          {'type': 'item', 'id': 1757, 'name': 'Cursed Dragon Horn'},
-          {'type': 'item', 'id': 1758, 'name': 'Netherstone'},
-          {'type': 'item', 'id': 1759, 'name': 'Corrupt Remains'},
-          {'type': 'item', 'id': 1760, 'name': 'Ruinous Relic'},
-          {'type': 'item', 'id': 1761, 'name': 'Sinister Hide'},
-          {'type': 'item', 'id': 1762, 'name': 'Sinister Fang'},
-          {'type': 'item', 'id': 1763, 'name': 'Beastial Eye'},
-          {'type': 'item', 'id': 1764, 'name': 'Scythe Shard'},
-          {'type': 'item', 'id': 1765, 'name': 'Bone Lantern'},
-          {'type': 'item', 'id': 1766, 'name': 'Ox Horn'},
-          {'type': 'item', 'id': 1767, 'name': 'Bloodied Chain'},
-          {'type': 'item', 'id': 1768, 'name': 'Blue Iron Buckles'},
-          {'type': 'item', 'id': 1769, 'name': 'Macabre Eye'},
-          {'type': 'item', 'id': 1770, 'name': 'Cyclops Fang'},
-          {'type': 'item', 'id': 1771, 'name': 'Rugged Femur'},
-          {'type': 'item', 'id': 1772, 'name': 'Fae-Silver Plate'},
-          {'type': 'item', 'id': 1773, 'name': 'Phantom Orb'},
-          {'type': 'item', 'id': 1774, 'name': 'Elder Ogre Claw'},
-          {'type': 'item', 'id': 1775, 'name': 'Elder Ogre Fang'},
-          {'type': 'item', 'id': 1776, 'name': 'Poxy Flesh'},
-          {'type': 'item', 'id': 1777, 'name': 'Bright Amber Scale'},
-          {'type': 'item', 'id': 1778, 'name': 'Firedrake Fang'},
-          {'type': 'item', 'id': 1779, 'name': 'Bright Azure Scale'},
-          {'type': 'item', 'id': 1780, 'name': 'Frostwyrm Scute'},
-          {'type': 'item', 'id': 1781, 'name': 'Bright Virid Scale'},
-          {'type': 'item', 'id': 1782, 'name': 'Thunderwyvern Horn'},
-          {'type': 'item', 'id': 1783, 'name': 'Supple Dragon Pelt'},
-          {'type': 'item', 'id': 1784, 'name': 'Greatwyrm Stone'},
-          {'type': 'item', 'id': 1785, 'name': "Warmonger's Horn"},
-          {'type': 'item', 'id': 1786, 'name': 'Shamanic Reagents'},
-          {'type': 'item', 'id': 1787, 'name': 'Skull Pendant'},
-          {'type': 'item', 'id': 1788, 'name': 'Gnarled Fingernails'},
-          {'type': 'item', 'id': 1789, 'name': 'Befouled Gold Veneer'},
-          {'type': 'item', 'id': 1790, 'name': 'Tainted Silver Veneer'},
-          {'type': 'item', 'id': 1791, 'name': 'Bone Crest'},
-          {'type': 'item', 'id': 1792, 'name': 'Great Bone Shard'},
-          {'type': 'item', 'id': 1793, 'name': 'Gargantuan Skull'},
-          {'type': 'item', 'id': 1794, 'name': 'Rotten Baneflesh'},
-          {'type': 'item', 'id': 1795, 'name': 'Fetid Gallstone'},
-          {'type': 'item', 'id': 1796, 'name': 'Banshee Locks'},
-          {'type': 'item', 'id': 1797, 'name': 'Banshee Larynx'},
-          {'type': 'item', 'id': 1798, 'name': 'Siren Patagium'},
-          {'type': 'item', 'id': 1799, 'name': 'Siren Tailfin'},
-          {'type': 'item', 'id': 1800, 'name': 'Strigoi Barb'},
-          {'type': 'item', 'id': 1801, 'name': 'Bloodred Crystal'},
-          {'type': 'item', 'id': 1802, 'name': 'Infernal Hide'},
-          {'type': 'item', 'id': 1803, 'name': 'Crimson Stone'},
-          {'type': 'item', 'id': 1804, 'name': 'Lizardscale Pelt'},
-          {'type': 'item', 'id': 1805, 'name': 'Lizard Horn'},
-          {'type': 'item', 'id': 1806, 'name': 'Venomous Cuspid'},
-          {'type': 'item', 'id': 1807, 'name': 'Mottled Leather'},
-          {'type': 'item', 'id': 1808, 'name': 'Septiscopic Crystal'},
-          {'type': 'item', 'id': 1809, 'name': 'Leapworm Jelly'},
-          {'type': 'item', 'id': 1810, 'name': 'Maleficent Heart Shard'},
-          {'type': 'item', 'id': 1811, 'name': 'Maleficent Heart'},
-          {'type': 'item', 'id': 1812, 'name': 'Sullied Rift Fragment'},
-          {'type': 'item', 'id': 1813, 'name': 'Bloodstained Periapt'},
-          {'type': 'item', 'id': 1814, 'name': 'Idol of the All-Mother'},
-          {'type': 'item', 'id': 1815, 'name': 'Striped Pelt'},
-          {'type': 'item', 'id': 1816, 'name': 'Ironblack Pelt'},
-          {'type': 'item', 'id': 1817, 'name': 'Moonshimmer Pelt'},
-          {'type': 'item', 'id': 1818, 'name': 'Large Fisheye Stone'},
-          {'type': 'item', 'id': 1819, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1820, 'name': 'Scroll of Predation'},
-          {'type': 'item', 'id': 1821, 'name': 'Scroll of Fortune'},
-          {'type': 'item', 'id': 1822, 'name': 'Scroll of Tenacity'},
-          {'type': 'item', 'id': 1823, 'name': 'Scroll of Conveyance'},
-          {'type': 'item', 'id': 1824, 'name': 'Scroll of Acquisition'},
-          {'type': 'item', 'id': 1825, 'name': 'Scroll of Prolongation'},
-          {'type': 'item', 'id': 1826, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1827, 'name': 'Scroll of Mettle'},
-          {'type': 'item', 'id': 1828, 'name': 'Scroll of Athleticism'},
-          {'type': 'item', 'id': 1829, 'name': 'Scroll of Recuperation'},
-          {'type': 'item', 'id': 1830, 'name': 'Scroll of Adhesion'},
-          {'type': 'item', 'id': 1831, 'name': 'Scroll of Opportunism'},
-          {'type': 'item', 'id': 1832, 'name': 'Scroll of Flow'},
-          {'type': 'item', 'id': 1833, 'name': 'Scroll of Grace'},
-          {'type': 'item', 'id': 1834, 'name': 'Scroll of Facility'},
-          {'type': 'item', 'id': 1835, 'name': 'Elite Lantern'},
-          {'type': 'item', 'id': 1836, 'name': 'Unknown Item'},
-          {'type': 'ring', 'id': 1837, 'name': 'Ring of Thrift'},
-          {'type': 'item', 'id': 1838, 'name': 'Elite Lantern (Half-Full)'},
-          {'type': 'item', 'id': 1839, 'name': 'Elite Lantern (No Fuel)'},
-          {'type': 'item', 'id': 1840, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1841, 'name': 'Expediting Papers'},
-          {'type': 'item', 'id': 1842, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1843, 'name': 'Unknown Item'},
-          {'type': 'item', 'id': 1844, 'name': 'Light Pickaxe'},
-          {'type': 'ring', 'id': 1845, 'name': "Staff-Bearer's Ring (DL)"},
-          {'type': 'item', 'id': 1846, 'name': 'Liftstone (DL)'},
-          {'type': 'ring', 'id': 1847, 'name': "Swordsman's Ring (DL)"},
-          {'type': 'ring', 'id': 1848, 'name': "Daggerist's Ring (DL)"},
-          {'type': 'item', 'id': 1849, 'name': 'Liftstone (DL)'},
-          {'type': 'item', 'id': 1850, 'name': 'Rancid Bait Meat'},
-          {'type': 'item', 'id': 1851, 'name': 'Fiendish Essence'},
-          {'type': 'item', 'id': 1852, 'name': 'Fiendish Extract'},
-          {'type': 'item', 'id': 1853, 'name': 'Month-Dried Harspud'},
-          {'type': 'item', 'id': 1854, 'name': 'Decade-Dried Harspud'},
-          {'type': 'item', 'id': 1855, 'name': 'Liquid Effluvium'},
-          {'type': 'item', 'id': 1856, 'name': 'Liftstone (DL)'},
-          {'type': 'item', 'id': 1857, 'name': 'Dreamwing Nostrum'},
-          {'type': 'item', 'id': 1858, 'name': 'Jewel of Antilight'},
-          {'type': 'item', 'id': 1859, 'name': 'Jewel of Summoning'},
-          {'type': 'item', 'id': 1860, 'name': '"Shattered Earth" Tome'},
-          {'type': 'item', 'id': 1861, 'name': '"Surging Light" Tome'},
-          {'type': 'item', 'id': 1862, 'name': 'Lordly Tonic'},
-          {'type': 'item', 'id': 1863, 'name': 'Godly Analeptic'},
-          {'type': 'item', 'id': 1864, 'name': 'Auspicious Incense'},
-          {'type': 'item', 'id': 1865, 'name': 'Vivifying Incense'},
-          {'type': 'item', 'id': 1866, 'name': 'Liftstone'},
-          {'type': 'ring', 'id': 1867, 'name': "Swordsman's Ring"},
-          {'type': 'ring', 'id': 1868, 'name': "Swordsman's Band"},
-          {'type': 'ring', 'id': 1869, 'name': "Shieldsman's Ring"},
-          {'type': 'ring', 'id': 1870, 'name': "Daggerist's Ring"},
-          {'type': 'ring', 'id': 1871, 'name': "Daggerist's Band"},
-          {'type': 'ring', 'id': 1872, 'name': "Bowman's Ring"},
-          {'type': 'ring', 'id': 1873, 'name': "Staff-Bearer's Ring"},
-          {'type': 'ring', 'id': 1874, 'name': "Staff-Bearer's Band"},
-          {'type': 'ring', 'id': 1875, 'name': "Magick Shieldsman's Ring"},
-          {'type': 'ring', 'id': 1876, 'name': "Magick Shieldsman's Band"},
-          {'type': 'ring', 'id': 1877, 'name': "Magick Bowman's Ring"},
-          {'type': 'ring', 'id': 1878, 'name': "Magick Bowman's Band"},
-          {'type': 'ring', 'id': 1879, 'name': "Fighter's Ring"},
-          {'type': 'ring', 'id': 1880, 'name': "Fighter's Band"},
-          {'type': 'ring', 'id': 1881, 'name': "Strider's Ring"},
-          {'type': 'ring', 'id': 1882, 'name': "Strider's Band"},
-          {'type': 'ring', 'id': 1883, 'name': "Mage's Ring"},
-          {'type': 'ring', 'id': 1884, 'name': "Mage's Band"},
-          {'type': 'ring', 'id': 1885, 'name': "Warrior's Ring"},
-          {'type': 'ring', 'id': 1886, 'name': "Warrior's Band"},
-          {'type': 'ring', 'id': 1887, 'name': "Ranger's Ring"},
-          {'type': 'ring', 'id': 1888, 'name': "Ranger's Band"},
-          {'type': 'ring', 'id': 1889, 'name': "Sorcerer's Ring"},
-          {'type': 'ring', 'id': 1890, 'name': "Sorcerer's Band"},
-          {'type': 'ring', 'id': 1891, 'name': "Mystic Knight's Ring"},
-          {'type': 'ring', 'id': 1892, 'name': "Mystic Knight's Band"},
-          {'type': 'ring', 'id': 1893, 'name': "Magick Archer's Ring"},
-          {'type': 'ring', 'id': 1894, 'name': "Magick Archer's Band"},
-          {'type': 'ring', 'id': 1895, 'name': "Assassin's Ring"},
-          {'type': 'ring', 'id': 1896, 'name': "Assassin's Band"},
-          {'type': 'ring', 'id': 1897, 'name': "Staff Enchanter's Ring"},
-          {'type': 'ring', 'id': 1898, 'name': "Staff Enchanter's Band"},
-          {'type': 'ring', 'id': 1899, 'name': "Shield Enchanter's Ring"},
-          {'type': 'ring', 'id': 1900, 'name': "Shield Enchanter's Band"},
-          {'type': 'item', 'id': 1901, 'name': 'Used'},
-          {'type': 'item', 'id': 2411, 'name': 'Badge of Vows 25'},
-          ]
+import re
 
-items_by_id = {x["id"]: x for x in _items}
-items_by_name = {x["name"]: x for x in _items}
+all_items = """\
+0	Airtight Flask
+1	Scrag of Beast
+2	Beast-Steak
+3	Ambrosial Meat
+4	Sour Scrag of Beast
+5	Sour Beast-Steak
+6	Sour Ambrosial Meat
+7	Rotten Scrag of Beast
+8	Rotten Beast-Steak
+9	Rotten Ambrosial Meat
+10	Small Fish
+11	Large Fish
+12	Giant Fish
+13	Small Rank Fish
+14	Large Rank Fish
+15	Giant Rank Fish
+16	Small Rotten Fish
+17	Large Rotten Fish
+18	Giant Rotten Fish
+19	Berry
+20	Apple
+21	Grandgrapes
+22	Moldy Berry
+23	Moldy Apple
+24	Moldy Grandgrapes
+25	Rotten Berry
+26	Rotten Apple
+27	Rotten Grandgrapes
+28	Twigbean
+29	Carrot
+30	Pumpkin
+31	Moldy Twigbean
+32	Moldy Carrot
+33	Moldy Pumpkin
+34	Rotten Twigbean
+35	Rotten Carrot
+36	Rotten Pumpkin
+37	Egg
+38	Golden Egg
+39	Rotten Egg
+40	Sunbright
+41	Moonglow
+42	Wilted Blossom
+43	Greenwarish
+44	Potent Greenwarish
+45	Mushroom
+46	Large Mushroom
+47	Avernal Mushroom
+48	Mithridate
+49	Bringbout
+50	Small Nut
+51	Large Nut
+52	Copper Ore
+53	Silver Ore
+54	Gold Ore
+55	Fuligin Ore
+56	Hemp
+57	Wool-Cloth
+58	Silk
+59	Argence
+60	Pine Branch
+61	Cedar Branch
+62	Chestnut Branch
+63	Beech Branch
+64	Lantern
+65	Lantern (Half-Full)
+66	Ferrystone
+67	Empty Flask
+68	Flask of Water
+69	Flask of Oil
+70	Kindling
+71	Unknown Item
+72	Ceramic Jug
+73	Rock
+74	Skull
+75	Pickaxe
+76	Lantern (No Fuel)
+77	Unknown Item
+78	Unknown Item
+79	Throwblast
+80	Dragon's Spit
+81	Unknown Item
+82	Smother Sap
+83	Harspud Milk
+84	Harspud Juice
+85	Harspud Sauce
+86	Interventive
+87	Spicy Mushroom Tea
+88	Light-Cure
+89	Unknown Item
+90	Panacea
+91	White Wine
+92	Red Wine
+93	Poison Flask
+94	Absorbent Rag
+95	Clean Cloth
+96	Unknown Item
+97	Secret Softener
+98	Liquid Vim
+99	Salubrious Brew
+100	Bottled Haste
+101	Eyedropper
+102	Throat Drops
+103	Unknown Item
+104	Placative Brew
+105	Liberating Brew
+106	Purifying Brew
+107	Unknown Item
+108	Dose of Strength
+109	Dose of Courage
+110	Warlock's Draught
+111	Cleric's Draught
+112	Conqueror's Periapt
+113	Angel's Periapt
+114	Demon's Periapt
+115	Mage's Periapt
+116	Monk's Periapt
+117	Veteran's Periapt
+118	Banker's Periapt
+119	Isometricine
+120	Foreign Knife
+121	Unknown Item
+122	Unknown Item
+123	Unknown Item
+124	Unknown Item
+125	Unknown Item
+126	Unknown Item
+127	Unknown Item
+128	Unknown Item
+129	Unknown Item
+130	Wooden Arrow
+131	Poison Arrow
+132	Blinder Arrow
+133	Silencer Arrow
+134	Sleeper Arrow
+135	Oil Arrow
+136	z
+137	Petrifying Arrow
+138	Unknown Item
+139	Blast Arrow
+140	Maker's Finger
+141	Unknown Item
+142	First Key To Salvation
+143	Second Key To Salvation
+144	First Gem of Salvation
+145	Second Gem of Salvation
+146	Third Gem of Salvation
+147	Fourth Gem of Salvation
+148	Watergod's Altar Key
+149	Quarry Key
+150	Portcrystal
+151	Wakestone
+152	Wyrm Hunt License
+153	Gardener's Permit
+154	Ancient Slate
+155	Wakestone Shard
+156	Unknown Item
+157	Unknown Item
+158	Incriminating Contract
+159	Unknown Item
+160	Unknown Item
+161	Unknown Item
+162	Salomet's Grimoire
+163	Confidential Letter
+164	Parcel
+165	Unknown Item
+166	Altar Slate
+167	Maul's Badge Of Amity
+168	Ophis's Badge Of Amity
+169	Unknown Item
+170	Gold Idol
+171	Blessed Flower
+172	Dead Flower
+173	Ancient Tablet
+174	Fifth Gem of Salvation
+175	Godsbane
+176	Windbluff Tower Key
+177	Arisen's Bond
+178	Unknown Item
+179	Watergod's Altar Lever
+180	Shadow Fort Lever
+181	Wyrmward Perfume
+182	Unknown Item
+183	Unknown Item
+184	Seeker's Token
+185	Badge of Vows
+186	Unknown Item
+187	Engraved Lever
+188	Unknown Item
+189	Unknown Item
+190	First Journal Entry
+191	Second Journal Entry
+192	Third Journal Entry
+193	Fourth Journal Entry
+194	Fifth Journal Entry
+195	Final Journal Entry
+196	Unsigned Letter
+197	Tightly Folded Letter
+198	Silver Idol
+199	Bronze Idol
+200	Unknown Item
+201	Unknown Item
+202	Godsbane
+203	Coin Purse of Charity
+204	Scriptures
+205	Promissory Note
+206	Antique Panoply
+207	Matured Greenwarish
+208	Pretty Stone
+209	Champion's Writ
+210	Warden's Writ
+211	Archmage's Writ
+212	Quina's Note
+213	Pilgrim's Charm
+214	Unbowed Tree
+215	Eager Fang
+216	Gran Soren Uniform
+217	Strongwarish
+218	Badge of Merit
+219	Rift Crystal
+220	Unknown Item
+221	Salvation's Badge
+222	Manse Key
+223	Skeleton Key
+224	Love-In-The-Rough
+225	Ne'er-Do-Part
+226	Unknown Item
+227	Unknown Item
+228	Unknown Item
+229	Wyrmking's Ring
+230	Kept Scrag of Beast
+231	Kept Beast-Steak
+232	Kept Ambrosial Meat
+233	Kept Sour Scrag of Beast
+234	Kept Sour Beast-Steak
+235	Kept Sour Ambrosial Meat
+236	Kept Rotten Scrag of Beast
+237	Kept Rotten Beast-Steak
+238	Kept Rotten Ambrosial Meat
+239	Kept Small Fish
+240	Kept Large Fish
+241	Kept Giant Fish
+242	Kept Small Rank Fish
+243	Kept Large Rank Fish
+244	Kept Giant Rank Fish
+245	Kept Small Rotten Fish
+246	Kept Large Rotten Fish
+247	Kept Giant Rotten Fish
+248	Kept Berry
+249	Kept Apple
+250	Kept Grandgrapes
+251	Kept Moldy Berry
+252	Kept Moldy Apple
+253	Kept Moldy Grandgrapes
+254	Kept Rotten Berry
+255	Kept Rotten Apple
+256	Kept Rotten Grandgrapes
+257	Kept Twigbean
+258	Kept Carrot
+259	Kept Pumpkin
+260	Kept Moldy Twigbean
+261	Kept Moldy Carrot
+262	Kept Moldy Pumpkin
+263	Kept Rotten Twigbean
+264	Kept Rotten Carrot
+265	Kept Rotten Pumpkin
+266	Kept Egg
+267	Kept Golden Egg
+268	Kept Rotten Egg
+269	Kept Sunbright
+270	Kept Moonglow
+271	Kept Wilted Blossom
+272	Ferrystone
+273	Maker's Finger
+274	Portcrystal
+275	Wakestone
+276	Wakestone Shard
+277	Wyrmward Perfume
+278	Salomet's Grimoire Forgery
+279	Gold Idol Forgery
+280	Silver Idol Forgery
+281	Bronze Idol Forgery
+282	Wyrmking's Ring Forgery
+283	Rift Fragment
+284	Rift Cluster
+285	Dragon's Gaze
+286	Confidential Letter Forgery
+287	Unknown Item
+288	Unknown Item
+289	Unknown Item
+290	Unknown Item
+291	Unknown Item
+292	Unknown Item
+293	Unknown Item
+294	Unknown Item
+295	Unknown Item
+296	Unknown Item
+297	Unknown Item
+298	Unknown Item
+299	Unknown Item
+300	Unknown Item
+301	Iron Sword
+302	Cutlass
+303	Silver Rapier
+304	Golden Rapier
+305	Aneled Rapier
+306	Broadsword
+307	Trusty Sword
+308	Undulant Sword
+309	Undulant Gold
+310	Undulant Black
+311	Crossed Cinquedea
+312	Dragon's Dogma
+313	Bastard Sword
+314	Golden Bastard
+315	Aneled Bastard
+316	Carnation
+317	Tight Cinquedea
+318	Ascalon
+319	Wounded Fury
+320	Force Hatchet
+321	Rusted Sword
+322	Mace
+323	Thousand Troops
+324	Obliteratrix
+325	Golden Obliteratrix
+326	Aneled Obliteratrix
+327	Steel Beak
+328	Beak of Gold
+329	Aneled Beak
+330	Threaded Cudgel
+331	Dragon's Toll
+332	Morgenstern
+333	Bloodthirsty Beak
+334	Thousand Stings
+335	Golden Stings
+336	Aneled Stings
+337	Ingot Club
+338	Totem Mace
+339	Dragon's Presence
+340	Sickening Skull
+341	Royal Alms
+342	Rusted Mace
+343	Two-Hander
+344	Steel Greatsword
+345	Lifetaker
+346	Soultaker
+347	Soulbreaker
+348	War Blade
+349	Flamberge
+350	Cassardi Flamberge
+351	Saving Grace
+352	Dwells-In-Light
+353	Dragon's Bite
+354	Lancer's Sword
+355	Golden Lance
+356	Aneled Lance
+357	Gryphic Victory
+358	Gryphic Gold
+359	Gryphic Black
+360	Wounded Heart
+361	Dragon's Flight
+362	Iraklis
+363	Rusted Greatsword
+364	Judgement
+365	Mounted Pale
+366	Golden Pale
+367	Aneled Pale
+368	Cyclops Sigil
+369	Golden Cyclops Sigil
+370	Aneled Cyclops Sigil
+371	Triple Tooth
+372	Teeth of Gold
+373	Aneled Tooth
+374	Ferric Talon
+375	Bloody Thistle
+376	Steel Urchin
+377	Angel's Fist
+378	Dragon's Repast
+379	Black Matter
+380	Chestcaver
+381	Unknown Item
+382	Cyclops Bane
+383	Stamina Hammer
+384	Rusted Warhammer
+385	Throatcutters
+386	Signs of Valor
+387	Crimson Teeth
+388	Bardiche Daggers
+389	Golden Bardiches
+390	Aneled Bardiches
+391	Vouge Daggers
+392	Divine Razors
+393	Stilettos
+394	Golden Stilettos
+395	Aneled Stilettos
+396	Criteria
+397	Dragon's Vein
+398	Dragon's Pain
+399	Snagdaggers
+400	Snags of Gold
+401	Aneled Snags
+402	Unknown Item
+403	Saurian Bane
+404	Dowsing Spikes
+405	Rusted Daggers
+406	Wooden Staff
+407	Favored Flower
+408	Volant White
+409	Unfettered Claw
+410	Golden Claw
+411	Aneled Claw
+412	Cast Stone
+413	Dragon's Nous
+414	Ironclad Staff
+415	Unspoken Grace
+416	Golden Grace
+417	Aneled Grace
+418	Anchor to Heaven
+419	Path to Heaven
+420	Gleam of Heaven
+421	Favored Canopy
+422	Frigid Finger
+423	Unknown Item
+424	Goblin Bane
+425	Legion's Might
+426	Rusted Staff
+427	Common Archistaff
+428	Favored Branches
+429	Talarian White
+430	Plucked Heart
+431	Solar Providence
+432	Eclipsed Providence
+433	Dragon's Wit
+434	Keen Dragon's Wit
+435	Grievous Horns
+436	Grievous Gold
+437	Grievous Black
+438	Meniscus
+439	Golden Meniscus
+440	Aneled Meniscus
+441	Helical Archistaff
+442	Solar Numen
+443	Dragon's Risen
+444	Unknown Item
+445	Evil Eyesight
+446	Caged Fury
+447	Rusted Archistaff
+448	Eden's Warden
+449	Caladbolg
+450	Almace
+451	Crescending Roar
+452	Font of Fire
+453	Malignance
+454	Ardent Will
+455	Fiery Talon
+456	Rooted Gloom
+457	Crimson Glare
+458	Thunderclap
+459	Divine Axis
+460	Algid Bloom
+461	Iron Shield
+462	Pelta
+463	Round Shield
+464	Gran Soren Shield
+465	Mark of the Chimera
+466	Orilux Shield
+467	Lustrous Targe
+468	Sable Sentinel
+469	Dragon's Aegis
+470	Feather-Light Pelta
+471	Scarred Sentinel
+472	Dragon's Den
+473	Hellfang
+474	Brutish Wall
+475	Rusted Shield
+476	Wooden Wall
+477	Magick Buckler
+478	Fine Magick Buckler
+479	Lustrous Greatshield
+480	Blue Kite Shield
+481	Wizard's Vizard
+482	Knight's Honor
+483	Angel's Sanctum
+484	Dark Buckler
+485	Dragon's Faith
+486	Unknown Item
+487	Unknown Item
+488	Zombiebane
+489	Brilliance
+490	Rusted Magick Shield
+491	Shortbow
+492	Direwolf Bow
+493	Sylvan Bow
+494	Fluted Bow
+495	Dragon's Rancor
+496	Hunter's Bow
+497	Pleached Limbs
+498	Fey Whisper
+499	Stalwart Bow
+500	Unknown Item
+501	Unknown Item
+502	Griffinbane
+503	Repeller Bow
+504	Rusted Bow
+505	Plain Longbow
+506	Reinforced Longbow
+507	Bespoke Longbow
+508	Noble Limbs
+509	Veteran's Arc
+510	Dragon's Blink
+511	Savage Fang
+512	Unknown Item
+513	Unknown Item
+514	Unknown Item
+515	Unknown Item
+516	Unknown Item
+517	Hydra Husk
+518	Bezel Crown
+519	Rusted Longbow
+520	Gimble Gyre
+521	Terminal Gyre
+522	Herald's Helix
+523	Master's Merle
+524	Dragon's Breath
+525	Dragon's Quickening
+526	Magian Crutch
+527	Metered Catharsis
+528	Militant Dove
+529	Rusted Spellbow
+530	Cursed Bite
+531	Cursed Light
+532	Devil's Bane
+533	Shooting Star
+534	Magebreaker
+535	Virge of Madness
+536	Unknown Item
+537	Unknown Item
+538	Scorched Pelta
+539	Lambent Shield
+540	Thunder Kite Shield
+541	Scalding Razors
+542	Kunai
+543	Galvanic Razors
+544	Chilling Razors
+545	Heaven's Key
+546	Frozen Tomorrow
+547	Stagnant Surge
+548	Thousandlimbs
+549	White Hawk's Talon
+550	Unknown Item
+551	Plebian Shirt
+552	Cloth Greaves
+553	Faded Vest
+554	Traveler's Shirt
+555	Tunic
+556	Bandages
+557	Cassardi Shift
+558	Fine Cassardi Shirt
+559	Hemp Shirt
+560	Leather Chestguard
+561	Unknown Item
+562	Linen Shirt
+563	Riveted Coat
+564	Assembled Vest
+565	Quilted Jerkin
+566	Cotton Tunic
+567	Lady's Corset
+568	Chain Mail
+569	Braided Shirt
+570	Chainmail Bracers
+571	Bliaut
+572	Light Outfit
+573	Iron Vest
+574	Blessed Vest
+575	Brigandine Jerkin
+576	Hard Leather Plate
+577	Trooper Outfit
+578	Unknown Item
+579	Maiden's Camisole
+580	Unknown Item
+581	Silver Vest
+582	Silver Chestplate
+583	Forest Tunic
+584	Alchemick Vest
+585	Plated Coat
+586	Hunter's Shirt
+587	Gambeson
+588	Doublet
+589	Noblewoman's Corset
+590	Dragonleather Vest
+591	Unknown Item
+592	Abyssinal Outfit
+593	Crimson Jerkin
+594	Silver Cuirass
+595	Marshal's Bracers
+596	Swordsman's Shirt
+597	White Hawk Tunic
+598	Unknown Item
+599	Unknown Item
+600	Unknown Item
+601	Illusory Broadsword
+602	Illusory Mark of the Chimera
+603	Illusory Brigandine Jerkin
+604	Illusory Laborer's Breeches
+605	Illusory Divine Surcoat
+606	Illusory Shadow Gauntlets
+607	Illusory Shadow Greaves
+608	Illusory Tattered Mantle
+609	Illusory Crossed Cinquedea
+610	Illusory Scarred Sentinel
+611	Illusory Plated Coat
+612	Illusory Laborer's Breeches
+613	Illusory Clerical Cap
+614	Illusory Grand Surcoat
+615	Illusory Steel Gauntlets
+616	Illusory Steel Sabatons
+617	Illusory Vouge Daggers
+618	Illusory Shortbow
+619	Illusory Quiver
+620	Illusory Chainmail Bracers
+621	Illusory Translucent Hosen
+622	Illusory Chestguard
+623	Illusory Bandit's Glove
+624	Illusory Chainmail Skirt
+625	Illusory Ironclad Staff
+626	Illusory Forest Tunic
+627	Illusory Fine Cassardi Hosen
+628	Illusory Wizard's Helm
+629	Illusory Missionary's Robe
+630	Illusory Runic Bangles
+631	Illusory Leather Shoes
+632	Short Pants
+633	Traveler's Tights
+634	Cotton Hosen
+635	Leather Bandings
+636	Cassardi Trousers
+637	Fine Cassardi Hosen
+638	Unknown Item
+639	Hemp Hosen
+640	Worker's Pants
+641	Yellow Gaiters
+642	Half Chain Hosen
+643	Laced Leggings
+644	Brown Leathers
+645	Evening Tights
+646	Bandit Stalkers
+647	Urban Hosen
+648	Twisted Leathers
+649	Seeker Tights
+650	Unknown Item
+651	Unknown Item
+652	Unknown Item
+653	Unknown Item
+654	Unknown Item
+655	Unknown Item
+656	Unknown Item
+657	Unknown Item
+658	Unknown Item
+659	Unknown Item
+660	Unknown Item
+661	Unknown Item
+662	Unknown Item
+663	Unknown Item
+664	Unknown Item
+665	Unknown Item
+666	Unknown Item
+667	Unknown Item
+668	Unknown Item
+669	Unknown Item
+670	Unknown Item
+671	Unknown Item
+672	Unknown Item
+673	Unknown Item
+674	Unknown Item
+675	Unknown Item
+676	Unknown Item
+677	Unknown Item
+678	Unknown Item
+679	Unknown Item
+680	Unknown Item
+681	Unknown Item
+682	Unknown Item
+683	Unknown Item
+684	Unknown Item
+685	Unknown Item
+686	Unknown Item
+687	Laborer's Breeches
+688	White Stockings
+689	Full Chain Hosen
+690	Black Gaiters
+691	Huntsman's Trousers
+692	Braided Hosen
+693	Brown Laced Leggings
+694	Iron Bandings
+695	Silver Hosen
+696	Alchemickal Hosen
+697	Denim Hosen
+698	Silk Lingerie
+699	Swordsman's Pants
+700	White Hawk Leggings
+701	Gransys Flamberge
+702	Boltbringer
+703	Bitter End
+704	Twinpaler
+705	Twinterfang
+706	Devil's Nail
+707	Helmbarte Daggers
+708	Sapfire Daggers
+709	Framae Daggers
+710	Chilling Focus
+711	Melting Focus
+712	Dominion Claw
+713	Unknown Item
+714	Unknown Item
+715	Leather Cap
+716	Circlet
+717	Leather Hood
+718	Chain Coif
+719	Faerie Hood
+720	Bronze Sallet
+721	Feather Hood
+722	Verdant Hood
+723	White Cap
+724	Skulker's Mask
+725	Horned Helm
+726	Cyclops Veil
+727	Red Leather Cap
+728	Red Leather Hood
+729	Dragon Band
+730	Wizard's Helm
+731	Lupine Veil
+732	Incognito Mask
+733	Bandit's Mask
+734	Barreled Helm
+735	Leather Circlet
+736	Iron Helm
+737	Gryphic Helm
+738	Assassin's Mask
+739	Iron Headgear
+740	Twilight Hood
+741	Guardian's Hood
+742	Gossip's Mask
+743	Summery Cowl
+744	Chimeric Armet
+745	Lion-Lord's Helm
+746	Crowned Hood
+747	Clerical Cap
+748	Meloirean Helm
+749	Steel Sallet
+750	Coupled Headgear
+751	Archwizard's Helm
+752	Autumn Hood
+753	Laurel Circlet
+754	Meloirean Cyclops Veil
+755	Direwolf Veil
+756	Sultry Cowl
+757	Crimson Armet
+758	Grisly Skull
+759	Golden Lion Helm
+760	Dragon Knight's Helm
+761	Sage's Hood
+762	Barbarian Chief's Helm
+763	Twilight Mask
+764	Diadem
+765	Dragonroar
+766	Hero's Hood
+767	Chaos Helm
+768	Emissary Hood
+769	Monomi Mask
+770	Ancient Circlet
+771	Heresy Hood
+772	Beowulf Mask
+773	Apollo Mask
+774	Siegfried Mask
+775	Saint George Mask
+776	Silver Eyeglasses
+777	Gold Eyeglasses
+778	Black Eyeglasses
+779	Red Eyeglasses
+780	Farewell Hood
+781	Wyrmfyre Vizard
+782	Dragonseye Band
+783	Dragonspulse Circlet
+784	White Hawk Sallet
+785	Bane Archistaff
+786	Hallowed Dragon
+787	Sanguine Stalk
+788	Dragon's Roost
+789	Dread Aspis
+790	Purged Buckler
+791	Diabolic Shield
+792	Dragon's Ire
+793	Darkening Storm
+794	Dragon's Glaze
+795	Revenant Wail
+796	Dragon's Tempest
+797	Blackwing Bow
+798	Unknown Item
+799	Unknown Item
+800	Unknown Item
+801	Skull Belts
+802	Leather Jacket
+803	Shabby Robe
+804	Bone Armor
+805	Bone Plate Armor
+806	Leather Belts
+807	Sectional Armor
+808	Chestguard
+809	Scholar's Coat
+810	Healer's Robe
+811	Bronze Cuirass
+812	Leather Waistwrap
+813	Mummer's Wear
+814	Bronze Lorica
+815	Hide Armor
+816	Surcoat
+817	Hunter's Jacket
+818	Red Leather Armor
+819	Unknown Item
+820	Missionary's Robe
+821	Frame Plate
+822	Padded Armor
+823	Sectional Iron Plate
+824	Gryphic Armor
+825	Iron Lorica
+826	Weak Guard
+827	Magician's Surcoat
+828	Dalmatica
+829	Grand Surcoat
+830	Summery Pareo
+831	Recluse's Robe
+832	Maiden's Petticoat
+833	Flutter Padding
+834	Chimeric Half Plate
+835	Scale Coat
+836	Rex Lion Padding
+837	Sage's Robe
+838	Animistic Robe
+839	Meloirean Plate
+840	Steel Cuirass
+841	Lamellar Jacket
+842	Cardinal Surcoat
+843	Royal Surcoat
+844	Divine Surcoat
+845	Golden Belt
+846	Sultry Pareo
+847	Crimson Robe
+848	Archer's Culottes
+849	Crimson Plate
+850	Grisly Bone Armor
+851	Golden Lion Padding
+852	Matte Robe
+853	Philosopher's Robe
+854	Red Dragon Scale
+855	Dark Lorica
+856	Berserkin
+857	Hero's Surcoat
+858	Chaos Armor
+859	Emissary Armor
+860	Monomi Coat
+861	Ancient Robe
+862	Heresy Armor
+863	Abyssinal Coat
+864	Solar Armor
+865	Asura Armor
+866	Leather Protector
+867	Swordsman's Plate
+868	White Hawk Half-Plate
+869	Patterned Gambeson
+870	Unknown Item
+871	Delta Guard
+872	Silk Tights
+873	Traveler's Hood
+874	Minstrel's Band
+875	Mistletoe Circlet
+876	Immortal's Helm
+877	Persecutor's Mask
+878	Farseer's Cap
+879	Adept's Hat
+880	Ruminator's Monocle
+881	Nether Helm
+882	Hellfire Helm
+883	Hood of Shadow
+884	Hood of Oblivion
+885	Grave Veil
+886	Carrion Veil
+887	Traveler's Vest
+888	Novice's Coat
+889	Unknown Item
+890	Immortal's Coat
+891	Cursed King's Belt
+892	Trophy Jacket
+893	Adept's Robe
+894	Celestial Armor
+895	Votary's Robe
+896	Traitor's Armor
+897	Hellfire Armor
+898	Coat of Shadow
+899	Coat of Oblivion
+900	Grave Mantle
+901	Carrion Mantle
+902	Wizarding Gloves
+903	Force Bangles
+904	Immortal's Bracers
+905	Trophy Bracers
+906	Dragonwing Gloves
+907	Blessed Sleeves
+908	Wooden Bands
+909	Talismanic Beads
+910	Novice's Bracers
+911	Funnybone Guards
+912	Bandit's Glove
+913	Scholar's Bangle
+914	Navy Leather Gloves
+915	Bronze Gauntlets
+916	Hand Covers
+917	Bronze Bangles
+918	Scale Armguard
+919	Assailant's Bracers
+920	Iron Bracers
+921	Red Leather Glove
+922	Tiger Bangle
+923	Silver Bands
+924	Iron Armguard
+925	Gryphic Gauntlets
+926	Iron Manicae
+927	Assembled Sleeves
+928	Unknown Item
+929	Runic Bangles
+930	Leather Gloves
+931	Master's Bracers
+932	Chimeric Gauntlets
+933	Arm Crest
+934	Scarlet Hand Covers
+935	Jade Bangles
+936	Meloirean Armguard
+937	Steel Gauntlets
+938	Dragon Hide Bracers
+939	Assassin's Armguards
+940	Alchemickal Bangles
+941	Champion's Bangles
+942	Black Leather Gloves
+943	Darkened Gloves
+944	Crimson Gauntlets
+945	Grisly Bracers
+946	Twilight Manicae
+947	Burnished Bracers
+948	Gleaming Bangles
+949	Golden Wristbands
+950	Dragonscale Arm
+951	Shadow Gauntlets
+952	Hero's Gauntlets
+953	Chaos Gauntlets
+954	Emissary Bracers
+955	Monomi Bracers
+956	Ancient Bangles
+957	Heresy Armguards
+958	Abyssinal Bracers
+959	Farewell Gloves
+960	Gloves of Might
+961	Swordsman's Bracers
+962	White Hawk Gauntlets
+963	Crested Armguards
+964	Bonds of the Dragon
+965	Sinner's Gauntlets
+966	Hellfire Gauntlets
+967	Grave Claws
+968	Carrion Claws
+969	Worker's Gloves
+970	Unknown Item
+971	Budget Greaves
+972	Leather Cuisses
+973	Leather Shoes
+974	Novice Breeches
+975	Cassardi Greaves
+976	Metal Greaves
+977	Fur Greaves
+978	Scholar's Boots
+979	Iron Leg Guards
+980	Steel-Toed Boots
+981	Bronze Sabatons
+982	Fur & Cuisses
+983	Riveted Boots
+984	Blue Longkilt
+985	Dusk Shoes
+986	Steel Sabatons
+987	Battle Greaves
+988	Downcuffs & Cuisses
+989	Red Leather Cuisses
+990	Mage's Shoes
+991	Over-Knee Boots
+992	Scale Greaves
+993	Iron Boots
+994	Iron Cuisses
+995	Gryphic Greaves
+996	Chainmail Skirt
+997	Assembled Breeches
+998	Wizard's Boots
+999	Red Longkilt
+1000	Fine Over-Knee Boots
+1001	Raptor Cuisses
+1002	Gloaming Shoes
+1003	Chimeric Sabatons
+1004	Thick Fur Greaves
+1005	Assassin's Breeches
+1006	Nimble Cuisses
+1007	Red Over-Knee Boots
+1008	Meloirean Greaves
+1009	Leather Ocreae
+1010	Striker's Greaves
+1011	Royal Cuisses
+1012	Purple Longkilt
+1013	Molten Boots
+1014	Dark Over-Knee Boots
+1015	Flame Skirt
+1016	Superior Cuisses
+1017	Crimson Sabatons
+1018	Grisly Greaves
+1019	Carmine Breeches
+1020	Exotic High Boots
+1021	Shadow Greaves
+1022	Dragonbeards
+1023	Twilight Greaves
+1024	Holy Cuisses
+1025	Hero's Cuisses
+1026	Chaos Greaves
+1027	Emissary Greaves
+1028	Monomi Greaves
+1029	Ancient Greaves
+1030	Heresy Greaves
+1031	Abyssinal Greaves
+1032	Swordsman's Greaves
+1033	White Hawk Cuisses
+1034	Foreign Waistguard
+1035	Hinterland Waistguard
+1036	Extrinsic Waistguard
+1037	Immortal's Sabatons
+1038	Trophy Boots
+1039	Mercenary Slogs
+1040	Dragonwing Boots
+1041	Assault Boots
+1042	Apostate's Anklet
+1043	Betrayer's Greaves
+1044	Hellfire Greaves
+1045	Grave Greaves
+1046	Carrion Greaves
+1047	Tormenter's Mask
+1048	Dragonwing Circlet
+1049	Gauntlets of Shadow
+1050	Gauntlets of Oblivion
+1051	Boots of Shadow
+1052	Boots of Oblivion
+1053	Adept's Mantle
+1054	Unknown Item
+1055	Unknown Item
+1056	Unknown Item
+1057	Unknown Item
+1058	Leather Cape
+1059	Shed Cape
+1060	Shoulder Cape
+1061	Ebon Neck Wrap
+1062	Scholar's Cape
+1063	Mahogany Cape
+1064	Direwolf Cape
+1065	Adventurer's Cloak
+1066	Feather Cape
+1067	Knight's Mantle
+1068	Harpy Cloak
+1069	Alchemickal Cloak
+1070	Violet Neck Wrap
+1071	Paladin's Mantle
+1072	Gryphic Cloak
+1073	Scarlet Cape
+1074	Pauldron
+1075	Feral Cape
+1076	Royal Mantle
+1077	Dignified Cape
+1078	Dragon Knight's Cloak
+1079	Ancient Cape
+1080	Lordly Cloak
+1081	Hero's Cape
+1082	Monomi Neck Wrap
+1083	Heresy Cloak
+1084	Nebula Cape
+1085	Magnanimous Cloak
+1086	Farewell Cloak
+1087	Baleful Nails
+1088	Ogre Bone
+1089	Reinforced Nails
+1090	Barbed Nails
+1091	Ring of Gules
+1092	Ring of Azure
+1093	Ring of Purpure
+1094	Ring of Sable
+1095	Ring of Argent
+1096	Ring of Ruby
+1097	Ring of Sapphire
+1098	Ring of Amethyst
+1099	Ring of Pearl
+1100	Ring of Onyx
+1101	Rose Ring
+1102	Iris Ring
+1103	Violet Ring
+1104	Lily Ring
+1105	Aeonium Ring
+1106	Cleansing Earring
+1107	Restless Earring
+1108	Nimble Earring
+1109	Free-Spoken Earring
+1110	Benevolent Earring
+1111	Sight Earring
+1112	Faithful Earring
+1113	Exuberant Earring
+1114	Stalwart Earring
+1115	Noble Earring
+1116	Harmonious Earring
+1117	Dignified Earring
+1118	Indomitable Earring
+1119	Dragonblood
+1120	Silver Ring
+1121	Golden Ring
+1122	Platinum Ring
+1123	Red Star Ring
+1124	Red Star Earring
+1125	Green Star Ring
+1126	Green Star Earring
+1127	Blue Star Ring
+1128	Blue Star Earring
+1129	Premium Ring
+1130	Premium Earring
+1131	Wyrm Hunt Mantle
+1132	Beastly Mantle
+1133	Conqueror's Mantle
+1134	Tattered Mantle
+1135	Swordsman's Mantle
+1136	White Hawk Cape
+1137	Divine Embrace
+1138	Unknown Item
+1139	Nomad's Cloak
+1140	Sovereign's Mantle
+1141	Unknown Item
+1142	Unknown Item
+1143	Unknown Item
+1144	Unknown Item
+1145	Blasphemer's Cloak
+1146	Hellfire Cloak
+1147	Vandal's Ring
+1148	Bloody Knuckle
+1149	Stonewall Earring
+1150	Ring of Desiccation
+1151	Ring of Perseverance
+1152	Wanderlust Ring
+1153	Virtuoso Ring
+1154	Preceptor Ring
+1155	Master Ring
+1156	Savior Ring
+1157	Unknown Item
+1158	Unknown Item
+1159	Unknown Item
+1160	Robe of Enlightenment
+1161	Tiara of Enlightenment
+1162	Jester's Cap
+1163	Wavering Cloth
+1164	The Lion's Spine
+1165	Vagabond Armor
+1166	Unknown Item
+1167	Unknown Item
+1168	Unknown Item
+1169	Unknown Item
+1170	Unknown Item
+1171	Unknown Item
+1172	Unknown Item
+1173	Unknown Item
+1174	Unknown Item
+1175	Unknown Item
+1176	Unknown Item
+1177	Unknown Item
+1178	Unknown Item
+1179	Unknown Item
+1180	Unknown Item
+1181	Set of Servant's Garb
+1182	Set of Duke's Clothing
+1183	Set of Salvation Robes
+1184	Set of Fisherman's Garb
+1185	Set of Fisherman's Tatters
+1186	Set of Royal Guard Armor
+1187	Set of Lady's Garb
+1188	Set of Caretaker's Garb
+1189	Forest Tunic Set
+1190	Unknown Item
+1191	Set of Prisoner's Rags
+1192	Set of Jester's Motley
+1193	Nameless Armor Set
+1194	Captain's Armor Set
+1195	Set of Fop's Trek Wear
+1196	Set of Voldoan Armor
+1197	Set of Priest Vestments
+1198	Set of Lady's Trek Wear
+1199	Set of Queen's Clothing
+1200	Set of Nun Vestments
+1201	Unknown Item
+1202	Unknown Item
+1203	Unknown Item
+1204	Royal Banner
+1205	Enlistment Corps Banner
+1206	War Bugle
+1207	Fishing Bob
+1208	Bucket
+1209	Hoe
+1210	Spade
+1211	Scythe
+1212	Hammer
+1213	Trowel
+1214	Work Table
+1215	Quill
+1216	Wooden Board
+1217	Tray
+1218	Sconce
+1219	Blank Scroll
+1220	Broom
+1221	Ancient Scroll
+1222	Shackle
+1223	Large Coin Pouch
+1224	Coin Pouch
+1225	Small Coin Pouch
+1226	Giant Coin Pouch
+1227	Hunk of Ore
+1228	Goblin Horn
+1229	Wormwood Sap
+1230	Iron Blade Piece
+1231	Slate-Colored Horn
+1232	Curious Wine
+1233	Ebon Blade Piece
+1234	Night Terror's Horn
+1235	Blood Decanter
+1236	Small Fang
+1237	Wolf Pelt
+1238	Large Fang
+1239	Direwolf Pelt
+1240	Hellhound Fang
+1241	Hellhound Pelt
+1242	Ember Crystal
+1243	Saurian Scale
+1244	Poison Sac
+1245	Fisheye Stone
+1246	Saurian Tail
+1247	Striped Saurian Skin
+1248	Yellow Poison Sac
+1249	Incarnadine Scale
+1250	Inky Saurian Skin
+1251	Acid Sac
+1252	Snowy Saurian Skin
+1253	Argentine Sac
+1254	Purpure Crystal
+1255	Harpy Pinion
+1256	Harpy Rectrix
+1257	Elongated Claw
+1258	Glacial Pinion
+1259	Glacial Rectrix
+1260	Spurious Wing
+1261	Sinistone
+1262	Petrifactor
+1263	Bastard Wing
+1264	Shroud
+1265	Putrid Gold Tooth
+1266	Necrophagous Loin
+1267	Rusted Plate
+1268	Aged Insignia
+1269	Hex Runes
+1270	Brawn Runes
+1271	Miasmite Shard
+1272	Miasmite
+1273	Eldricite Shard
+1274	Eldricite
+1275	Astracite Shard
+1276	Astracite
+1277	Black Crystal
+1278	Immortelle
+1279	Vengeful Mirror
+1280	Wailing Crystal
+1281	Craft Bone
+1282	Scrap Iron
+1283	Hard Bone
+1284	Dark Peridot
+1285	Fell-Lord's Bone
+1286	Lordly Emblem
+1287	Mandrake
+1288	Torn Grimoire Preface
+1289	Torn Grimoire Appendix
+1290	Agate
+1291	Forgotten Arcanum
+1292	Pigeon's Blood
+1293	Rugged Bone
+1294	Rugged Tusk
+1295	Misshapen Eye
+1296	Ogre Spur
+1297	Ogre Tooth
+1298	Unspeakable Meat
+1299	Dappled Ore
+1300	Magick Medal
+1301	Hunk of Gold Ore
+1302	Electrum
+1303	Griffin Pinion
+1304	Great Griffin Claw
+1305	Slick Black Pinion
+1306	Cockatrice Beak
+1307	Hydra's Lifeblood
+1308	Poison Hydra Fang
+1309	Black Hydra Scale
+1310	White Hydra Scale
+1311	Hydra Gallstone
+1312	Freakish Claw
+1313	Freakish Mane
+1314	Freakish Scale
+1315	Black Freakish Claw
+1316	Black Freakish Mane
+1317	Black Freakish Horn
+1318	Black Freakish Scale
+1319	Malecryst
+1320	Evil Eyeball
+1321	Malecryst Shard
+1322	Dragon Scale
+1323	Crimson Dragon Scale
+1324	Putrid Dragon Scale
+1325	Great Dragon Horn
+1326	Great Dragon Alula
+1327	Great Dragon Claw
+1328	Great Dragon Fang
+1329	Indurated Dragonsblood
+1330	Dragon Horn
+1331	Dragon Claw
+1332	Azure Dragon Scale
+1333	Amber Dragon Scale
+1334	Virid Dragon Scale
+1335	Rabbit Pelt
+1336	Snakeskin
+1337	Spider Venom
+1338	Unknown Item
+1339	Desiccated Herbs
+1340	Stone-Moss Poultice
+1341	Foreign Medicament
+1342	Pickled Mushrooms
+1343	Backfat Oil
+1344	Staminal Drench
+1345	Crimson Concoction
+1346	Cerulean Concoction
+1347	Verdigris Concoction
+1348	Violet Concoction
+1349	Balmy Perfume
+1350	Balmy Incense
+1351	Rousing Perfume
+1352	Rousing Incense
+1353	Herb Ale
+1354	Select Herb Ale
+1355	Distilled Herb Ale
+1356	Secret Herb Ale
+1357	Finest Herb Ale
+1358	Fragrant Herb Ale
+1359	Perfect Herb Ale
+1360	Detoxicating Powder
+1361	Oak Leaf Oil
+1362	Vigilite
+1363	Throat Remedy
+1364	Peppermint Seed
+1365	Nostalgia Dust
+1366	Drop of Deliverance
+1367	Frozen Holy Water
+1368	Cockatrice Liquor
+1369	Font of Vigor
+1370	Font of Constitution
+1371	Tagilus' Miracle
+1372	Steel Nut Salve
+1373	Salomet's Secret
+1374	Decoction of Bandlily
+1375	Mushroom Potage
+1376	Sobering Wine
+1377	Martyr's Talisman
+1378	Golden Talisman
+1379	Mage's Talisman
+1380	Iridescent Talisman
+1381	Vigor Extract
+1382	Serenity Extract
+1383	Silverwheat Paste
+1384	Goldbean Grind
+1385	Leaden Globe
+1386	Headless Icon
+1387	Warlock's Incense
+1388	Cleric's Incense
+1389	Goddess Cameo
+1390	Wroth Mask
+1391	Decaying Grimoire
+1392	The Sundering Spear Tome
+1393	Fulgurous Lord Tome
+1394	Winter's Path Tome
+1395	Jewel of Silence
+1396	Jewel of Darkness
+1397	Jewel of Time
+1398	Jewel of Health
+1399	Jewel of Endurance
+1400	Jewel of Petrification
+1401	Jewel of Toxicity
+1402	Jewel of Sleep
+1403	Jewel of Vicissitude
+1404	Unknown Item
+1405	Sweet Pollen
+1406	Cloudwine
+1407	Shadowcap
+1408	Unremarkable Ore
+1409	White Sage
+1410	Sand-Layer Ore
+1411	Stagnant Shroom
+1412	Purple Anise
+1413	Firefly Stone
+1414	Capeflower
+1415	King Bay Leaf
+1416	Cassardite
+1417	Lava Flower
+1418	Catacomb Gold
+1419	Flammica
+1420	Unknown Item
+1421	Imperial Acid
+1422	Unknown Item
+1423	Unknown Item
+1424	Unknown Item
+1425	Unknown Item
+1426	Unknown Item
+1427	Copperstone
+1428	Godsthrone Blossom
+1429	Lodestone
+1430	Reminishroom
+1431	Destiny Grass
+1432	Devilwort
+1433	Fiend's Perch
+1434	Grandblossom
+1435	Unknown Item
+1436	Unknown Item
+1437	Unknown Item
+1438	Gloamcap
+1439	Cragwort
+1440	Burst-Rock
+1441	Windmill Flower
+1442	Scarlet Angelica
+1443	Nightcry
+1444	Waterfell Gentian Root
+1445	Waterfell Gentian Leaf
+1446	z
+1447	Polar Mushroom
+1448	Unknown Item
+1449	Unknown Item
+1450	Unknown Item
+1451	Unknown Item
+1452	Unknown Item
+1453	Unknown Item
+1454	Alluvial Yore-Ore
+1455	Bladeleaf
+1456	Shiverberry
+1457	Southron Iron
+1458	Southron Oregano
+1459	Thornflower
+1460	Chaffstem
+1461	Nurse Log Sap
+1462	Unknown Item
+1463	Gransys Herb
+1464	Toadstool Sitter
+1465	Spiny Nut
+1466	Loneflower
+1467	Anathema Grass
+1468	Unknown Item
+1469	Unknown Item
+1470	Unknown Item
+1471	Unknown Item
+1472	Unknown Item
+1473	Wintry Herb
+1474	White Orchid
+1475	Sorrowstone
+1476	Jasper Blossom
+1477	Unknown Item
+1478	Unknown Item
+1479	Ancient Ore
+1480	Droughtshroom
+1481	Cursed Carving
+1482	Snakeskin Purse
+1483	Priceless Artifact
+1484	Brick
+1485	Festival Pie
+1486	Gran Soren Rubble
+1487	Noonflower
+1488	Unknown Item
+1489	Tuft of Hair
+1490	Spring Water
+1491	Unknown Item
+1492	Unknown Item
+1493	Unknown Item
+1494	Unknown Item
+1495	Unknown Item
+1496	Unknown Item
+1497	Unknown Item
+1498	Unknown Item
+1499	Unknown Item
+1500	Unknown Item
+1501	Symone's Petition
+1502	Fedel's Petition
+1503	Geffrey's Petition
+1504	Jasper's Condemnation
+1505	Sara's Condemnation
+1506	Pip's Condemnation
+1507	Soiled Affidavit
+1508	Tattered Affidavit
+1509	Sweat-Stained Affidavit
+1510	Blurred Affidavit
+1511	Chamberlain's Affidavit
+1512	Dirty Affidavit
+1513	Moldy Affidavit
+1514	Worn Affidavit
+1515	Ripped Affidavit
+1516	Gift Ledger
+1517	Drake's Tear
+1518	Wyrm's Tear
+1519	Wyvern's Tear
+1520	Scather's Elixir
+1521	Medicant's Elixir
+1522	Mitigator's Elixir
+1523	Challenger's Elixir
+1524	Utilitarian's Elixir
+1525	Guardian's Elixir
+1526	Nexus' Elixir
+1527	Pioneer's Elixir
+1528	Acquisitor's Elixir
+1529	Neutralizing Elixir
+1530	Hobgoblin Tactics
+1531	Goblin Strategies
+1532	Wolf Strategy Vol 1
+1533	Wolf Strategy Vol 2
+1534	Wolf Strategy Vol 3
+1535	Skeleton Knight Tactics
+1536	Skeleton Strategies
+1537	Saurian Tactics Vol 1
+1538	Saurian Tactics Vol 2
+1539	Saurian Strategy Vol 1
+1540	Saurian Strategy Vol 2
+1541	Saurian Strategy Vol 2
+1542	Undead Tactics Vol 1
+1543	Undead Tactics Vol 2
+1544	Undead Strategy Vol 1
+1545	Undead Strategy Vol 2
+1546	Harpy Strategies
+1547	Ghost Tactics Vol 1
+1548	Ghost Tactics Vol 2
+1549	Ghost Strategies
+1550	Ogre Strategy Vol 1
+1551	Ogre Strategy Vol 2
+1552	Cyclops Tactics
+1553	Cyclops Strategy Vol 1
+1554	Cyclops Strategy Vol 2
+1555	Golem Tactics
+1556	Golem Strategy Vol 1
+1557	Golem Strategy Vol 2
+1558	Chimera Tactics
+1559	Chimera Strategy Vol 1
+1560	Chimera Strategy Vol 2
+1561	Hydra Tactics
+1562	Hydra Strategy Vol 1
+1563	Hydra Strategy Vol 2
+1564	Griffin Strategy Vol 1
+1565	Griffin Strategy Vol 2
+1566	Griffin Strategy Vol 3
+1567	Cockatrice Strategy Vol 1
+1568	Cockatrice Strategy Vol 2
+1569	Evil Eye Strategy Vol 1
+1570	Evil Eye Strategy Vol 2
+1571	Vile Eye Strategy Vol 1
+1572	Vile Eye Strategy Vol 2
+1573	Wight Tactics
+1574	Lich Tactics
+1575	Draconian Strategy Vol 1
+1576	Draconian Strategy Vol 2
+1577	<ITNO 185> 34
+1578	<ITNO 185> 51
+1579	<ITNO 185> 77
+1580	<ITNO 185> 33
+1581	<ITNO 185> 69
+1582	<ITNO 185> 81
+1583	<ITNO 185> 82
+1584	<ITNO 185> 83
+1585	<ITNO 185> 84
+1586	<ITNO 185> 85
+1587	<ITNO 185> 86
+1588	<ITNO 185> 1
+1589	<ITNO 185> 2
+1590	<ITNO 185> 3
+1591	<ITNO 185> 70
+1592	<ITNO 185> 4
+1593	<ITNO 185> 11
+1594	<ITNO 185> 22
+1595	<ITNO 185> 31
+1596	<ITNO 185> 12
+1597	<ITNO 185> 32
+1598	<ITNO 185> 5
+1599	<ITNO 185> 62
+1600	<ITNO 185> 14
+1601	<ITNO 185> 92
+1602	<ITNO 185> 15
+1603	<ITNO 185> 6
+1604	<ITNO 185> 9
+1605	<ITNO 185> 38
+1606	<ITNO 185> 37
+1607	<ITNO 185> 63
+1608	<ITNO 185> 66
+1609	<ITNO 185> 61
+1610	<ITNO 185> 67
+1611	<ITNO 185> 94
+1612	<ITNO 185> 8
+1613	Vermillion Face Pigment
+1614	Gold Face Pigment
+1615	Bright Green Face Pigment
+1616	Turquoise Face Pigment
+1617	Blue Face Pigment
+1618	Lavender Face Pigment
+1619	White Face Pigment
+1620	Red Hair Dye
+1621	Pink Hair Dye
+1622	Sky Blue Hair Dye
+1623	Cornflower Blue Hair Dye
+1624	Pine Green Hair Dye
+1625	Bright Green Hair Dye
+1626	Yellow Hair Dye
+1627	Red Skin Pigment
+1628	Yellow Skin Pigment
+1629	Green Skin Pigment
+1630	Blue Skin Pigment
+1631	Plum Skin Pigment
+1632	Ash Gray Skin Pigment
+1633	Ivory Skin Pigment
+1634	Art of Metamorphosis
+1635	Secret of Metamorphosis
+1636	<ITNO 185> 95
+1637	<ITNO 185> 96
+1638	<ITNO 185> 68
+1639	<ITNO 185> 65
+1640	<ITNO 185> 72
+1641	<ITNO 185> 93
+1642	<ITNO 185> 73
+1643	<ITNO 185> 100
+1644	<ITNO 185> 98
+1645	<ITNO 185> 79
+1646	<ITNO 185> 74
+1647	<ITNO 185> 27
+1648	<ITNO 185> 71
+1649	<ITNO 185> 7
+1650	<ITNO 185> 21
+1651	<ITNO 185> 44
+1652	<ITNO 185> 43
+1653	<ITNO 185> 47
+1654	<ITNO 185> 45
+1655	<ITNO 185> 46
+1656	<ITNO 185> 42
+1657	<ITNO 185> 49
+1658	<ITNO 185> 41
+1659	<ITNO 185> 48
+1660	<ITNO 185> 50
+1661	<ITNO 185> 75
+1662	<ITNO 185> 23
+1663	<ITNO 185> 54
+1664	<ITNO 185> 19
+1665	<ITNO 185> 88
+1666	<ITNO 185> 89
+1667	<ITNO 185> 16
+1668	<ITNO 185> 52
+1669	<ITNO 185> 28
+1670	<ITNO 185> 29
+1671	<ITNO 185> 80
+1672	<ITNO 185> 58
+1673	<ITNO 185> 35
+1674	<ITNO 185> 40
+1675	<ITNO 185> 39
+1676	<ITNO 185> 87
+1677	<ITNO 185> 56
+1678	<ITNO 185> 55
+1679	<ITNO 185> 17
+1680	<ITNO 185> 30
+1681	<ITNO 185> 64
+1682	<ITNO 185> 60
+1683	<ITNO 185> 97
+1684	<ITNO 185> 20
+1685	<ITNO 185> 13
+1686	<ITNO 185> 36
+1687	<ITNO 185> 59
+1688	<ITNO 185> 57
+1689	<ITNO 185> 24
+1690	<ITNO 185> 18
+1691	<ITNO 185> 25
+1692	<ITNO 185> 26
+1693	<ITNO 185> 53
+1694	<ITNO 185> 99
+1695	<ITNO 185> 90
+1696	<ITNO 185> 10
+1697	<ITNO 185> 76
+1698	<ITNO 185> 78
+1699	<ITNO 185> 91
+1700	Unknown Item
+1701	Bitterblack Novelty Lv1
+1702	Bitterblack Novelty Lv2
+1703	Bitterblack Novelty Lv3
+1704	Bitterblack Gear Lv1
+1705	Bitterblack Gear Lv2
+1706	Bitterblack Gear Lv3
+1707	Bitterblack Weapon Lv1
+1708	Bitterblack Weapon Lv2
+1709	Bitterblack Weapon Lv3
+1710	Bitterblack Armor Lv1
+1711	Bitterblack Armor Lv2
+1712	Bitterblack Armor Lv3
+1713	Unknown Item
+1714	Unknown Item
+1715	Unknown Item
+1716	Unknown Item
+1717	Unknown Item
+1718	Unknown Item
+1719	Unknown Item
+1720	Moonbeam Gem
+1721	Macabre Sculpture
+1722	Void Key
+1723	Fiend-luring Incense
+1724	Eternal Ferrystone
+1725	Invalid Message
+1726	Unknown Item
+1727	Unknown Item
+1728	Unknown Item
+1729	Unknown Item
+1730	Lava Rock
+1731	Hunk of Platinum
+1732	Moonstone
+1733	Diamond
+1734	Rubicite
+1735	Kingwarish
+1736	Lunanise
+1737	Corpse Nettle
+1738	Nightfall Cresset
+1739	Cragshadow Morel
+1740	Crimplecap
+1741	Pyrepipe
+1742	Unknown Item
+1743	Rift Crystal Speck
+1744	Rift Crystal Flake
+1745	Rift Crystal Fragment
+1746	Rift Crystal Chunk
+1747	Rift Bicrystal
+1748	Rift Polycrystal
+1749	Perfect Rift Crystal
+1750	Daimon's Claw
+1751	Daimon's Horn
+1752	Vile Wakestone
+1753	Sorcerer's Quartz
+1754	Violet Carapace
+1755	Abyssal Eye
+1756	Cursed Dragon Scale
+1757	Cursed Dragon Horn
+1758	Netherstone
+1759	Corrupt Remains
+1760	Ruinous Relic
+1761	Sinister Hide
+1762	Sinister Fang
+1763	Beastial Eye
+1764	Scythe Shard
+1765	Bone Lantern
+1766	Ox Horn
+1767	Bloodied Chain
+1768	Blue Iron Buckles
+1769	Macabre Eye
+1770	Cyclops Fang
+1771	Rugged Femur
+1772	Fae-Silver Plate
+1773	Phantom Orb
+1774	Elder Ogre Claw
+1775	Elder Ogre Fang
+1776	Poxy Flesh
+1777	Bright Amber Scale
+1778	Firedrake Fang
+1779	Bright Azure Scale
+1780	Frostwyrm Scute
+1781	Bright Virid Scale
+1782	Thunderwyvern Horn
+1783	Supple Dragon Pelt
+1784	Greatwyrm Stone
+1785	Warmonger's Horn
+1786	Shamanic Reagents
+1787	Skull Pendant
+1788	Gnarled Fingernails
+1789	Befouled Gold Veneer
+1790	Tainted Silver Veneer
+1791	Bone Crest
+1792	Great Bone Shard
+1793	Gargantuan Skull
+1794	Rotten Baneflesh
+1795	Fetid Gallstone
+1796	Banshee Locks
+1797	Banshee Larynx
+1798	Siren Patagium
+1799	Siren Tailfin
+1800	Strigoi Barb
+1801	Bloodred Crystal
+1802	Infernal Hide
+1803	Crimson Stone
+1804	Lizardscale Pelt
+1805	Lizard Horn
+1806	Venomous Cuspid
+1807	Mottled Leather
+1808	Septiscopic Crystal
+1809	Leapworm Jelly
+1810	Maleficent Heart Shard
+1811	Maleficent Heart
+1812	Sullied Rift Fragment
+1813	Bloodstained Periapt
+1814	Idol of the All-Mother
+1815	Striped Pelt
+1816	Ironblack Pelt
+1817	Moonshimmer Pelt
+1818	Large Fisheye Stone
+1819	Unknown Item
+1820	Scroll of Predation
+1821	Scroll of Fortune
+1822	Scroll of Tenacity
+1823	Scroll of Conveyance
+1824	Scroll of Acquisition
+1825	Scroll of Prolongation
+1826	Unknown Item
+1827	Scroll of Mettle
+1828	Scroll of Athleticism
+1829	Scroll of Recuperation
+1830	Scroll of Adhesion
+1831	Scroll of Opportunism
+1832	Scroll of Flow
+1833	Scroll of Grace
+1834	Scroll of Facility
+1835	Elite Lantern
+1836	Unknown Item
+1837	Ring of Thrift
+1838	Elite Lantern (Half-Full)
+1839	Elite Lantern (No Fuel)
+1840	Unknown Item
+1841	Expediting Papers
+1842	Unknown Item
+1843	Unknown Item
+1844	Light Pickaxe
+1845	Staff-Bearer's Ring (DL)
+1846	Liftstone (DL)
+1847	Swordsman's Ring (DL)
+1848	Daggerist's Ring (DL)
+1849	Liftstone (DL)
+1850	Rancid Bait Meat
+1851	Fiendish Essence
+1852	Fiendish Extract
+1853	Month-Dried Harspud
+1854	Decade-Dried Harspud
+1855	Liquid Effluvium
+1856	Liftstone (DL)
+1857	Dreamwing Nostrum
+1858	Jewel of Antilight
+1859	Jewel of Summoning
+1860	Shattered Earth Tome
+1861	Surging Light Tome
+1862	Lordly Tonic
+1863	Godly Analeptic
+1864	Auspicious Incense
+1865	Vivifying Incense
+1866	Liftstone
+1867	Swordsman's Ring
+1868	Swordsman's Band
+1869	Shieldsman's Ring
+1870	Daggerist's Ring
+1871	Daggerist's Band
+1872	Bowman's Ring
+1873	Staff-Bearer's Ring
+1874	Staff-Bearer's Band
+1875	Magick Shieldsman's Ring
+1876	Magick Shieldsman's Band
+1877	Magick Bowman's Ring
+1878	Magick Bowman's Band
+1879	Fighter's Ring
+1880	Fighter's Band
+1881	Strider's Ring
+1882	Strider's Band
+1883	Mage's Ring
+1884	Mage's Band
+1885	Warrior's Ring
+1886	Warrior's Band
+1887	Ranger's Ring
+1888	Ranger's Band
+1889	Sorcerer's Ring
+1890	Sorcerer's Band
+1891	Mystic Knight's Ring
+1892	Mystic Knight's Band
+1893	Magick Archer's Ring
+1894	Magick Archer's Band
+1895	Assassin's Ring
+1896	Assassin's Band
+1897	Staff Enchanter's Ring
+1898	Staff Enchanter's Band
+1899	Shield Enchanter's Ring
+1900	Shield Enchanter's Band
+1901	Used
+"""
+
+_item_ids = {}
+for li in all_items.splitlines(False):
+    idn, nam = li.split(sep='\t', maxsplit=2)
+    idx = int(idn)
+    nam = nam.strip()
+    if m := re.match(r'<ITNO (\d+)> (\d+)', nam):
+        nam = f'{_item_ids[int(m.group(1))]} {m.group(2)}'
+    if idx in _item_ids:
+        print(f'ERROR: dulicate index {idx}')
+    else:
+        _item_ids[idx] = nam
+
+item_ids = {x: i for i, x in _item_ids.items()}
+
