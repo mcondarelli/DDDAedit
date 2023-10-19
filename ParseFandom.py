@@ -88,7 +88,7 @@ def scrape_weapon(url, typ):
                 dic['release'] = 'DLC'
             case 'txtbg3':
                 dic['release'] = 'DDDA'
-        dic['type'] = typ
+        dic['Type'] = typ
 
         tab.append(dic)
     return tab
@@ -150,7 +150,7 @@ def scrape_armor(url, typ):
             dic['ElementalResist'] = parse_resist(row_data[7])
         if headers[8] == 'DebilitationResist':
             dic['DebilitationResist'] = parse_resist(row_data[7])
-        dic['type'] = typ
+        dic['Type'] = typ
 
         tab.append(dic)
     return tab

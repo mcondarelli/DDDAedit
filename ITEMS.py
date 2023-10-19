@@ -1980,7 +1980,7 @@ for li in all_items.splitlines(False):
     if m := re.match(r'<ITNO (\d+)> (\d+)', nam):
         nam = f'{_id_to_item[int(m.group(1))]} {m.group(2)}'
     if idx in _id_to_item:
-        print(f'ERROR: dulicate index {idx}')
+        print(f'Warning: duplicate index {idx}')
     else:
         _id_to_item[idx] = nam
     item_ids[nam] = idx
