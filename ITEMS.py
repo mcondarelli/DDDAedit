@@ -145,9 +145,13 @@ all_items = """\
 141	Unknown Item
 142	First Key To Salvation
 143	Second Key To Salvation
+144	Gem of Salvation, First
 144	First Gem of Salvation
+145	Gem of Salvation, Second
 145	Second Gem of Salvation
+146	Gem of Salvation, Third
 146	Third Gem of Salvation
+147	Gem of Salvation, Fourth 
 147	Fourth Gem of Salvation
 148	Watergod's Altar Key
 149	Quarry Key
@@ -168,13 +172,16 @@ all_items = """\
 164	Parcel
 165	Unknown Item
 166	Altar Slate
+167	Maul's Badge of Amity
 167	Maul's Badge Of Amity
+168	Ophis's Badge of Amity
 168	Ophis's Badge Of Amity
 169	Unknown Item
 170	Gold Idol
 171	Blessed Flower
 172	Dead Flower
 173	Ancient Tablet
+174	Gem of Salvation, Fifth
 174	Fifth Gem of Salvation
 175	Godsbane
 176	Windbluff Tower Key
@@ -191,11 +198,17 @@ all_items = """\
 187	Engraved Lever
 188	Unknown Item
 189	Unknown Item
+190	Journal Entry, First
 190	First Journal Entry
+191	Journal Entry, Second
 191	Second Journal Entry
+192	Journal Entry, Third 
 192	Third Journal Entry
+193	Journal Entry, Fourth
 193	Fourth Journal Entry
+194	Journal Entry, Fifth
 194	Fifth Journal Entry
+195	Journal Entry, Final
 195	Final Journal Entry
 196	Unsigned Letter
 197	Tightly Folded Letter
@@ -273,11 +286,11 @@ all_items = """\
 269	Kept Sunbright
 270	Kept Moonglow
 271	Kept Wilted Blossom
-272	Ferrystone
-273	Maker's Finger
-274	Portcrystal
-275	Wakestone
-276	Wakestone Shard
+272	Ferrystone Forgery
+273	Maker's Finger Forgery
+274	Portcrystal Forgery
+275	Wakestone Forgery
+276	Wakestone Shard Forgery
 277	Wyrmward Perfume
 278	Salomet's Grimoire Forgery
 279	Gold Idol Forgery
@@ -365,6 +378,7 @@ all_items = """\
 361	Dragon's Flight
 362	Iraklis
 363	Rusted Greatsword
+364	Judgment
 364	Judgement
 365	Mounted Pale
 366	Golden Pale
@@ -383,6 +397,7 @@ all_items = """\
 379	Black Matter
 380	Chestcaver
 381	Unknown Item
+382	Cyclop's Bane
 382	Cyclops Bane
 383	Stamina Hammer
 384	Rusted Warhammer
@@ -420,6 +435,7 @@ all_items = """\
 416	Golden Grace
 417	Aneled Grace
 418	Anchor to Heaven
+419	Path To Heaven
 419	Path to Heaven
 420	Gleam of Heaven
 421	Favored Canopy
@@ -444,6 +460,7 @@ all_items = """\
 440	Aneled Meniscus
 441	Helical Archistaff
 442	Solar Numen
+443	Dragons Risen
 443	Dragon's Risen
 444	Unknown Item
 445	Evil Eyesight
@@ -533,6 +550,7 @@ all_items = """\
 529	Rusted Spellbow
 530	Cursed Bite
 531	Cursed Light
+532	Devilsbane
 532	Devil's Bane
 533	Shooting Star
 534	Magebreaker
@@ -710,6 +728,7 @@ all_items = """\
 706	Devil's Nail
 707	Helmbarte Daggers
 708	Sapfire Daggers
+709	Framae Blades
 709	Framae Daggers
 710	Chilling Focus
 711	Melting Focus
@@ -744,6 +763,7 @@ all_items = """\
 740	Twilight Hood
 741	Guardian's Hood
 742	Gossip's Mask
+742	Gossips's Mask
 743	Summery Cowl
 744	Chimeric Armet
 745	Lion-Lord's Helm
@@ -1372,6 +1392,7 @@ all_items = """\
 1368	Cockatrice Liquor
 1369	Font of Vigor
 1370	Font of Constitution
+1371	Tagilus's Miracle
 1371	Tagilus' Miracle
 1372	Steel Nut Salve
 1373	Salomet's Secret
@@ -1527,56 +1548,88 @@ all_items = """\
 1523	Challenger's Elixir
 1524	Utilitarian's Elixir
 1525	Guardian's Elixir
+1526	Nexus's Elixir
 1526	Nexus' Elixir
 1527	Pioneer's Elixir
 1528	Acquisitor's Elixir
 1529	Neutralizing Elixir
 1530	Hobgoblin Tactics
 1531	Goblin Strategies
+1532	Wolf Strategy Vol. 1
 1532	Wolf Strategy Vol 1
+1533	Wolf Strategy Vol. 2
 1533	Wolf Strategy Vol 2
+1534	Wolf Strategy Vol. 3
 1534	Wolf Strategy Vol 3
 1535	Skeleton Knight Tactics
 1536	Skeleton Strategies
+1537	Saurian Tactics Vol. 1
 1537	Saurian Tactics Vol 1
+1538	Saurian Tactics Vol. 2
 1538	Saurian Tactics Vol 2
+1539	Saurian Strategy Vol. 1
 1539	Saurian Strategy Vol 1
-1540	Saurian Strategy Vol 2
+1540	Saurian Strategy Vol. 2
 1541	Saurian Strategy Vol 2
+1542	Undead Tactics Vol. 1
 1542	Undead Tactics Vol 1
+1543	Undead Tactics Vol. 2
 1543	Undead Tactics Vol 2
+1544	Undead Strategy Vol. 1
 1544	Undead Strategy Vol 1
+1545	Undead Strategy Vol. 2
 1545	Undead Strategy Vol 2
 1546	Harpy Strategies
+1547	Ghost Tactics Vol. 1
 1547	Ghost Tactics Vol 1
+1548	Ghost Tactics Vol. 2
 1548	Ghost Tactics Vol 2
 1549	Ghost Strategies
+1550	Ogre Strategy Vol. 1
 1550	Ogre Strategy Vol 1
+1551	Ogre Strategy Vol. 2
 1551	Ogre Strategy Vol 2
 1552	Cyclops Tactics
+1553	Cyclops Strategy Vol. 1
 1553	Cyclops Strategy Vol 1
+1554	Cyclops Strategy Vol. 2
 1554	Cyclops Strategy Vol 2
 1555	Golem Tactics
+1556	Golem Strategy Vol. 1
 1556	Golem Strategy Vol 1
+1557	Golem Strategy Vol. 2
 1557	Golem Strategy Vol 2
 1558	Chimera Tactics
+1559	Chimera Strategy Vol. 1
 1559	Chimera Strategy Vol 1
+1560	Chimera Strategy Vol. 2
 1560	Chimera Strategy Vol 2
 1561	Hydra Tactics
+1562	Hydra Strategy Vol. 1
 1562	Hydra Strategy Vol 1
+1563	Hydra Strategy Vol. 2
 1563	Hydra Strategy Vol 2
+1564	Griffin Strategy Vol. 1
 1564	Griffin Strategy Vol 1
+1565	Griffin Strategy Vol. 2
 1565	Griffin Strategy Vol 2
+1566	Griffin Strategy Vol. 3
 1566	Griffin Strategy Vol 3
+1567	Cockatrice Strategy Vol. 1
 1567	Cockatrice Strategy Vol 1
+1568	Cockatrice Strategy Vol. 2
 1568	Cockatrice Strategy Vol 2
+1569	Evil Eye Strategy Vol. 1
 1569	Evil Eye Strategy Vol 1
+1570	Evil Eye Strategy Vol. 2
 1570	Evil Eye Strategy Vol 2
 1571	Vile Eye Strategy Vol 1
 1572	Vile Eye Strategy Vol 2
 1573	Wight Tactics
 1574	Lich Tactics
+1575	Draconian Strategy Vol. 1
 1575	Draconian Strategy Vol 1
+1576	Draconian Strategy Vol. 2
 1576	Draconian Strategy Vol 2
 1577	<ITNO 185> 34
 1578	<ITNO 185> 51
@@ -1702,17 +1755,29 @@ all_items = """\
 1698	<ITNO 185> 78
 1699	<ITNO 185> 91
 1700	Unknown Item
+1701	Bitterblack Novelty Lv.1
 1701	Bitterblack Novelty Lv1
+1702	Bitterblack Novelty Lv.2
 1702	Bitterblack Novelty Lv2
+1703	Bitterblack Novelty Lv.3
 1703	Bitterblack Novelty Lv3
+1704	Bitterblack Gear Lv.1
 1704	Bitterblack Gear Lv1
+1705	Bitterblack Gear Lv.2
 1705	Bitterblack Gear Lv2
+1706	Bitterblack Gear Lv.3
 1706	Bitterblack Gear Lv3
+1707	Bitterblack Weapon Lv.1
 1707	Bitterblack Weapon Lv1
+1708	Bitterblack Weapon Lv.2
 1708	Bitterblack Weapon Lv2
+1709	Bitterblack Weapon Lv.3
 1709	Bitterblack Weapon Lv3
+1710	Bitterblack Armor Lv.1
 1710	Bitterblack Armor Lv1
+1711	Bitterblack Armor Lv.2
 1711	Bitterblack Armor Lv2
+1712	Bitterblack Armor Lv.3
 1712	Bitterblack Armor Lv3
 1713	Unknown Item
 1714	Unknown Item
@@ -1847,6 +1912,7 @@ all_items = """\
 1843	Unknown Item
 1844	Light Pickaxe
 1845	Staff-Bearer's Ring (DL)
+1846	Liftstone (DLC)
 1846	Liftstone (DL)
 1847	Swordsman's Ring (DL)
 1848	Daggerist's Ring (DL)
@@ -1905,17 +1971,17 @@ all_items = """\
 1901	Used
 """
 
-_item_ids = {}
+_id_to_item = {}
+item_ids = {}
 for li in all_items.splitlines(False):
     idn, nam = li.split(sep='\t', maxsplit=2)
     idx = int(idn)
     nam = nam.strip()
     if m := re.match(r'<ITNO (\d+)> (\d+)', nam):
-        nam = f'{_item_ids[int(m.group(1))]} {m.group(2)}'
-    if idx in _item_ids:
+        nam = f'{_id_to_item[int(m.group(1))]} {m.group(2)}'
+    if idx in _id_to_item:
         print(f'ERROR: dulicate index {idx}')
     else:
-        _item_ids[idx] = nam
-
-item_ids = {x: i for i, x in _item_ids.items()}
+        _id_to_item[idx] = nam
+    item_ids[nam] = idx
 

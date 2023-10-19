@@ -1,9 +1,5 @@
-import json
-from os import path
-
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
 
 from ITEMS import item_ids
 
@@ -53,18 +49,25 @@ def scrap_tools(url, tag):
     </p>         
         '''
         nam = pic = ''
+        add = False
         for j in section.find_all(recursive=False):
             if j.name == 'h4':
                 nam = j.find('a').text
                 try:
                     pic = j.find('img')['data-src']
+                    add = True
                 except TypeError:
-                    pic = None
+                    # Items without icon are in site and can be held,
+                    # but don't seem to have a numeric ID and CANNOT be put in inventory.
+                    # We disregard them entierely
+                    add = False
+                    continue
             elif j.name == 'p':
-                dsc = j.text.strip()
-                dic = {'Name': nam.strip(), 'img': pic, 'tag': tag, 'effect': dsc}
-                print(dic)
-                tab.append(dic)
+                if add:
+                    dsc = j.text.strip()
+                    dic = {'Name': nam.strip(), 'img': pic, 'tag': tag, 'effect': dsc}
+                    print(dic)
+                    tab.append(dic)
             else:
                 print(f'ERROR: unknown tag {j.name}')
     return tab
@@ -95,12 +98,9 @@ if __name__ == '__main__':
         fo.write('_item = [')
         for w in tab:
             n = w['Name']
-            if n not in ['Barrel', 'Boar', 'Box', 'Cracked Pot', 'Explosive Barrel', 'Indestructible Crate',
-                         'Large Flask', 'Large Stone', 'Oil Pot', 'Poison Pot', 'Pot', 'Water Pot']:
-                # The above are in site, can be hold, but don't seem to have a numeric ID and CANNOT be in inventory
-                idx = item_ids[n]
-                w['id'] = idx
-                fo.write(f'            {w},\n')
+            idx = item_ids[n]
+            w['id'] = idx
+            fo.write(f'            {w},\n')
         fo.write('           ]\n\n')
         fo.write('items_by_id = {x["id"]: x for x in _item}\n')
         fo.write('items_by_name = {x["Name"]: x for x in _item}\n')

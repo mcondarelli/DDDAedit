@@ -73,10 +73,12 @@ if __name__ == '__main__':
             json.dump(tab, fo, indent=4)
 
     with open('Weapons.py', 'w') as fo:
-        fo.write('weapons = [')
+        fo.write('_weapons = [')
         for w in tab:
             n = w['Name']
             idx = item_ids[n]
             w['id'] = idx
-            fo.write(f'           {w},\n')
-        fo.write('          ]\n')
+            fo.write(f'            {w},\n')
+        fo.write('           ]\n')
+        fo.write('weapons_by_id = {x["id"]: x for x in _weapons}\n')
+        fo.write('weapons_by_name = {x["Name"]: x for x in _weapons}\n')
