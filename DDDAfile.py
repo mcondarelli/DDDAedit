@@ -4,13 +4,12 @@ import zlib
 from typing import Optional
 
 from PyQt6.QtCore import QObject, pyqtProperty, Qt, pyqtSignal
-from PyQt6.QtGui import QCursor
 
 import xml.etree.ElementTree as ET
 
 from PyQt6.QtWidgets import QWidget
 
-from ITEMS import items_by_name, items_by_id
+from Fandom import all_by_name, all_by_id
 
 vocations = ['fighter',
              'striderp',
@@ -254,6 +253,60 @@ class DDDAfile(QObject):
         else:
             return int(volx[self.pvoc - 1].get('value'))
 
+    def store(self):
+        """
+<u32 name="mStorageItemCount" value="#"/> - Number of Items in Storage
+<array name="mStorageItem" type="class" count="4278">
+    <class type="sItemManager::cITEM_PARAM_DATA">
+        <s16 name="data.mNum" value="#"/> - Item Quantity 1
+        <s16 name="data.mItemNo" value="#"/> - Item ID
+        <u32 name="data.mFlag" value="#"/> - Item Level/Tier - Tier ID list below
+        <u16 name="data.mChgNum" value="0"/> - UNKNOWN
+        <u16 name="data.mDay1" value="#"/> - Item Quantity 2 - 2, 3 and 4 HAVE to equal Item Quantity 1
+        <u16 name="data.mDay2" value="#"/> - Item Quantity 3 - 2, 3 and 4 HAVE to equal Item Quantity 1
+        <u16 name="data.mDay3" value="#"/> - Item Quantity 4 - 2, 3 and 4 HAVE to equal Item Quantity 1
+        <s8 name="data.mMutationPool" value="0"/> - UNKNOWN
+        <s8 name="data.mOwnerId" value="#"/> - Who the Item belongs to, 0= Main Character, 1= Main Pawn, etc.
+        <u32 name="data.mKey" value="0"/> - UNKNOWN
+    </class>
+    <class type="sItemManager::cITEM_PARAM_DATA"> - BLANK ITEM/NO ITEM
+        <s16 name="data.mNum" value="0"/>
+        <s16 name="data.mItemNo" value="-1"/>
+        <u32 name="data.mFlag" value="0"/>
+        <u16 name="data.mChgNum" value="0"/>
+        <u16 name="data.mDay1" value="0"/>
+        <u16 name="data.mDay2" value="0"/>
+        <u16 name="data.mDay3" value="0"/>
+        <s8 name="data.mMutationPool" value="0"/>
+        <s8 name="data.mOwnerId" value="0"/>
+        <u32 name="data.mKey" value="0"/>
+    </class>
+</array>
+
+        :return:
+        """
+        count = self.data.find('.//u32[@name="mStorageItemCount"]').get('value')
+        count = int(count)
+        aryx = self.data.find('.//array[@name="mStorageItem"]')
+        ary = aryx.findall('./class[@type="sItemManager::cITEM_PARAM_DATA"]')
+        sto = []
+        sum = 0
+        for a in ary:
+            num = int(a.find('./s16[@name="data.mNum"]').get('value'))
+            if num > 0:
+                idx = int(a.find('./s16[@name="data.mItemNo"]').get('value'))
+                lev = int(a.find('./u32[@name="data.mFlag"]').get('value'))
+                no1 = int(a.find('./u16[@name="data.mDay1"]').get('value'))
+                no2 = int(a.find('./u16[@name="data.mDay2"]').get('value'))
+                no3 = int(a.find('./u16[@name="data.mDay3"]').get('value'))
+                own = int(a.find('./s8[@name="data.mOwnerId"]').get('value'))
+                if num != no1 or num != no2 or num != no3:
+                    print(f'Warning: quantities do not match ({num} :: {no1} :: {no2} :: {no3})')
+                sto.append({'ID': idx, 'count': num, 'lev': lev, 'own': own})
+                sum += num
+        if len(sto) != count:
+            print(f'Warning: count mismatch ({len(sto)} != {count}')
+        return sto
 
 class ItemData:
     """
@@ -308,11 +361,11 @@ class ItemData:
                 m_key = int(item.find('./u32[@name="data.mKey"]').get('value'))
                 ret.append({
                     'num': m_num,
-                    'item': items_by_id[m_item_no],
+                    'item': all_by_id[m_item_no],
                     'flag': tier_by_id[m_flag]
                 })
                 if m_ownwr_id != pers:
-                    print(f'{items_by_id[m_item_no]} -- {m_ownwr_id} != {pers}')
+                    print(f'{all_by_id[m_item_no]} -- {m_ownwr_id} != {pers}')
         return ret
 
 

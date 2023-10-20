@@ -6,6 +6,7 @@ from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyMode
 from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton
 
 import Fandom
+from DDDAfile import DDDAfile
 
 
 class IModel(QAbstractTableModel):
@@ -20,8 +21,12 @@ class IModel(QAbstractTableModel):
     def data(self, index, role=...):
         match role:
             case Qt.ItemDataRole.DisplayRole:
-                row = self._rows[index.row()]
-                return self._columns[index.column()].func(row)
+                try:
+                    row = self._rows[index.row()]
+                    return self._columns[index.column()].func(row)
+                except KeyError:
+                    print(f'ERROR: inknown item  in row {row}')
+                    return '*** UNKNOWN ***'
             case Qt.ItemDataRole.TextAlignmentRole:
                 return self._columns[index.column()].align
         return None
@@ -121,8 +126,20 @@ class StorageModel(IModel):
         self.endResetModel()
 
 
+class DDDAModel(StorageModel):
+    def __init__(self, ddda: DDDAfile):
+        self.ddda = ddda
+        super().__init__()
+
+    def select(self, what=None):
+        self.beginResetModel()
+        store = self.ddda.store()
+        self._rows = store
+        self.endResetModel()
+
+
 class Storage(QWidget):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, ddda=None, *args, **kwargs):
         self.items: Optional[QTableView] = None
         self.storage: Optional[QTableView] = None
         super().__init__(*args, **kwargs)
@@ -144,7 +161,10 @@ class Storage(QWidget):
 
         self.b_group.buttonClicked.connect(lambda b: self.item_model.select(b.text()))
 
-        self.storage_model = StorageModel()
+        if ddda is not None:
+            self.storage_model = DDDAModel(ddda)
+        else:
+            self.storage_model = StorageModel()
         self.storage.setModel(self.storage_model)
         self.storage_model.set_hints(self.storage)
 
@@ -172,7 +192,9 @@ if __name__ == '__main__':
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.setWindowTitle('Storage')
-            self.storage = Storage()
+            self.ddda_file = DDDAfile()
+            self.ddda_file.fname = '../DDsavetool/DDDA.sav'
+            self.storage = Storage(ddda=self.ddda_file)
             self.setCentralWidget(self.storage)
             self.resize(1200, 1000)
 

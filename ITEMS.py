@@ -216,7 +216,7 @@ all_items = """\
 199	Bronze Idol
 200	Unknown Item
 201	Unknown Item
-202	Godsbane
+202	Godsbane Forgery
 203	Coin Purse of Charity
 204	Scriptures
 205	Promissory Note

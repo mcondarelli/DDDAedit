@@ -65,8 +65,8 @@ class Pers(QtWidgets.QWidget):
             it = QtWidgets.QTableWidgetItem(str(item['item']['id']))
             it.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
             self.items.setItem(r, 0, it)
-            self.items.setItem(r, 1, QtWidgets.QTableWidgetItem(item['item']['name']))
-            self.items.setItem(r, 2, QtWidgets.QTableWidgetItem(item['item']['type']))
+            self.items.setItem(r, 1, QtWidgets.QTableWidgetItem(item['item']['Name']))
+            self.items.setItem(r, 2, QtWidgets.QTableWidgetItem(item['item']['Type']))
             it = QtWidgets.QTableWidgetItem(str(item['num']))
             it.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
             self.items.setItem(r, 3, it)
@@ -96,35 +96,6 @@ class Pers(QtWidgets.QWidget):
 
     def on_vocation_level(self, level):
         print(level)
-
-
-class Storage:
-    def __init__(self, parent):
-        self.parent = parent
-        parent.b_legs.clicked.connect(lambda: self.on_selector_clicked('legs'))
-        parent.b_sbows.clicked.connect(lambda: self.on_selector_clicked('sbow'))
-        parent.b_rings.clicked.connect(lambda: self.on_selector_clicked('ring'))
-        parent.b_mshields.clicked.connect(lambda: self.on_selector_clicked('mshield'))
-        parent.b_staves.clicked.connect(lambda: self.on_selector_clicked('staff'))
-        parent.b_lswords.clicked.connect(lambda: self.on_selector_clicked('lsword'))
-        parent.b_capes.clicked.connect(lambda: self.on_selector_clicked('cape'))
-        parent.b_hammers.clicked.connect(lambda: self.on_selector_clicked('hammer'))
-        parent.b_cchest.clicked.connect(lambda: self.on_selector_clicked('cchest'))
-        parent.b_daggers.clicked.connect(lambda: self.on_selector_clicked('dagger'))
-        parent.b_head.clicked.connect(lambda: self.on_selector_clicked('head'))
-        parent.b_astaves.clicked.connect(lambda: self.on_selector_clicked('astaff'))
-        parent.b_lbows.clicked.connect(lambda: self.on_selector_clicked('lbow'))
-        parent.b_shields.clicked.connect(lambda: self.on_selector_clicked('shield'))
-        parent.b_arms.clicked.connect(lambda: self.on_selector_clicked('arms'))
-        parent.b_asets.clicked.connect(lambda: self.on_selector_clicked('aset'))
-        parent.b_swords.clicked.connect(lambda: self.on_selector_clicked('sword'))
-        parent.b_achest.clicked.connect(lambda: self.on_selector_clicked('achest'))
-        parent.b_mbows.clicked.connect(lambda: self.on_selector_clicked('mbow'))
-        parent.b_items.clicked.connect(lambda: self.on_selector_clicked('item'))
-        parent.b_all.clicked.connect(lambda: self.on_selector_clicked('*'))
-
-    def on_selector_clicked(self, what):
-        pass
 
 
 class MainWindow(QtWidgets.QMainWindow):
