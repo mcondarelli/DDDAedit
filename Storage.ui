@@ -64,15 +64,15 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>300</width>
-              <height>68</height>
+              <width>286</width>
+              <height>74</height>
              </rect>
             </property>
             <attribute name="label">
              <string>All</string>
             </attribute>
             <layout class="QGridLayout" name="gridLayout_5">
-             <item row="0" column="0">
+             <item row="1" column="0">
               <widget class="QPushButton" name="b_all">
                <property name="text">
                 <string>ALL</string>
@@ -84,6 +84,16 @@
                 <bool>true</bool>
                </property>
                <property name="autoExclusive">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLineEdit" name="filter">
+               <property name="placeholderText">
+                <string>Type to filter</string>
+               </property>
+               <property name="clearButtonEnabled">
                 <bool>true</bool>
                </property>
               </widget>

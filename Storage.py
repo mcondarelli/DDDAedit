@@ -3,7 +3,7 @@ from typing import Optional
 
 from PyQt6 import uic
 from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel
-from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton
+from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit
 
 import Fandom
 from DDDAfile import DDDAfile
@@ -25,7 +25,7 @@ class IModel(QAbstractTableModel):
                     row = self._rows[index.row()]
                     return self._columns[index.column()].func(row)
                 except KeyError:
-                    print(f'ERROR: inknown item  in row {row}')
+                    print(f'ERROR: unknown item  in row {row}')
                     return '*** UNKNOWN ***'
             case Qt.ItemDataRole.TextAlignmentRole:
                 return self._columns[index.column()].align
@@ -44,7 +44,7 @@ class IModel(QAbstractTableModel):
     def columnCount(self, parent=...):
         return len(self._columns)
 
-    def select(self, what=None):
+    def select(self):
         self.beginResetModel()
         self._rows = []
         self.endResetModel()
@@ -57,6 +57,7 @@ class IModel(QAbstractTableModel):
 
 class ItemModel(IModel):
     def __init__(self):
+        self.what = 'ALL'
         super().__init__([
             IModel._column('ID', lambda x: x['ID'],
                            QHeaderView.ResizeMode.ResizeToContents,
@@ -69,20 +70,46 @@ class ItemModel(IModel):
                            Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
         ])
 
-    def select(self, what='ALL'):
+    def select(self):
         self.beginResetModel()
-        items = []
-        for x in Fandom.all_by_name.values():
-            if what == 'ALL' or x['Type'] == what:
-                items.append(x)
-        self._rows = items
+        self._rows = [x for x in Fandom.all_by_name.values()]
         self.endResetModel()
 
     def id(self, idx: int):
         return self._rows[idx]['ID']
 
+    def typ(self, idx: int):
+        return self._rows[idx]['Type']
+
+    def name(self, idx: int):
+        return self._rows[idx]['Name']
+
     def value(self, idx: int):
         return self._rows[idx]
+
+
+class ItemProxy(QSortFilterProxyModel):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._type = 'ALL'
+        self._head = ''
+
+    def set_type(self, typ='ALL'):
+        self._type = typ
+        self.invalidateFilter()
+
+    def set_filter(self, head=''):
+        self._head = head.lower()
+        self.invalidateFilter()
+
+    def filterAcceptsRow(self, source_row, source_parent):
+        mod: ItemModel = self.sourceModel()
+        row = mod.value(source_row)
+        if self._head and not row['Name'].lower().startswith(self._head):
+            return False
+        if self._type != 'ALL' and self._type != row['Type']:
+            return False
+        return True
 
 
 class StorageModel(IModel):
@@ -142,10 +169,11 @@ class Storage(QWidget):
     def __init__(self, ddda=None, *args, **kwargs):
         self.items: Optional[QTableView] = None
         self.storage: Optional[QTableView] = None
+        self.filter: Optional[QLineEdit] = None
         super().__init__(*args, **kwargs)
         uic.loadUi("Storage.ui", self)
         self.item_model = ItemModel()
-        self.item_proxy = QSortFilterProxyModel()
+        self.item_proxy = ItemProxy()
         self.item_proxy.setSourceModel(self.item_model)
         self.items.setModel(self.item_proxy)
         self.item_model.set_hints(self.items)
@@ -159,7 +187,7 @@ class Storage(QWidget):
                 # print(n)
                 self.b_group.addButton(x)
 
-        self.b_group.buttonClicked.connect(lambda b: self.item_model.select(b.text()))
+        self.b_group.buttonClicked.connect(lambda b: self.item_proxy.set_type(b.text()))
 
         if ddda is not None:
             self.storage_model = DDDAModel(ddda)
@@ -183,6 +211,10 @@ class Storage(QWidget):
             orig = self.item_proxy.mapToSource(sel)
             idx = self.item_model.id(orig.row())
             self.storage_model.edit(idx, -1)
+
+    @pyqtSlot(str)
+    def on_filter_textChanged(self, text):
+        self.item_proxy.set_filter(text)
 
 
 if __name__ == '__main__':
