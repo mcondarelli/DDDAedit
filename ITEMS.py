@@ -1623,7 +1623,9 @@ all_items = """\
 1569	Evil Eye Strategy Vol 1
 1570	Evil Eye Strategy Vol. 2
 1570	Evil Eye Strategy Vol 2
+1571	Vile Eye Strategy Vol. 1
 1571	Vile Eye Strategy Vol 1
+1572	Vile Eye Strategy Vol. 2
 1572	Vile Eye Strategy Vol 2
 1573	Wight Tactics
 1574	Lich Tactics
@@ -1971,17 +1973,18 @@ all_items = """\
 1901	Used
 """
 
-_id_to_item = {}
+id_to_item = {}
 item_ids = {}
+count = 0
 for li in all_items.splitlines(False):
     idn, nam = li.split(sep='\t', maxsplit=2)
     idx = int(idn)
     nam = nam.strip()
     if m := re.match(r'<ITNO (\d+)> (\d+)', nam):
-        nam = f'{_id_to_item[int(m.group(1))]} {m.group(2)}'
-    if idx in _id_to_item:
-        print(f'Warning: duplicate index {idx}')
+        nam = f'{id_to_item[int(m.group(1))]} {m.group(2)}'
+    if idx in id_to_item:
+        pass  # print(f'Warning: duplicate index {idx}')
     else:
-        _id_to_item[idx] = nam
+        id_to_item[idx] = nam
     item_ids[nam] = idx
 

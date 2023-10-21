@@ -5,7 +5,7 @@ from os import path
 import requests
 from bs4 import BeautifulSoup
 
-from ITEMS import item_ids
+from ITEMS import item_ids, id_to_item
 
 site = 'https://dragonsdogma.fandom.com'
 idir = 'resources/images'
@@ -21,7 +21,7 @@ def slurp(url, dst):
                     fo.write(chunk)
 
 
-def scrape_item(url, dest):
+def scrape_item(url, dest, idx=-1):
     with requests.get(url) as page:
         page.raise_for_status()
         soup = BeautifulSoup(page.text, 'lxml')
@@ -29,8 +29,13 @@ def scrape_item(url, dest):
     imgu = aside.find('a')['href']
     ext = path.splitext(aside.find('img')["data-image-name"])[1]
     slurp(imgu, dest+ext)
+    name = aside.find('h2', {'data-source': 'name'}).text
+    typ = aside.find('div', {'data-source': 'type'}).find('a').text
     desc = soup.find('meta', {'property': "og:description"})
-    return dest+ext, desc['content'].strip()
+    if idx < 0:
+        return dest+ext, desc['content'].strip()
+
+    return {'ID': idx, 'Name': name, 'Type': typ, 'img': dest+ext, 'desc': desc['content'].strip()}
 
 
 def scrape_items():
@@ -169,6 +174,46 @@ def scrape_armors():
     return allw
 
 
+def backcheck(tab):
+    all_by_id = {x["ID"]: x for x in tab}
+    changed = False
+
+    def try_url(url, img, idx):
+        try:
+            return scrape_item(url, img, idx)
+        except AttributeError:
+            print(f'ERROR: page found but scrape failed ({url})')
+            return {'ID': i, 'Name': n, 'Type': 'malformed', 'img': None, 'desc': url}
+        except requests.HTTPError as e:
+            return None
+        except:
+            return None
+
+    for i in range(item_ids['Used']):
+        try:
+            print(f'{i:04d} - {all_by_id[i]["Name"]}', end='\r')
+        except KeyError:
+            n = id_to_item[i]
+            if n != 'Unknown Item':
+                print(f'ERROR: index {i} not found ({n})')
+                url = f'{site}/wiki/{n.replace(" ", "_")}'
+                d = try_url(url, path.join(idir, n), i)
+                if d is None:
+                    match n.split():
+                        case ['Small', *tail] | ['Large', *tail] | ['Huge', *tail] | ['Giant', *tail]:
+                            d = try_url(f'{site}/wiki/{"_".join(tail)}', path.join(idir, n), i)
+                        case [*head, 'Forgery']:
+                            d = try_url(f'{site}/wiki/{"_".join(head)}', path.join(idir, n), i)
+                    if d is None:
+                        d = {'ID': i, 'Name': n, 'Type': 'Unknown', 'img': None,
+                             'desc': 'This item was not found in "dragonsdogma.fandom.com'}
+                print(d)
+                tab.append(d)
+                changed = True
+
+    return changed
+
+
 if __name__ == '__main__':
     if not path.isdir(idir):
         os.makedirs(idir)
@@ -186,6 +231,10 @@ if __name__ == '__main__':
         n = w['Name']
         idx = item_ids[n]
         w['ID'] = idx
+
+    if backcheck(tab):
+        with open('fandom_tab.json', 'w') as fo:
+            json.dump(tab, fo)
 
     with open('Fandom.py', 'w') as fo:
         fo.write('_all_items = [\n')
