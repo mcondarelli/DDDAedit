@@ -1,15 +1,18 @@
 import pprint
+import shutil
 import struct
 import zlib
+from os import path
+from time import strftime, gmtime
 from typing import Optional
 
-from PyQt6.QtCore import QObject, pyqtProperty, Qt, pyqtSignal
+from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal
 
 import xml.etree.ElementTree as ET
 
 from PyQt6.QtWidgets import QWidget
 
-from Fandom import all_by_name, all_by_id
+from Fandom import all_by_id
 
 vocations = ['fighter',
              'striderp',
@@ -136,6 +139,7 @@ class DDDAfile(QObject):
     plevChanged = pyqtSignal(int)
     pvocChanged = pyqtSignal(int)
     pvolChanged = pyqtSignal(int)
+    storChanged = pyqtSignal()
 
     def __init__(self, parent: QWidget = None):
         super().__init__()
@@ -174,14 +178,57 @@ class DDDAfile(QObject):
 
     @pyqtProperty(str)
     def plain(self):
-        tree = ET.ElementTree(self.data)
-        ET.indent(tree, '')
-        return ET.tostring(tree.getroot()).decode()
+        def tokenize(e):
+            for x in ET.tostringlist(e):
+                yield x.strip()
+        txt = b"\n".join(tokenize(self.data))
+        return txt
 
-    def savex(self, fname='DDDA.sav'):
+    def savex(self, fname='DDDA.xml'):
         tree = ET.ElementTree(self.data)
         ET.indent(tree)
         tree.write(fname)
+
+    def save(self, fname='DDDA.sav'):
+        def crc32(block):
+            table = [0] * 256
+            for c in range(256):
+                x = c
+                b = 0
+                for _ in range(8):
+                    if x & 1:
+                        x = ((x >> 1) ^ 0xEDB88320)
+                    else:
+                        x >>= 1
+                table[c] = x
+            x = -1
+            for c in block:
+                x = (( x >> 8) ^ table[((x ^ c) & 255)])
+            return x
+        def crc32_(msg):  # ERROR: hash mismatch (2864440309 != 1430526986)
+            crc = 0xffffffff
+            for b in msg:
+                crc ^= b
+                for _ in range(8):
+                    crc = (crc >> 1) ^ 0xedb88320 if crc & 1 else crc >> 1
+            return crc ^ 0xffffffff
+
+        tree = self.plain
+        if path.isfile(fname):  # create backup if it doesn't exist
+            ts = path.getmtime(fname)
+            p, e = path.splitext(fname)
+            sf = f"{p}-{strftime('%Y%m%d_%H%M%S', gmtime(ts))}{e}"
+            if not path.isfile(sf):
+                shutil.move(fname, sf)
+        realsize = len(tree)
+        z = zlib.compress(tree)
+        compressedsize = len(z)
+        crc = crc32(z)
+        h = struct.pack('<IIIIIIII',21, realsize, compressedsize, 860693325, 0, 860700740, crc, 1079398965)
+        with open(fname, 'wb') as fo:
+            fo.write(h)
+            fo.write(z)
+            fo.write(b'\0'*(524288 - len(h) - compressedsize))
 
     @pyqtProperty(str)
     def pers(self):
@@ -307,6 +354,51 @@ class DDDAfile(QObject):
         if len(sto) != count:
             print(f'Warning: count mismatch ({len(sto)} != {count}')
         return sto
+
+    def edit(self, idx: int, add: int):
+        aryx = self.data.find('.//array[@name="mStorageItem"]')
+        ary = aryx.findall('./class[@type="sItemManager::cITEM_PARAM_DATA"]')
+        free = None
+        for a in ary:
+            num = int(a.find('./s16[@name="data.mNum"]').get('value'))
+            if num > 0:
+                if idx == int(a.find('./s16[@name="data.mItemNo"]').get('value')):
+                    n = num + add
+                    if n > 0:
+                        a.find('./s16[@name="data.mNum"]').set('value', str(n))
+                        c = self.data.find('.//u32[@name="mStorageItemCount"]')
+                        t = int(c.get('value')) + add
+                        c.set('value', str(t))
+                    else:
+                        a.find('./s16[@name="data.mNum"]').set('value', str(0))
+                        a.find('./s16[@name="data.mItemNo"]').set('value', str(-1))
+                        a.find('./u32[@name="data.mFlag"]').set('value', str(0))
+                        a.find('./u16[@name="data.mDay1"]').set('value', str(0))
+                        a.find('./u16[@name="data.mDay2"]').set('value', str(0))
+                        a.find('./u16[@name="data.mDay3"]').set('value', str(0))
+                        a.find('./s8[@name="data.mOwnerId"]').set('value', str(0))
+                        c = self.data.find('.//u32[@name="mStorageItemCount"]')
+                        t = int(c.get('value')) - num
+                        c.set('value', str(t))
+                    self.storChanged.emit()
+                    break
+            elif free is None:
+                free = a
+        else:
+            if add > 0:
+                num = int(free.find('./s16[@name="data.mNum"]').get('value'))
+                free.find('./s16[@name="data.mNum"]').set('value', str(add))
+                free.find('./s16[@name="data.mItemNo"]').set('value', str(idx))
+                free.find('./u32[@name="data.mFlag"]').set('value', str(0))
+                free.find('./u16[@name="data.mDay1"]').set('value', str(0))
+                free.find('./u16[@name="data.mDay2"]').set('value', str(0))
+                free.find('./u16[@name="data.mDay3"]').set('value', str(0))
+                free.find('./s8[@name="data.mOwnerId"]').set('value', str(4))
+                c = self.data.find('.//u32[@name="mStorageItemCount"]')
+                t = int(c.get('value')) + add + num
+                c.set('value', str(t))
+                self.storChanged.emit()
+
 
 class ItemData:
     """

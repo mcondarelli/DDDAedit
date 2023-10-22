@@ -1,8 +1,10 @@
 from collections import namedtuple
+from os import path
 from typing import Optional
 
 from PyQt6 import uic
-from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel
+from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel, QModelIndex, \
+    QItemSelectionModel
 from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit
 
 import Fandom
@@ -157,12 +159,21 @@ class DDDAModel(StorageModel):
     def __init__(self, ddda: DDDAfile):
         self.ddda = ddda
         super().__init__()
+        self.ddda.storChanged.connect(self.select)
 
     def select(self, what=None):
         self.beginResetModel()
         store = self.ddda.store()
         self._rows = store
         self.endResetModel()
+
+    def edit(self, idx: int, add: int):
+        self.ddda.edit(idx, add)
+
+
+class DDDAProxy(QSortFilterProxyModel):
+    def __init__(self, parent=None):
+        super().__init__(parent)
 
 
 class Storage(QWidget):
@@ -171,7 +182,8 @@ class Storage(QWidget):
         self.storage: Optional[QTableView] = None
         self.filter: Optional[QLineEdit] = None
         super().__init__(*args, **kwargs)
-        uic.loadUi("Storage.ui", self)
+        here = path.dirname(path.realpath('__file__'))
+        uic.loadUi(path.join(here, "Storage.ui"), self)
         self.item_model = ItemModel()
         self.item_proxy = ItemProxy()
         self.item_proxy.setSourceModel(self.item_model)
@@ -186,15 +198,21 @@ class Storage(QWidget):
             if n.startswith('b_') and isinstance(x, QPushButton):
                 # print(n)
                 self.b_group.addButton(x)
-
         self.b_group.buttonClicked.connect(lambda b: self.item_proxy.set_type(b.text()))
 
-        if ddda is not None:
-            self.storage_model = DDDAModel(ddda)
-        else:
-            self.storage_model = StorageModel()
-        self.storage.setModel(self.storage_model)
+        self.storage_model: Optional[DDDAModel] = None
+        self.storage_proxy: Optional[DDDAProxy] = None
+
+    def set_storage_model(self, ddda: DDDAfile):
+        self.storage_model = DDDAModel(ddda)
+        self.storage_proxy = DDDAProxy()
+        self.storage_proxy.setSourceModel(self.storage_model)
+        self.storage.setModel(self.storage_proxy)
         self.storage_model.set_hints(self.storage)
+        self.storage.setSortingEnabled(True)
+        self.storage.sortByColumn(2, Qt.SortOrder.AscendingOrder)
+        self.storage.selectionModel().currentRowChanged.connect(self.on_storage_selection_changed)
+
 
     @pyqtSlot()
     def on_add_clicked(self):
@@ -216,6 +234,14 @@ class Storage(QWidget):
     def on_filter_textChanged(self, text):
         self.item_proxy.set_filter(text)
 
+    @pyqtSlot(QModelIndex, QModelIndex)
+    def on_storage_selection_changed(self, new: QModelIndex, _old):
+        name = self.storage_proxy.data(new, Qt.ItemDataRole.DisplayRole)
+        self.filter.setText(name)
+        self.items.selectionModel().select(
+            self.item_proxy.index(0, 0),
+            QItemSelectionModel.SelectionFlag.SelectCurrent|QItemSelectionModel.SelectionFlag.Rows)
+
 
 if __name__ == '__main__':
     from PyQt6.QtWidgets import QMainWindow, QApplication
@@ -224,11 +250,12 @@ if __name__ == '__main__':
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
             self.setWindowTitle('Storage')
-            self.ddda_file = DDDAfile()
-            self.ddda_file.fname = '../DDsavetool/DDDA.sav'
-            self.storage = Storage(ddda=self.ddda_file)
+            self.storage = Storage()
             self.setCentralWidget(self.storage)
             self.resize(1200, 1000)
+            self.ddda_file = DDDAfile()
+            self.ddda_file.fname = '../DDsavetool/DDDA.sav'
+            self.storage.set_storage_model(self.ddda_file)
 
 
     app = QApplication([])

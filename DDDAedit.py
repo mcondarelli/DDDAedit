@@ -4,6 +4,7 @@ from typing import Optional
 from PyQt6 import uic, QtWidgets, QtCore, QtGui
 
 import DDDAfile
+import Storage
 import picwidgets
 
 
@@ -111,12 +112,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.actionOpen: Optional[QtGui.QAction] = None
         self.actionSave: Optional[QtGui.QAction] = None
         self.actionSavex: Optional[QtGui.QAction] = None
+        self.storage: Optional[Storage.Storage] = None
         uic.loadUi("DDDAedit.ui", self)
         self.data = DDDAfile.DDDAfile(self)
         self.vocations.set_data(self.data)
 
         self.actionOpen.triggered.connect(self.on_open_triggered)
         self.actionSavex.triggered.connect(self.on_savex_triggered)
+        self.actionSave.triggered.connect(self.on_save_triggered)
 
         self.edit_action = QtGui.QAction(QtGui.QIcon.fromTheme("text-editor"), 'Edit...')
         self.edit_action.triggered.connect(self.on_dddasav_edit)
@@ -157,30 +160,33 @@ class MainWindow(QtWidgets.QMainWindow):
         self.unsetCursor()
         self.main.setEnabled(True)
         self.actionSavex.setEnabled(True)
+        self.storage.set_storage_model(self.data)
 
     @QtCore.pyqtSlot()
     def on_savex_triggered(self):
         # dic = xmltodict.parse(self.xml.toPlainText())
         # self.xml.setPlainText(pprint.pformat(dic, 4))
         if self.data:
-            self.data.savex()
+            self.data.savex(self.dddasav.text())
+
+    @QtCore.pyqtSlot()
+    def on_save_triggered(self):
+        if self.data:
+            self.data.save()
 
     @QtCore.pyqtSlot(str)
     def on_pers_currentTextChanged(self, txt):
         self.data.pers = txt
 
 
-def main():
+if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     pixmap = QtGui.QPixmap('resources/dark-arisen.jpg')
     splash = QtWidgets.QSplashScreen(pixmap)
     splash.show()
     app.processEvents()
     mw = MainWindow()
+    mw.resize(1200, 1000)
     mw.show()
     splash.finish(mw)
     sys.exit(app.exec())
-
-
-if __name__ == "__main__":
-    main()
