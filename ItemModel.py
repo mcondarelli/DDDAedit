@@ -10,14 +10,14 @@ class ItemModel(AbstractModel):
         self.what = 'ALL'
         super().__init__([
             AbstractModel._column('ID', lambda x: x['ID'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
+                                  QHeaderView.ResizeMode.ResizeToContents,
+                                  Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
             AbstractModel._column('Name', lambda x: x['Name'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
+                                  QHeaderView.ResizeMode.ResizeToContents,
+                                  Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
             AbstractModel._column('Description', lambda x: x['desc'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
+                                  QHeaderView.ResizeMode.ResizeToContents,
+                                  Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
         ])
 
     def select(self):
@@ -60,4 +60,3 @@ class ItemProxy(QSortFilterProxyModel):
         if self._type != 'ALL' and self._type != row['Type']:
             return False
         return True
-

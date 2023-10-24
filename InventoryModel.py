@@ -25,8 +25,13 @@ class InventoryModel(AbstractModel):
         self._inventory = None
 
     def select(self, what=None):
+        if self._inventory:
+            self._inventory.changed.disconnect(self.changed)
+            self._inventory.rowchanged.disconnect(self.rowchanged)
+
         self._inventory = what
         self._inventory.changed.connect(self.changed)
+        self._inventory.rowchanged.connect(self.rowchanged)
         self.changed()
 
     def get_id(self, x):
@@ -47,8 +52,10 @@ class InventoryModel(AbstractModel):
         self._rows = self._inventory.rows
         self.endResetModel()
 
-    def edit(self, idx: int, add: int):
-        self.ddda.edit(idx, add)
+    @pyqtSlot(int)
+    def rowchanged(self, index):
+        self.dataChanged.emit(
+            self.index(index, 0), self.index(index, len(self._columns) - 1))
 
 
 class InventoryProxy(QSortFilterProxyModel):
@@ -67,17 +74,17 @@ if __name__ == '__main__':
     mw = Storage()
     wr = DDDAwrapper()
     wr.from_file('/tmp/t/DDDA.sav')
-    p0 = PersonWrapper(wr, 'Player')
-    # mw.set_storage_model(p0)
-    pw = InventoryModel()
-    pw.select(p0)
-    mw.storage_model = pw
-    mw.storage_proxy = InventoryProxy()
-    mw.storage_proxy.setSourceModel(mw.storage_model)
-    mw.storage.setModel(mw.storage_proxy)
-    mw.storage_model.set_hints(mw.storage)
-    mw.storage.setSortingEnabled(True)
-    mw.storage.sortByColumn(2, Qt.SortOrder.AscendingOrder)
+    # p0 = PersonWrapper(wr, 'Player')
+    mw.set_storage_model(wr)
+    # pw = InventoryModel()
+    # pw.select(p0)
+    # mw.storage_model = pw
+    # mw.storage_proxy = InventoryProxy()
+    # mw.storage_proxy.setSourceModel(mw.storage_model)
+    # mw.storage.setModel(mw.storage_proxy)
+    # mw.storage_model.set_hints(mw.storage)
+    # mw.storage.setSortingEnabled(True)
+    # mw.storage.sortByColumn(2, Qt.SortOrder.AscendingOrder)
     # self.storage.selectionModel().currentRowChanged.connect(self.on_storage_selection_changed)
 
     mw.resize(1200, 1000)

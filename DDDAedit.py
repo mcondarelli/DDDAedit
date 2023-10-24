@@ -1,151 +1,64 @@
 import sys
 from typing import Optional
 
-from PyQt6 import uic, QtWidgets, QtCore, QtGui
+from PyQt6 import uic
+from PyQt6.QtCore import pyqtSlot, QSettings, Qt
+from PyQt6.QtGui import QAction, QIcon, QCursor, QPixmap
+from PyQt6.QtWidgets import QMainWindow, QLineEdit, QPlainTextEdit, QWidget, QComboBox, QPushButton, QTableWidget, \
+    QApplication, QFileDialog, QSplashScreen
 
-import DDDAfile
+import DDDAwrapper
 import Storage
-import picwidgets
+from Pers import Pers
 
 
-class Pers(QtWidgets.QWidget):
-    vocs = ['resources/DDicon_fighter.webp',
-            'resources/DDicon_strider.webp',
-            'resources/DDicon_mage.webp',
-            'resources/DDicon_assassin.webp',
-            'resources/DDicon_magicarcher.webp',
-            'resources/DDicon_magicknight.webp',
-            'resources/DDicon_warrior.webp',
-            'resources/DDicon_ranger.webp',
-            'resources/DDicon_sorcerer.webp']
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.data: Optional[DDDAfile.DDDAfile] = None
-        self.item_data: Optional[DDDAfile.ItemData] = None
-        # self.items = None
-
-        self.name: Optional[QtWidgets.QLineEdit] = None
-        self.level: Optional[QtWidgets.QSpinBox] = None
-        self.vo: Optional[picwidgets.PicGrid] = None
-        self.se: Optional[picwidgets.StarEditor] = None
-        self.items: Optional[QtWidgets.QTableWidget] = None
-        uic.loadUi("Pers.ui", self)
-        header = self.items.horizontalHeader()
-        header.setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeMode.Stretch)
-        header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
-        header.setSectionResizeMode(3, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
-
-        self.vo.set_data(
-            [[Pers.vocs[0], Pers.vocs[1], Pers.vocs[2]],
-             [Pers.vocs[3], Pers.vocs[4], Pers.vocs[5]],
-             [Pers.vocs[6], Pers.vocs[7], Pers.vocs[8]]
-             ])
-        self.vo.selec.connect(self.on_vocation_selec)
-        # self.se.set_stars(9, 1)
-        self.se.editing_finished.connect(self.on_vocation_level)
-
-    def set_data(self, data: DDDAfile.DDDAfile):
-        self.data = data
-        data.dataChanged.connect(self.on_data_changed)
-        data.persChanged.connect(self.on_pers_changed)
-        data.pnamChanged.connect(lambda v: self.name.setText(v))
-        data.plevChanged.connect(lambda v: self.level.setValue(v))
-        data.pvocChanged.connect(lambda v: self.vo.select(v))
-        data.pvolChanged.connect(lambda v: self.se.set_stars(v))
-
-    def on_data_changed(self, data):
-        self.item_data = DDDAfile.ItemData(data)
-        self.setEnabled(self.data.valid)
-
-    def on_pers_changed(self, pers):
-        items = self.item_data.get_pers_items(pers)
-        self.items.setRowCount(len(items))
-        for r, item in enumerate(items):
-            it = QtWidgets.QTableWidgetItem(str(item['item']['id']))
-            it.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
-            self.items.setItem(r, 0, it)
-            self.items.setItem(r, 1, QtWidgets.QTableWidgetItem(item['item']['Name']))
-            self.items.setItem(r, 2, QtWidgets.QTableWidgetItem(item['item']['Type']))
-            it = QtWidgets.QTableWidgetItem(str(item['num']))
-            it.setTextAlignment(QtCore.Qt.AlignmentFlag.AlignRight | QtCore.Qt.AlignmentFlag.AlignVCenter)
-            self.items.setItem(r, 3, it)
-
-    def set_pers(self, pers):
-        name = ''
-        for chx in pers.findall('.//array[@name="(u8*)mNameStr"]/u8'):
-            chv = chx.get('value')
-            chi = int(chv)
-            if chi > 0:
-                name += chr(chi)
-        self.name.setText(name or '???')
-        levx = pers.find(".//u8[@name='mLevel']")
-        if levx is not None:
-            levv = levx.get('value')
-            levi = int(levv)
-            self.level.setValue(levi)
-
-        vocx = pers.find(".//u8[@name='mJob']")
-        if vocx is not None:
-            voc = int(vocx.get('value'))
-            print(voc)
-            self.vo.select(voc)
-
-    def on_vocation_selec(self, param):
-        print(param)
-
-    def on_vocation_level(self, level):
-        print(level)
-
-
-class MainWindow(QtWidgets.QMainWindow):
+class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.dddasav: Optional[QtWidgets.QLineEdit] = None
-        self.xml: Optional[QtWidgets.QPlainTextEdit] = None
-        self.main: Optional[QtWidgets.QWidget] = None
-        self.pers: Optional[QtWidgets.QComboBox] = None
-        self.pers_commit: Optional[QtWidgets.QPushButton] = None
+        self.dddasav: Optional[QLineEdit] = None
+        self.xml: Optional[QPlainTextEdit] = None
+        self.main: Optional[QWidget] = None
+        self.pers: Optional[QComboBox] = None
+        self.pers_commit: Optional[QPushButton] = None
         self.vocations: Optional[Pers] = None
-        self.items: Optional[QtWidgets.QTableWidget]
-        self.actionOpen: Optional[QtGui.QAction] = None
-        self.actionSave: Optional[QtGui.QAction] = None
-        self.actionSavex: Optional[QtGui.QAction] = None
+        self.items: Optional[QTableWidget]
+        self.actionOpen: Optional[QAction] = None
+        self.actionSave: Optional[QAction] = None
+        self.actionSavex: Optional[QAction] = None
         self.storage: Optional[Storage.Storage] = None
         uic.loadUi("DDDAedit.ui", self)
-        self.data = DDDAfile.DDDAfile(self)
-        self.vocations.set_data(self.data)
+        self.wrapper = DDDAwrapper.DDDAwrapper(self)
+        self.wrapper.data_changed.connect(self.on_wrapper_data_changed)
 
         self.actionOpen.triggered.connect(self.on_open_triggered)
         self.actionSavex.triggered.connect(self.on_savex_triggered)
         self.actionSave.triggered.connect(self.on_save_triggered)
 
-        self.edit_action = QtGui.QAction(QtGui.QIcon.fromTheme("text-editor"), 'Edit...')
+        self.edit_action = QAction(QIcon.fromTheme("text-editor"), 'Edit...')
         self.edit_action.triggered.connect(self.on_dddasav_edit)
 
-        self.load_action = QtGui.QAction(QtGui.QIcon.fromTheme("document-open"), 'Open...')
+        self.load_action = QAction(QIcon.fromTheme("document-open"), 'Open...')
         self.load_action.triggered.connect(self.on_dddasav_load)
 
         self.dddasav.setPlaceholderText('Find your save file')
-        self.dddasav.addAction(self.edit_action, QtWidgets.QLineEdit.ActionPosition.TrailingPosition)
+        self.dddasav.addAction(self.edit_action, QLineEdit.ActionPosition.TrailingPosition)
 
-        self.settings = QtCore.QSettings("MCondarelli", "DDDAsav")
+        self.settings = QSettings("MCondarelli", "DDDAsav")
         file = self.settings.value('file/savefile')
         if file:
             self.dddasav.setText(file)
-            QtWidgets.QApplication.processEvents()
+            QApplication.processEvents()
             self.on_dddasav_load()
 
     def on_dddasav_edit(self):
-        qfd = QtWidgets.QFileDialog()
-        qfd.setFileMode(QtWidgets.QFileDialog.FileMode.ExistingFile)
+        qfd = QFileDialog()
+        qfd.setFileMode(QFileDialog.FileMode.ExistingFile)
         qfd.setNameFilter("Savefiles (*.sav)")
         if qfd.exec():
             self.dddasav.setText(qfd.selectedFiles()[0])
         self.dddasav.removeAction(self.load_action)
         if self.dddasav.text():
-            self.dddasav.addAction(self.load_action, QtWidgets.QLineEdit.ActionPosition.TrailingPosition)
+            self.dddasav.addAction(self.load_action, QLineEdit.ActionPosition.TrailingPosition)
             self.settings.setValue('file/savefile', self.dddasav.text())
 
     def on_open_triggered(self):
@@ -155,34 +68,44 @@ class MainWindow(QtWidgets.QMainWindow):
             self.on_dddasav_load()
 
     def on_dddasav_load(self):
-        self.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.WaitCursor))
-        self.data.fname = self.dddasav.text()
+        self.setCursor(QCursor(Qt.CursorShape.WaitCursor))
+        try:
+            self.wrapper.from_file(self.dddasav.text())
+            self.main.setEnabled(True)
+            self.actionSavex.setEnabled(True)
+        except ValueError as e:
+            print(f'ERROR: {e}')
+            self.main.setEnabled(False)
+            self.actionSavex.setEnabled(False)
         self.unsetCursor()
-        self.main.setEnabled(True)
-        self.actionSavex.setEnabled(True)
-        self.storage.set_storage_model(self.data)
 
-    @QtCore.pyqtSlot()
+    @pyqtSlot()
     def on_savex_triggered(self):
         # dic = xmltodict.parse(self.xml.toPlainText())
         # self.xml.setPlainText(pprint.pformat(dic, 4))
-        if self.data:
-            self.data.savex(self.dddasav.text())
+        if self.wrapper:
+            self.wrapper.to_xml_file(self.dddasav.text())
 
-    @QtCore.pyqtSlot()
+    @pyqtSlot()
     def on_save_triggered(self):
-        if self.data:
-            self.data.save()
+        if self.wrapper:
+            self.wrapper.to_file()
 
-    @QtCore.pyqtSlot(str)
+    @pyqtSlot(str)
     def on_pers_currentTextChanged(self, txt):
-        self.data.pers = txt
+        self.vocations.set_data(DDDAwrapper.PersonWrapper(self.wrapper, txt))
+
+    @pyqtSlot()
+    def on_wrapper_data_changed(self):
+        if self.wrapper is not None:
+            self.storage.set_storage_model(self.wrapper)
+            self.main.setEnabled(True)
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    pixmap = QtGui.QPixmap('resources/dark-arisen.jpg')
-    splash = QtWidgets.QSplashScreen(pixmap)
+    app = QApplication(sys.argv)
+    pixmap = QPixmap('resources/dark-arisen.jpg')
+    splash = QSplashScreen(pixmap)
     splash.show()
     app.processEvents()
     mw = MainWindow()

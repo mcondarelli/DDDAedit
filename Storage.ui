@@ -64,7 +64,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>286</width>
+              <width>300</width>
               <height>74</height>
              </rect>
             </property>
@@ -105,7 +105,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>300</width>
+              <width>304</width>
               <height>74</height>
              </rect>
             </property>
@@ -185,7 +185,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>363</width>
+              <width>362</width>
               <height>105</height>
              </rect>
             </property>
@@ -356,7 +356,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>350</width>
+              <width>304</width>
               <height>105</height>
              </rect>
             </property>
@@ -523,19 +523,69 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-          <bold>true</bold>
-         </font>
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <property name="text">
-         <string>Storage</string>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
         </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QComboBox" name="owner">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="currentIndex">
+            <number>-1</number>
+           </property>
+           <property name="placeholderText">
+            <string>Select Inventory Owner</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>Player</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Main Pawn</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pawn A</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Pawn B</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Storage</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="owner_name">
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
       <item>
@@ -570,59 +620,64 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QWidget" name="widget_5" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_5">
-         <property name="spacing">
-          <number>6</number>
-         </property>
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="add">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset theme="list-add">
-             <normaloff>.</normaloff>.</iconset>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="del">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset theme="list-remove">
-             <normaloff>.</normaloff>.</iconset>
-           </property>
-          </widget>
-         </item>
-        </layout>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="add">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="go-next"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Preferred</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="inc">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="list-add">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="dec">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="list-remove">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
        </widget>
       </item>
       <item>

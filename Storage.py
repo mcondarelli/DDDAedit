@@ -5,10 +5,11 @@ from typing import Optional
 from PyQt6 import uic
 from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel, QModelIndex, \
     QItemSelectionModel
-from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit
+from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit, QLabel
 
 import Fandom
-from DDDAfile import DDDAfile
+from DDDAwrapper import DDDAwrapper, PersonWrapper
+from InventoryModel import InventoryProxy, InventoryModel
 
 
 class IModel(QAbstractTableModel):
@@ -114,73 +115,12 @@ class ItemProxy(QSortFilterProxyModel):
         return True
 
 
-class StorageModel(IModel):
-    def __init__(self):
-        super().__init__([
-            IModel._column('ID', lambda x: x['ID'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
-            IModel._column('Item', lambda x: Fandom.all_by_id[x['ID']]['Name'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-            IModel._column('Type', lambda x: Fandom.all_by_id[x['ID']]['Type'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-            IModel._column('Count', lambda x: x['count'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
-        ])
-
-    def select(self, what=None):
-        self.beginResetModel()
-        items = [{'ID': 47, 'count': 1},
-                 {'ID': 470, 'count': 2},
-                 {'ID': 773, 'count': 3},
-                 {'ID': 812, 'count': 4},
-                 ]
-        self._rows = items
-        self.endResetModel()
-
-    def edit(self, idx: int, add: int):
-        self.beginResetModel()
-        for x in self._rows:
-            if x['ID'] == idx:
-                x['count'] += add
-                break
-        else:
-            x = {'ID': idx, 'count': add}
-            self._rows.append(x)
-        if x['count'] <= 0:
-            self._rows.remove(x)
-        self.endResetModel()
-
-
-class DDDAModel(StorageModel):
-    def __init__(self, ddda: DDDAfile):
-        self.ddda = ddda
-        super().__init__()
-        self.ddda.storChanged.connect(self.select)
-
-    def select(self, what=None):
-        self.beginResetModel()
-        store = self.ddda.store()
-        self._rows = store
-        self.endResetModel()
-
-    def edit(self, idx: int, add: int):
-        self.ddda.edit(idx, add)
-
-
-class DDDAProxy(QSortFilterProxyModel):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-
-
 class Storage(QWidget):
     def __init__(self, ddda=None, *args, **kwargs):
         self.items: Optional[QTableView] = None
         self.storage: Optional[QTableView] = None
         self.filter: Optional[QLineEdit] = None
+        self.owner_name: Optional[QLabel] = None
         super().__init__(*args, **kwargs)
         here = path.dirname(path.realpath('__file__'))
         uic.loadUi(path.join(here, "Storage.ui"), self)
@@ -200,18 +140,16 @@ class Storage(QWidget):
                 self.b_group.addButton(x)
         self.b_group.buttonClicked.connect(lambda b: self.item_proxy.set_type(b.text()))
 
-        self.storage_model: Optional[DDDAModel] = None
-        self.storage_proxy: Optional[DDDAProxy] = None
+        self.storage_wrapper: Optional[DDDAwrapper] = None
+        self.person_wrapper: Optional[PersonWrapper] = None
+        self.storage_model: Optional[InventoryModel] = None
+        self.storage_proxy: Optional[InventoryProxy] = None
 
-    def set_storage_model(self, ddda: DDDAfile):
-        self.storage_model = DDDAModel(ddda)
-        self.storage_proxy = DDDAProxy()
-        self.storage_proxy.setSourceModel(self.storage_model)
-        self.storage.setModel(self.storage_proxy)
-        self.storage_model.set_hints(self.storage)
-        self.storage.setSortingEnabled(True)
-        self.storage.sortByColumn(2, Qt.SortOrder.AscendingOrder)
-        self.storage.selectionModel().currentRowChanged.connect(self.on_storage_selection_changed)
+    def set_storage_model(self, wrapper: DDDAwrapper):
+        self.storage_wrapper = wrapper
+        self.storage_model = InventoryModel()
+        self.storage_proxy = InventoryProxy()
+        self.items.selectionModel().currentRowChanged.connect(self.on_items_selection_changed)
 
 
     @pyqtSlot()
@@ -220,47 +158,65 @@ class Storage(QWidget):
         if sel.isValid():
             orig = self.item_proxy.mapToSource(sel)
             idx = self.item_model.id(orig.row())
-            self.storage_model.edit(idx, 1)
+            self.person_wrapper.add(idx)
+
+    def _inc(self, val):
+        sel = self.storage.currentIndex()
+        if sel.isValid():
+            orig = self.storage_proxy.mapToSource(sel)
+            row = self.storage_model.row(orig.row())
+            self.person_wrapper.row_inc(row, val)
 
     @pyqtSlot()
-    def on_del_clicked(self):
-        sel = self.items.currentIndex()
-        if sel.isValid():
-            orig = self.item_proxy.mapToSource(sel)
-            idx = self.item_model.id(orig.row())
-            self.storage_model.edit(idx, -1)
+    def on_inc_clicked(self):
+        self._inc(1)
+
+    @pyqtSlot()
+    def on_dec_clicked(self):
+        self._inc(-1)
 
     @pyqtSlot(str)
     def on_filter_textChanged(self, text):
         self.item_proxy.set_filter(text)
 
     @pyqtSlot(QModelIndex, QModelIndex)
-    def on_storage_selection_changed(self, new: QModelIndex, _old):
-        name = self.storage_proxy.data(new, Qt.ItemDataRole.DisplayRole)
-        self.filter.setText(name)
-        self.items.selectionModel().select(
-            self.item_proxy.index(0, 0),
-            QItemSelectionModel.SelectionFlag.SelectCurrent|QItemSelectionModel.SelectionFlag.Rows)
+    def on_storage_selection_changed(self, _new: QModelIndex, _old):
+        self.items.clearSelection()
+
+    @pyqtSlot(QModelIndex, QModelIndex)
+    def on_items_selection_changed(self, _new: QModelIndex, _old):
+        self.storage.selectionModel().clearSelection()
+
+    @pyqtSlot(str)
+    def on_owner_currentTextChanged(self, text):
+        self.person_wrapper = PersonWrapper(self.storage_wrapper, text)
+        self.storage_model.select(self.person_wrapper)
+        self.storage_proxy.setSourceModel(self.storage_model)
+        self.storage.setModel(self.storage_proxy)
+        self.storage_model.set_hints(self.storage)
+        self.storage.setSortingEnabled(True)
+        self.storage.sortByColumn(2, Qt.SortOrder.AscendingOrder)
+        self.owner_name.setText(self.person_wrapper.name)
 
 
-if __name__ == '__main__':
-    from PyQt6.QtWidgets import QMainWindow, QApplication
-
-    class MainWindow(QMainWindow):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            self.setWindowTitle('Storage')
-            self.storage = Storage()
-            self.setCentralWidget(self.storage)
-            self.resize(1200, 1000)
-            self.ddda_file = DDDAfile()
-            self.ddda_file.fname = '../DDsavetool/DDDA.sav'
-            self.storage.set_storage_model(self.ddda_file)
-
-
-    app = QApplication([])
-    win = MainWindow()
-    win.show()
-
-    from sys import exit
-    exit(app.exec())
+# if __name__ == '__main__':
+#     from PyQt6.QtWidgets import QMainWindow, QApplication
+#
+#     class MainWindow(QMainWindow):
+#         def __init__(self, *args, **kwargs):
+#             super().__init__(*args, **kwargs)
+#             self.setWindowTitle('Storage')
+#             self.storage = Storage()
+#             self.setCentralWidget(self.storage)
+#             self.resize(1200, 1000)
+#             self.ddda_file = DDDAfile()
+#             self.ddda_file.fname = '../DDsavetool/DDDA.sav'
+#             self.storage.set_storage_model(self.ddda_file)
+#
+#
+#     app = QApplication([])
+#     win = MainWindow()
+#     win.show()
+#
+#     from sys import exit
+#     exit(app.exec())

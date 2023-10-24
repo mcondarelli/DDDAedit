@@ -7,33 +7,112 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>803</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0" rowspan="2" colspan="2">
-    <widget class="PicGrid" name="vo" native="true">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
+   <item row="2" column="1" rowspan="2">
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>50</width>
-       <height>50</height>
-      </size>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="1">
+       <widget class="QComboBox" name="chest">
+        <property name="placeholderText">
+         <string>Chest</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="head">
+        <property name="placeholderText">
+         <string>Head</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="torso">
+        <property name="placeholderText">
+         <string>Torso</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QComboBox" name="jewel2">
+        <property name="placeholderText">
+         <string>Jewel</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="pants">
+        <property name="placeholderText">
+         <string>Pants</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QComboBox" name="cape">
+        <property name="placeholderText">
+         <string>Cape</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="boots">
+        <property name="placeholderText">
+         <string>Boots</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="arms">
+        <property name="placeholderText">
+         <string>Arrms</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QComboBox" name="jewel1">
+        <property name="placeholderText">
+         <string>Jewel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="dec">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset theme="list-remove">
+       <normaloff>.</normaloff>.</iconset>
      </property>
     </widget>
    </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Level:</string>
+   <item row="6" column="0" colspan="4">
+    <widget class="QTableView" name="inventory"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="name"/>
+   </item>
+   <item row="1" column="1" colspan="3">
+    <widget class="StarEditor" name="se" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>10</height>
+      </size>
      </property>
     </widget>
    </item>
@@ -47,46 +126,6 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="2" colspan="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="1">
-    <widget class="QLineEdit" name="name"/>
-   </item>
-   <item row="4" column="0" colspan="4">
-    <widget class="QTableWidget" name="items">
-     <column>
-      <property name="text">
-       <string>ID</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Item</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Type</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Count</string>
-      </property>
-     </column>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
@@ -94,12 +133,36 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2">
-    <widget class="StarEditor" name="se" native="true">
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Level:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="inc">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset theme="list-add">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" rowspan="4">
+    <widget class="PicGrid" name="vo" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="minimumSize">
       <size>
-       <width>0</width>
-       <height>10</height>
+       <width>150</width>
+       <height>150</height>
       </size>
      </property>
     </widget>

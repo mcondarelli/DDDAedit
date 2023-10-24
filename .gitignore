@@ -1,3 +1,5 @@
 .idea
 *.xml
 test*.py
+/.vscode
+/__attic__
