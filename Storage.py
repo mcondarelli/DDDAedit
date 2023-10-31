@@ -3,9 +3,9 @@ from os import path
 from typing import Optional
 
 from PyQt6 import uic
-from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel, QModelIndex, \
-    QItemSelectionModel
-from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit, QLabel
+from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel, QModelIndex
+from PyQt6.QtGui import QStatusTipEvent
+from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit, QLabel, QApplication
 
 import Fandom
 from DDDAwrapper import DDDAwrapper, PersonWrapper
@@ -158,7 +158,10 @@ class Storage(QWidget):
         if sel.isValid():
             orig = self.item_proxy.mapToSource(sel)
             idx = self.item_model.id(orig.row())
-            self.person_wrapper.add(idx)
+            if self.person_wrapper is not None:
+                self.person_wrapper.add(idx)
+            else:
+                QApplication.sendEvent(self, QStatusTipEvent('Select a Person to add thing to'))
 
     def _inc(self, val):
         sel = self.storage.currentIndex()
@@ -185,7 +188,8 @@ class Storage(QWidget):
 
     @pyqtSlot(QModelIndex, QModelIndex)
     def on_items_selection_changed(self, _new: QModelIndex, _old):
-        self.storage.selectionModel().clearSelection()
+        pass
+        # self.storage.selectionModel().clearSelection()
 
     @pyqtSlot(str)
     def on_owner_currentTextChanged(self, text):
@@ -197,7 +201,7 @@ class Storage(QWidget):
         self.storage.setSortingEnabled(True)
         self.storage.sortByColumn(2, Qt.SortOrder.AscendingOrder)
         self.owner_name.setText(self.person_wrapper.name)
-
+        QApplication.sendEvent(self, QStatusTipEvent(''))
 
 # if __name__ == '__main__':
 #     from PyQt6.QtWidgets import QMainWindow, QApplication

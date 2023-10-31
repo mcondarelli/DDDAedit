@@ -191,19 +191,19 @@ class PersonWrapper(QObject):
                     case 0:
                         pdata = self.data.find(".//class[@name='mPl']")
                         self._store = stores[0].findall('./array/class[@type="sItemManager::cITEM_PARAM_DATA"]')
-                        self._count = stores[0].find('./<u32[@name="mItemCount"]')
+                        self._count = stores[0].find('./u32[@name="mItemCount"]')
                     case 1:
                         pdata = self.data.find(".//class[@type='cSAVE_DATA_CMC']/..[@name='mCmc']")[0]
                         self._store = stores[1].findall('./array/class[@type="sItemManager::cITEM_PARAM_DATA"]')
-                        self._count = stores[1].find('./<u32[@name="mItemCount"]')
+                        self._count = stores[1].find('./u32[@name="mItemCount"]')
                     case 2:
                         pdata = self.data.find(".//class[@type='cSAVE_DATA_CMC']/..[@name='mCmc']")[1]
                         self._store = stores[2].findall('./array/class[@type="sItemManager::cITEM_PARAM_DATA"]')
-                        self._count = stores[2].find('./<u32[@name="mItemCount"]')
+                        self._count = stores[2].find('./u32[@name="mItemCount"]')
                     case 3:
                         pdata = self.data.find(".//class[@type='cSAVE_DATA_CMC']/..[@name='mCmc']")[2]
                         self._store = stores[3].findall('./array/class[@type="sItemManager::cITEM_PARAM_DATA"]')
-                        self._count = stores[3].find('./<u32[@name="mItemCount"]')
+                        self._count = stores[3].find('./u32[@name="mItemCount"]')
                     case 4:
                         self._store = self.data.findall('.//array[@name="mStorageItem"]/class[@type="sItemManager::cITEM_PARAM_DATA"]')
                         self._count = self.data.find('.//u32[@name="mStorageItemCount"]')
@@ -322,7 +322,7 @@ class PersonWrapper(QObject):
             row.find('./u16[@name="data.mDay2"]').set('value', "0")
             row.find('./u16[@name="data.mDay3"]').set('value', "0")
             row.find('./s8[@name="data.mMutationPool"]').set('value', "0")
-            row.find('./s8[@name="data.mOwnerId"]').set('value', int(self._index))
+            row.find('./s8[@name="data.mOwnerId"]').set('value', str(self._index))
             row.find('./u32[@name="data.mKey"]').set('value', "0")
             n = 0
         self.tot_inc(n - num)
@@ -341,7 +341,7 @@ class PersonWrapper(QObject):
                 row.find('./u16[@name="data.mDay2"]').set('value', "0")
                 row.find('./u16[@name="data.mDay3"]').set('value', "0")
                 row.find('./s8[@name="data.mMutationPool"]').set('value', "0")
-                row.find('./s8[@name="data.mOwnerId"]').set('value', int(self._index))
+                row.find('./s8[@name="data.mOwnerId"]').set('value', str(self._index))
                 row.find('./u32[@name="data.mKey"]').set('value', "0")
                 self.tot_inc(1)
                 self.rowchanged.emit(n)  # FIXME: this removes selection

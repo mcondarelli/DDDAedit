@@ -1570,7 +1570,9 @@ all_items = """\
 1539	Saurian Strategy Vol. 1
 1539	Saurian Strategy Vol 1
 1540	Saurian Strategy Vol. 2
-1541	Saurian Strategy Vol 2
+1540	Saurian Strategy Vol 2
+1541	Saurian Strategy Vol. 3
+1541	Saurian Strategy Vol 3
 1542	Undead Tactics Vol. 1
 1542	Undead Tactics Vol 1
 1543	Undead Tactics Vol. 2

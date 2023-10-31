@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0">
+    <widget class="QComboBox" name="primary">
+     <property name="placeholderText">
+      <string>Primary</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QComboBox" name="secondary">
+     <property name="placeholderText">
+      <string>Secondary</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QComboBox" name="jewel1">
+     <property name="placeholderText">
+      <string>Jewel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QComboBox" name="boots">
+     <property name="placeholderText">
+      <string>Boots</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QComboBox" name="chest">
+     <property name="placeholderText">
+      <string>Chest</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QComboBox" name="arms">
+     <property name="placeholderText">
+      <string>Arrms</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QComboBox" name="jewel2">
+     <property name="placeholderText">
+      <string>Jewel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="head">
+     <property name="placeholderText">
+      <string>Head</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QComboBox" name="cape">
+     <property name="placeholderText">
+      <string>Cape</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QComboBox" name="pants">
+     <property name="placeholderText">
+      <string>Pants</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="torso">
+     <property name="placeholderText">
+      <string>Torso</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QComboBox" name="sex">
+     <item>
+      <property name="text">
+       <string>BOTH</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>MALE</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>FEMALE</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QComboBox" name="vocation"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
