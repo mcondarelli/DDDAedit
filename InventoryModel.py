@@ -1,26 +1,21 @@
-from PyQt6.QtCore import Qt, pyqtSlot, QSortFilterProxyModel
-from PyQt6.QtWidgets import QHeaderView
+from PyQt6.QtCore import Qt, pyqtSlot, QSortFilterProxyModel, QModelIndex
 
-from AbstractModel import AbstractModel
-from DDDAwrapper import PersonWrapper as PW
+from AbstractModel import AbstractModel, DelegateBase
+from DDDAwrapper import Tier, PersonWrapper as PW
 from Fandom import all_by_id
 
 
 class InventoryModel(AbstractModel):
     def __init__(self):
         super().__init__([
-            AbstractModel._column('ID', self.get_id,
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
-            AbstractModel._column('Item', self.get_item,
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-            AbstractModel._column('Type', self.get_type,
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-            AbstractModel._column('Count', self.get_count,
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
+            AbstractModel.Column('ID', self.get_id),
+            AbstractModel.Column('Item', self.get_item,
+                                 align=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
+            AbstractModel.Column('Type', self.get_type,
+                                 align=Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
+            AbstractModel.Column('Count', self.get_count),
+            AbstractModel.Column('Flag', self.get_flag,
+                                 align=Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter),
         ])
         self._inventory = None
 
@@ -34,6 +29,12 @@ class InventoryModel(AbstractModel):
         self._inventory.rowchanged.connect(self.rowchanged)
         self.changed()
 
+    def setData(self, index, value, role = ...):
+        column = index.column()
+        if role == Qt.ItemDataRole.EditRole:
+            if func := self._columns[column] is not None:
+                func(index, value)
+
     def get_id(self, x):
         return str(PW.row_item(x))
 
@@ -42,6 +43,55 @@ class InventoryModel(AbstractModel):
 
     def get_type(self, x):
         return all_by_id[PW.row_item(x)]['Type']
+
+    def is_armor(self, x):
+        item = PW.row_item(x)
+        item_type = all_by_id[item]['Type']
+        return item_type in [
+            'Arms Armor',
+            'Chest Clothing',
+            'Cloak',
+            'Head Armor',
+            'Leg Armor',
+            'Leg Clothing',
+            'Torso Armor',
+        ]
+
+    def is_weapon(self, x):
+        item = PW.row_item(x)
+        item_type = all_by_id[item]['Type']
+        return item_type in [
+            'Archistaves',
+            'Daggers',
+            'Longbows',
+            'Longswords',
+            'Maces',
+            'Magick Bows',
+            'Magick Shields',
+            'Shields',
+            'Shortbows',
+            'Staves',
+            'Swords',
+            'Warhammers',
+        ]
+
+    def is_equipment(self, x):
+        if isinstance(x, QModelIndex):
+            x = self._inventory.rows[x.row()]
+        return self.is_armor(x) or self.is_weapon(x)
+
+    def get_flag(self, x):
+        level = PW.row_flag(x)
+        if self.is_equipment(x):
+            return Tier.by_id[level]
+        return level
+
+    def set_flag(self, x, value):
+        if isinstance(x, QModelIndex):
+            x = self._inventory.rows[x.row()]
+        if isinstance(value, str):
+            value = Tier.by_tag[value]
+        PW.row_set_flag(x, value)
 
     def get_count(self, x):
         return str(PW.row_num(x))
@@ -66,7 +116,7 @@ class InventoryProxy(QSortFilterProxyModel):
 
 if __name__ == '__main__':
     import sys
-    from PyQt6.QtWidgets import QApplication, QWidget
+    from PyQt6.QtWidgets import QApplication, QWidget, QComboBox
     from Storage import Storage
     from DDDAwrapper import DDDAwrapper, PersonWrapper
 

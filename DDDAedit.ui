@@ -25,7 +25,7 @@
     <item row="2" column="0">
      <widget class="QTabWidget" name="main">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_persons">
        <attribute name="title">
@@ -107,6 +107,35 @@
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
          <widget class="Storage" name="storage" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_diff">
+       <attribute name="title">
+        <string>Diffs</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTableWidget" name="diffs">
+          <property name="columnCount">
+           <number>3</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Liine</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Original</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Modified</string>
+           </property>
+          </column>
+         </widget>
         </item>
        </layout>
       </widget>

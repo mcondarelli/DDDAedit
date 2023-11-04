@@ -1,3 +1,4 @@
+import difflib
 import shutil
 import struct
 import zlib
@@ -12,6 +13,18 @@ from PyQt6.QtCore import QObject, pyqtSignal, pyqtProperty
 import Fandom
 
 Header = namedtuple('Header', ['u1', 'rsize', 'csize', 'u2', 'u3', 'u4', 'hash', 'u5'])
+
+
+class Tier:
+    tiers = [(0x0001, 'no stars'),
+             (0x0009, '1 star'),
+             (0x0011, '2 stars'),
+             (0x0021, '3 stars'),
+             (0x0041, 'dragonforged'),
+             (0x0201, 'silver forged'),
+             (0x2003, 'gold forged')]
+    by_id = {x[0]: x[1] for x in tiers}
+    by_tag = {x[1]: x[0] for x in tiers}
 
 
 def _crc32(buf):
@@ -29,6 +42,7 @@ class DDDAwrapper(QObject):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.original_xml = None
         self.valid: bool = False
         self.dirty: bool = False
         self.data: Optional[et.Element] = None
@@ -53,6 +67,17 @@ class DDDAwrapper(QObject):
                     self.valid = True
                     self.dirty = False
                     self.data_changed.emit()
+                    self.original_xml = xml
+
+    def _to_xml(self):
+        xml = b'<?xml version="1.0" encoding="utf-8"?>\n' + et.tostring(self.data).replace(b' />', b'/>')
+        return xml
+
+    def compute_diff_table(self, callback):
+        xml = self._to_xml().decode()
+        for n, (old, new) in enumerate(zip(self.original_xml.splitlines(), xml.splitlines())):
+            if old != new:
+                callback(n, old, new)
 
     def _backup(self, ext=None, fname=None):
         fname = fname or self._fname
@@ -69,15 +94,14 @@ class DDDAwrapper(QObject):
 
     def to_xml_file(self, fname: str=None):
         fname = self._backup('.xml', fname)
-        sss = et.tostring(self.data).replace(b' />', b'/>')
+        sss = self._to_xml()
         with open(fname, 'wb') as fo:
-            fo.write(b'<?xml version="1.0" encoding="utf-8"?>\n')
             fo.write(sss)
             fo.write(b'\n')
 
     def to_file(self, fname=None):
         fname = self._backup(fname=fname)
-        sss = et.tostring(self.data).replace(b' />', b'/>')
+        sss = self._to_xml()  # et.tostring(self.data).replace(b' />', b'/>')
         rsize = len(sss)
         z = zlib.compress(sss)
         crc = _crc32(z)
@@ -297,8 +321,12 @@ class PersonWrapper(QObject):
         return int(row.find('./s16[@name="data.mItemNo"]').get('value'))
 
     @staticmethod
-    def row_level(row):
+    def row_flag(row):
         return int(row.find('./u32[@name="data.mFlag"]').get('value'))
+
+    @staticmethod
+    def row_set_flag(row, value: int):
+        row.find('./u32[@name="data.mFlag"]').set('value', str(value))
 
     @staticmethod
     def row_owner(row):
@@ -322,7 +350,7 @@ class PersonWrapper(QObject):
             row.find('./u16[@name="data.mDay2"]').set('value', "0")
             row.find('./u16[@name="data.mDay3"]').set('value', "0")
             row.find('./s8[@name="data.mMutationPool"]').set('value', "0")
-            row.find('./s8[@name="data.mOwnerId"]').set('value', str(self._index))
+            row.find('./s8[@name="data.mOwnerId"]').set('value', "0")  # str(self._index))
             row.find('./u32[@name="data.mKey"]').set('value', "0")
             n = 0
         self.tot_inc(n - num)
@@ -341,7 +369,7 @@ class PersonWrapper(QObject):
                 row.find('./u16[@name="data.mDay2"]').set('value', "0")
                 row.find('./u16[@name="data.mDay3"]').set('value', "0")
                 row.find('./s8[@name="data.mMutationPool"]').set('value', "0")
-                row.find('./s8[@name="data.mOwnerId"]').set('value', str(self._index))
+                row.find('./s8[@name="data.mOwnerId"]').set('value', "0")  # str(self._index)) differnt from zero for EQUIPPED items
                 row.find('./u32[@name="data.mKey"]').set('value', "0")
                 self.tot_inc(1)
                 self.rowchanged.emit(n)  # FIXME: this removes selection
@@ -380,7 +408,7 @@ if __name__ == '__main__':
             print(item, Fandom.all_by_id[item]['Name'],
                   player.row_num(row),
                   player.row_owner(row),
-                  player.row_level(row))
+                  player.row_flag(row))
     print('Primary Weapon', player.equipment.primary.idx, player.equipment.primary.tier)
     print('Secondary Weapon', player.equipment.secondary.idx)
     print('Clothing (shirt)', player.equipment.shirt.idx)

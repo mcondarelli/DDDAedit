@@ -4,8 +4,8 @@ from typing import Optional
 from PyQt6 import uic
 from PyQt6.QtCore import pyqtSlot, QSettings, Qt
 from PyQt6.QtGui import QAction, QIcon, QCursor, QPixmap
-from PyQt6.QtWidgets import QMainWindow, QLineEdit, QPlainTextEdit, QWidget, QComboBox, QPushButton, QTableWidget, \
-    QApplication, QFileDialog, QSplashScreen
+from PyQt6.QtWidgets import QMainWindow, QLineEdit, QPlainTextEdit, QComboBox, QPushButton, QTableWidget, \
+    QApplication, QFileDialog, QSplashScreen, QTabWidget, QTableWidgetItem, QHeaderView
 
 import DDDAwrapper
 import Storage
@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         super().__init__(*args, **kwargs)
         self.dddasav: Optional[QLineEdit] = None
         self.xml: Optional[QPlainTextEdit] = None
-        self.main: Optional[QWidget] = None
+        self.main: Optional[QTabWidget] = None
         self.pers: Optional[QComboBox] = None
         self.pers_commit: Optional[QPushButton] = None
         self.vocations: Optional[Pers] = None
@@ -26,9 +26,14 @@ class MainWindow(QMainWindow):
         self.actionSave: Optional[QAction] = None
         self.actionSavex: Optional[QAction] = None
         self.storage: Optional[Storage.Storage] = None
+        self.diffs: Optional[QTableWidget] = None
         uic.loadUi("DDDAedit.ui", self)
         self.wrapper = DDDAwrapper.DDDAwrapper(self)
         self.wrapper.data_changed.connect(self.on_wrapper_data_changed)
+        self.diffs.setHorizontalHeaderLabels(['Line', 'Original', 'Current'])
+        self.diffs.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.ResizeToContents)
+        self.diffs.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
+        self.diffs.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
 
         self.actionOpen.triggered.connect(self.on_open_triggered)
         self.actionSavex.triggered.connect(self.on_savex_triggered)
@@ -49,6 +54,23 @@ class MainWindow(QMainWindow):
             self.dddasav.setText(file)
             QApplication.processEvents()
             self.on_dddasav_load()
+
+    def on_main_currentChanged(self, index: int):
+        if self.main.currentWidget().objectName() == 'tab_diff':
+            self.diffs.clear()
+            self.diffs.setColumnCount(3)
+            self.diffs.setRowCount(0)
+
+            def callback(line: int, old:str , new:str ):
+                n = self.diffs.rowCount()
+                self.diffs.setRowCount(n + 1)
+                self.diffs.setItem(n, 0, QTableWidgetItem(str(line)))
+                self.diffs.setItem(n, 1, QTableWidgetItem(old))
+                self.diffs.setItem(n, 2, QTableWidgetItem(new))
+
+            self.setCursor(QCursor(Qt.CursorShape.WaitCursor))
+            self.wrapper.compute_diff_table(callback)
+            self.unsetCursor()
 
     def on_dddasav_edit(self):
         qfd = QFileDialog()
