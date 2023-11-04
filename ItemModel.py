@@ -9,16 +9,17 @@ class ItemModel(AbstractModel):
     def __init__(self):
         self.what = 'ALL'
         super().__init__([
-            AbstractModel._column('ID', lambda x: x['ID'],
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
-            AbstractModel._column('Name', lambda x: x['Name'],
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-            AbstractModel._column('Description', lambda x: x['desc'],
-                                  QHeaderView.ResizeMode.ResizeToContents,
-                                  Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
+            AbstractModel.Column('ID', lambda x: x['ID'],
+                                 QHeaderView.ResizeMode.ResizeToContents,
+                                 Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
+            AbstractModel.Column('Name', lambda x: x['Name'],
+                                 QHeaderView.ResizeMode.ResizeToContents,
+                                 Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
+            AbstractModel.Column('Description', lambda x: x['desc'],
+                                 QHeaderView.ResizeMode.ResizeToContents,
+                                 Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
         ])
+        self.select()
 
     def select(self):
         self.beginResetModel()

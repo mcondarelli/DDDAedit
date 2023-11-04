@@ -1,17 +1,31 @@
-from collections import namedtuple
+from dataclasses import dataclass
+from typing import Callable, Any, Optional
 
-from PyQt6.QtCore import QAbstractTableModel, Qt
-from PyQt6.QtWidgets import QTableView
+from PyQt6.QtCore import QAbstractTableModel, Qt, QModelIndex
+from PyQt6.QtWidgets import QTableView, QHeaderView, QStyledItemDelegate
+
+
+class DelegateBase(QStyledItemDelegate):
+    def can_edit(self, index: QModelIndex):
+        return True
 
 
 class AbstractModel(QAbstractTableModel):
-    _column = namedtuple('_column', "name func hint align")
+    @dataclass
+    class Column:
+        name: str
+        func: Callable[[int], Any]
+        hint: QHeaderView.ResizeMode = QHeaderView.ResizeMode.ResizeToContents
+        align: Qt.AlignmentFlag = Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter
+        delegate: Optional[DelegateBase] = None
 
-    def __init__(self, columns: [_column]):
-        self._columns = columns
+    def __init__(self, columns: [Column]):
+        self._columns: [AbstractModel.Column] = columns
         super().__init__()
         self._rows = []
-        # self.select()
+
+    def set_delegate(self, col: int, delegate: DelegateBase):
+        self._columns[col].delegate = delegate
 
     def data(self, index, role=...):
         match role:
@@ -51,3 +65,13 @@ class AbstractModel(QAbstractTableModel):
 
     def row(self, idx: int):
         return self._rows[idx]
+
+    def flags(self, index):
+        flags = super().flags(index)
+        if (delegate := self._columns[index.column()].delegate) is not None:
+            if delegate.can_edit(index):
+                flags |= Qt.ItemFlag.ItemIsEditable
+            else:
+                flags &= ~Qt.ItemFlag.ItemIsEditable
+        return flags
+

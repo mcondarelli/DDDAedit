@@ -1,122 +1,50 @@
-from collections import namedtuple
 from os import path
 from typing import Optional
 
 from PyQt6 import uic
-from PyQt6.QtCore import QAbstractTableModel, pyqtSlot, Qt, QSortFilterProxyModel, QModelIndex
+from PyQt6.QtCore import pyqtSlot, Qt, QModelIndex
 from PyQt6.QtGui import QStatusTipEvent
-from PyQt6.QtWidgets import QWidget, QTableView, QHeaderView, QButtonGroup, QPushButton, QLineEdit, QLabel, QApplication
+from PyQt6.QtWidgets import QWidget, QTableView, QButtonGroup, QPushButton, QLineEdit, QLabel, \
+    QComboBox, QApplication
 
-import Fandom
-from DDDAwrapper import DDDAwrapper, PersonWrapper
+import AbstractModel
+from DDDAwrapper import DDDAwrapper, PersonWrapper, Tier
 from InventoryModel import InventoryProxy, InventoryModel
+from ItemModel import ItemModel, ItemProxy
 
 
-class IModel(QAbstractTableModel):
-    _column = namedtuple('_column', "name func hint align")
+class TierEditDelegate(AbstractModel.DelegateBase):
+    def createEditor(self, parent, option, index):
+        combobox = QComboBox(parent)
+        for i, (val, tag) in enumerate(Tier.tiers):
+            combobox.insertItem(i, tag)
+            combobox.setItemData(i, val, Qt.ItemDataRole.UserRole)
+        combobox.activated.connect(lambda value: self.commitData.emit(combobox))
+        return combobox
 
-    def __init__(self, columns: [_column]):
-        self._columns = columns
-        super().__init__()
-        self._rows = []
-        self.select()
+    # def paint(self, painter, option, index):
+    #     data = index.data(Qt.ItemDataRole.UserRole)
+    #     print(data)
+    #     # if isinstance(data, int):
+    #     #     ptr = index.internalPointer()
+    #     #     ptr.setData(Tier.by_id[data], Qt.ItemDataRole.DisplayRole)
+    #     super().paint(painter, option, index)
 
-    def data(self, index, role=...):
-        match role:
-            case Qt.ItemDataRole.DisplayRole:
-                try:
-                    row = self._rows[index.row()]
-                    return self._columns[index.column()].func(row)
-                except KeyError:
-                    print(f'ERROR: unknown item  in row {row}')
-                    return '*** UNKNOWN ***'
-            case Qt.ItemDataRole.TextAlignmentRole:
-                return self._columns[index.column()].align
-        return None
+    def can_edit(self, index: QModelIndex):
+        # return index.model().is_equipment(index.model()._inventory.rows[index.row()])
+        return index.model().is_equipment(index)
 
-    def headerData(self, section, orientation, role=...):
-        if orientation == Qt.Orientation.Horizontal:
-            match role:
-                case Qt.ItemDataRole.DisplayRole:
-                    return self._columns[section].name
-        return None
-
-    def rowCount(self, parent=...):
-        return len(self._rows)
-
-    def columnCount(self, parent=...):
-        return len(self._columns)
-
-    def select(self):
-        self.beginResetModel()
-        self._rows = []
-        self.endResetModel()
-
-    def set_hints(self, view: QTableView):
-        header = view.horizontalHeader()
-        for i, x in enumerate(self._columns):
-            header.setSectionResizeMode(i, x.hint)
-
-
-class ItemModel(IModel):
-    def __init__(self):
-        self.what = 'ALL'
-        super().__init__([
-            IModel._column('ID', lambda x: x['ID'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter),
-            IModel._column('Name', lambda x: x['Name'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-            IModel._column('Description', lambda x: x['desc'],
-                           QHeaderView.ResizeMode.ResizeToContents,
-                           Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter),
-        ])
-
-    def select(self):
-        self.beginResetModel()
-        self._rows = [x for x in Fandom.all_by_name.values()]
-        self.endResetModel()
-
-    def id(self, idx: int):
-        return self._rows[idx]['ID']
-
-    def typ(self, idx: int):
-        return self._rows[idx]['Type']
-
-    def name(self, idx: int):
-        return self._rows[idx]['Name']
-
-    def value(self, idx: int):
-        return self._rows[idx]
-
-
-class ItemProxy(QSortFilterProxyModel):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self._type = 'ALL'
-        self._head = ''
-
-    def set_type(self, typ='ALL'):
-        self._type = typ
-        self.invalidateFilter()
-
-    def set_filter(self, head=''):
-        self._head = head.lower()
-        self.invalidateFilter()
-
-    def filterAcceptsRow(self, source_row, source_parent):
-        mod: ItemModel = self.sourceModel()
-        row = mod.value(source_row)
-        if self._head and not row['Name'].lower().startswith(self._head):
-            return False
-        if self._type != 'ALL' and self._type != row['Type']:
-            return False
-        return True
+    def setModelData(self, editor, model, index):
+        value = editor.currentData(Qt.ItemDataRole.UserRole)
+        if isinstance(model, InventoryProxy):
+            index = model.mapToSource(index)
+            model = model.sourceModel()
+        model.set_flag(index, value)
 
 
 class Storage(QWidget):
     def __init__(self, ddda=None, *args, **kwargs):
+        self.tier_delegate = None
         self.items: Optional[QTableView] = None
         self.storage: Optional[QTableView] = None
         self.filter: Optional[QLineEdit] = None
@@ -149,8 +77,10 @@ class Storage(QWidget):
         self.storage_wrapper = wrapper
         self.storage_model = InventoryModel()
         self.storage_proxy = InventoryProxy()
+        self.tier_delegate = TierEditDelegate(self.storage)
+        self.storage_model.set_delegate(4, self.tier_delegate)
+        self.storage.setItemDelegateForColumn(4, self.tier_delegate)
         self.items.selectionModel().currentRowChanged.connect(self.on_items_selection_changed)
-
 
     @pyqtSlot()
     def on_add_clicked(self):
@@ -188,8 +118,8 @@ class Storage(QWidget):
 
     @pyqtSlot(QModelIndex, QModelIndex)
     def on_items_selection_changed(self, _new: QModelIndex, _old):
-        pass
-        # self.storage.selectionModel().clearSelection()
+        if sm := self.storage.selectionModel() is not None:
+            sm.clearSelection()
 
     @pyqtSlot(str)
     def on_owner_currentTextChanged(self, text):
@@ -203,24 +133,58 @@ class Storage(QWidget):
         self.owner_name.setText(self.person_wrapper.name)
         QApplication.sendEvent(self, QStatusTipEvent(''))
 
-# if __name__ == '__main__':
-#     from PyQt6.QtWidgets import QMainWindow, QApplication
-#
-#     class MainWindow(QMainWindow):
-#         def __init__(self, *args, **kwargs):
-#             super().__init__(*args, **kwargs)
-#             self.setWindowTitle('Storage')
-#             self.storage = Storage()
-#             self.setCentralWidget(self.storage)
-#             self.resize(1200, 1000)
-#             self.ddda_file = DDDAfile()
-#             self.ddda_file.fname = '../DDsavetool/DDDA.sav'
-#             self.storage.set_storage_model(self.ddda_file)
-#
-#
-#     app = QApplication([])
-#     win = MainWindow()
-#     win.show()
-#
-#     from sys import exit
-#     exit(app.exec())
+
+if __name__ == '__main__':
+    test_storage = True
+    from PyQt6.QtWidgets import (QMainWindow, QTableWidget, QTableWidgetItem)
+    from DDDAwrapper import DDDAwrapper
+
+    class MainWindow(QMainWindow):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            if test_storage:
+                self.setWindowTitle('Storage')
+                self.storage = Storage()
+                self.setCentralWidget(self.storage)
+                self.resize(1200, 1000)
+                self.wrapper = DDDAwrapper()
+                self.wrapper.from_file('/tmp/t/DDDA.sav')
+                self.storage.set_storage_model(self.wrapper)
+                self.setWindowTitle("Storage test")
+            else:
+                lst = [("Alice", "1 star"),
+                       ("Neptun", "1 star"),
+                       ("Ferdinand", "1 star")]
+                table = QTableWidget(3, 2)
+                table.setHorizontalHeaderLabels(["Name", "Tier"])
+                table.verticalHeader().setVisible(False)
+                table.resize(150, 50)
+
+                for i, (nam, tier) in enumerate(lst):
+                    nameItem = QTableWidgetItem(nam)
+                    tierItem = QTableWidgetItem()
+                    tierItem.setData(Qt.ItemDataRole.DisplayRole, tier)
+                    table.setItem(i, 0, nameItem)
+                    table.setItem(i, 1, tierItem)
+
+                table.resizeColumnToContents(0)
+                table.horizontalHeader().setStretchLastSection(True)
+                table.setItemDelegateForColumn(1, TierEditDelegate(table))
+                self.table = table
+
+                self.setCentralWidget(self.table)
+
+                self.setWindowTitle("Color Editor Factory")
+
+        def closeEvent(self, _):
+            if not test_storage:
+                for r in range(self.table.rowCount()):
+                    print(f'| {self.table.item(r, 0).text():^20s} | {Tier.by_tag[self.table.item(r, 1).text()]:4d} |')
+
+
+    app = QApplication([])
+    win = MainWindow()
+    win.show()
+
+    from sys import exit
+    exit(app.exec())
