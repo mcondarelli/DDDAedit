@@ -2,11 +2,14 @@
 <ui version="4.0">
  <class>Form</class>
  <widget class="QWidget" name="Form">
+  <property name="enabled">
+   <bool>false</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>535</width>
     <height>803</height>
    </rect>
   </property>
@@ -23,82 +26,8 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
-       <widget class="QComboBox" name="arms">
-        <property name="placeholderText">
-         <string>Arrms</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="chest">
-        <property name="placeholderText">
-         <string>Chest</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="head">
-        <property name="placeholderText">
-         <string>Head</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QComboBox" name="torso">
-        <property name="placeholderText">
-         <string>Torso</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QComboBox" name="primary">
-        <property name="placeholderText">
-         <string>Primary</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QComboBox" name="jewel2">
-        <property name="placeholderText">
-         <string>Jewel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QComboBox" name="pants">
-        <property name="placeholderText">
-         <string>Pants</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2">
-       <widget class="QComboBox" name="cape">
-        <property name="placeholderText">
-         <string>Cape</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QComboBox" name="boots">
-        <property name="placeholderText">
-         <string>Boots</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QComboBox" name="jewel1">
-        <property name="placeholderText">
-         <string>Jewel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2">
-       <widget class="QComboBox" name="secondary">
-        <property name="placeholderText">
-         <string>Secondary</string>
-        </property>
-       </widget>
+      <item row="0" column="0">
+       <widget class="Equipment" name="equipment" native="true"/>
       </item>
      </layout>
     </widget>
@@ -194,6 +123,12 @@
    <class>StarEditor</class>
    <extends>QWidget</extends>
    <header>picwidgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Equipment</class>
+   <extends>QWidget</extends>
+   <header>Equipment</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

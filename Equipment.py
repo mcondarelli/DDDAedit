@@ -4,31 +4,28 @@ from typing import Optional
 from PyQt6 import uic
 from PyQt6.QtWidgets import QWidget, QComboBox
 
-import SplitItemModel
-
-
-_vocations = {
-    'Fighter': {'primary': 'Swords', 'secondary': 'Shields'},
-    'Strider': {'primary': 'Daggers', 'secondary': 'Shortbows'},
-    'Mage': {'primary': 'Staess', 'secondary': 'None'},
-    'Assassin': {'primary': ['Swords', 'Daggers'], 'secondary': ['Shields', 'Shortbows']},
-    'MagicK Archer': {'primary': ['Staves', 'Daggers'], 'secondary': 'Magick Bows'},
-    'Mystic Knight': {'primary': ['Swords', 'Staves', 'Maces'], 'secondary': 'Magick Shields'},
-    'Warrior': {'primary': ['Longswords', 'Warhammers'], 'secondary': 'Shields'},
-    'Ranger': {'primary': 'Daggers', 'secondary': 'Longbows'},
-    'Sorcerer': {'primary': 'Archistaves', 'secondary': 'None'}
-}
+import DDDAwrapper
+import Fandom
+import ItemModel
+import Vocations
 
 
 class Equipment(QWidget):
-    def __init__(self):
-        def setmodel(wid, typ):
-            m = SplitItemModel.SplitItemModel(typ)
-            p = SplitItemModel.SplitItemProxy()
-            p.setSourceModel(m)
-            wid.setModel(p)
+    def __init__(self, parent=None):
+        self.person_wrapper: Optional[DDDAwrapper.PersonWrapper] = None
 
-        super().__init__()
+        def setmodel(wid, typ):
+            m = ItemModel.ItemModel()  # SplitItemModel.SplitItemModel(typ)
+            p = ItemModel.ItemProxy()  # SplitItemModel.SplitItemProxy()
+            p.setSourceModel(m)
+            p.set_type(typ)
+            self.vocation.currentTextChanged.connect(p.set_vocation)
+            wid.setModel(p)
+            wid.setModelColumn(1)
+            wid.setCurrentIndex(-1)
+            wid.currentTextChanged.connect(lambda s: print(f'Equipment({typ}): Changed to "{s}"'))
+
+        super().__init__(parent)
         self.head: Optional[QComboBox] = None
         self.torso: Optional[QComboBox] = None
         self.chest: Optional[QComboBox] = None
@@ -60,7 +57,34 @@ class Equipment(QWidget):
         setmodel(self.secondary, 'ALL')
 
         self.vocation.clear()
-        self.vocation.addItems(_vocations.keys())
+        # self.vocation.addItems(_vocations.keys())
+        self.vocation.addItems(Vocations.vocations())
+
+    def set_equipment(self, person_wrapper):
+        self.person_wrapper = person_wrapper
+        vocation = self.person_wrapper.vocation
+        self.vocation.setCurrentText(Vocations.name(vocation))
+
+        def set_equipment(tag: str, what: int, where: QComboBox):
+            if what < 0:
+                print(f'{tag}: UNEQUIPPED ({what})')
+                where.setCurrentIndex(-1)
+            else:
+                name = Fandom.all_by_id[what]['Name']
+                print(f'{tag}: {name} ({what})')
+                where.setCurrentText(name)
+
+        set_equipment('Primary Weapon', self.person_wrapper.equipment.primary.idx, self.primary)
+        set_equipment('Secondary Weapon', self.person_wrapper.equipment.secondary.idx, self.secondary)
+        set_equipment('Clothing (shirt)', self.person_wrapper.equipment.shirt.idx, self.chest)
+        set_equipment('Clothing (pants)', self.person_wrapper.equipment.pants.idx, self.pants)
+        set_equipment('Helmet', self.person_wrapper.equipment.helmet.idx, self.head)
+        set_equipment('Chestplate', self.person_wrapper.equipment.chest.idx, self.torso)
+        set_equipment('Gauntlets', self.person_wrapper.equipment.gauntlets.idx, self.arms)
+        set_equipment('Greaves', self.person_wrapper.equipment.greaves.idx, self.boots)
+        set_equipment('Cape', self.person_wrapper.equipment.cape.idx, self.cape)
+        set_equipment('Jewel 1', self.person_wrapper.equipment.jewel1.idx, self.jewel1)
+        set_equipment('Jewel 2', self.person_wrapper.equipment.jewel2.idx, self.jewel2)
 
 
 if __name__ == '__main__':

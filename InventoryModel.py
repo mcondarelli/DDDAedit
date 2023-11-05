@@ -1,5 +1,6 @@
 from PyQt6.QtCore import Qt, pyqtSlot, QSortFilterProxyModel, QModelIndex
 
+import Fandom
 from AbstractModel import AbstractModel, DelegateBase
 from DDDAwrapper import Tier, PersonWrapper as PW
 from Fandom import all_by_id
@@ -106,6 +107,11 @@ class InventoryModel(AbstractModel):
     def rowchanged(self, index):
         self.dataChanged.emit(
             self.index(index, 0), self.index(index, len(self._columns) - 1))
+
+    def get_tooltip(self, index: QModelIndex):
+        x = self._inventory.rows[index.row()]
+        idx = PW.row_item(x)
+        return Fandom.all_by_id[idx]['desc']
 
 
 class InventoryProxy(QSortFilterProxyModel):

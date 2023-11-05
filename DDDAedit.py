@@ -90,6 +90,8 @@ class MainWindow(QMainWindow):
             self.on_dddasav_load()
 
     def on_dddasav_load(self):
+        self.vocations.setEnabled(False)
+        self.pers.setCurrentIndex(-1)
         self.setCursor(QCursor(Qt.CursorShape.WaitCursor))
         try:
             self.wrapper.from_file(self.dddasav.text())
@@ -116,6 +118,10 @@ class MainWindow(QMainWindow):
     @pyqtSlot(str)
     def on_pers_currentTextChanged(self, txt):
         self.vocations.set_data(DDDAwrapper.PersonWrapper(self.wrapper, txt))
+
+    @pyqtSlot(int)
+    def on_pers_currentIndexChanged(self, idx):
+        self.vocations.setEnabled(idx >= 0)
 
     @pyqtSlot()
     def on_wrapper_data_changed(self):

@@ -1,4 +1,4 @@
-from PyQt6.QtCore import Qt, QSortFilterProxyModel
+from PyQt6.QtCore import Qt, QSortFilterProxyModel, QModelIndex
 from PyQt6.QtWidgets import QHeaderView
 
 import Fandom
@@ -38,12 +38,16 @@ class ItemModel(AbstractModel):
     def value(self, idx: int):
         return self._rows[idx]
 
+    def get_tooltip(self, index: QModelIndex):
+        return self._rows[index.row()]['desc']
+
 
 class ItemProxy(QSortFilterProxyModel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._type = 'ALL'
         self._head = ''
+        self._vocation = ''
 
     def set_type(self, typ='ALL'):
         self._type = typ
@@ -53,6 +57,12 @@ class ItemProxy(QSortFilterProxyModel):
         self._head = head.lower()
         self.invalidateFilter()
 
+    def set_vocation(self, vocation: str):
+        if vocation != self._vocation:
+            self.beginResetModel()
+            self._vocation = vocation
+            self.endResetModel()
+
     def filterAcceptsRow(self, source_row, source_parent):
         mod: ItemModel = self.sourceModel()
         row = mod.value(source_row)
@@ -60,4 +70,8 @@ class ItemProxy(QSortFilterProxyModel):
             return False
         if self._type != 'ALL' and self._type != row['Type']:
             return False
+        if self._vocation:
+            usable = row.get('usable', None)
+            if usable and not usable.get(self._vocation, True):
+                return False
         return True

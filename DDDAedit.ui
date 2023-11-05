@@ -25,7 +25,7 @@
     <item row="2" column="0">
      <widget class="QTabWidget" name="main">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_persons">
        <attribute name="title">
@@ -90,6 +90,9 @@
         </item>
         <item row="1" column="0" colspan="3">
          <widget class="Pers" name="vocations" native="true">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="minimumSize">
            <size>
             <width>0</width>

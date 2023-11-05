@@ -38,6 +38,8 @@ class AbstractModel(QAbstractTableModel):
                     return '*** UNKNOWN ***'
             case Qt.ItemDataRole.TextAlignmentRole:
                 return self._columns[index.column()].align
+            case Qt.ItemDataRole.ToolTipRole:
+                return self.get_tooltip(index)
         return None
 
     def headerData(self, section, orientation, role=...):
@@ -75,3 +77,5 @@ class AbstractModel(QAbstractTableModel):
                 flags &= ~Qt.ItemFlag.ItemIsEditable
         return flags
 
+    def get_tooltip(self, index: QModelIndex):
+        return None

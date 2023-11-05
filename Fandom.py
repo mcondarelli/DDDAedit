@@ -1822,6 +1822,7 @@ _all_items = [
     {'ID': 1849, 'Name': 'Liftstone (DL)', 'Type': 'Unknown', 'img': None, 'desc': 'This item was not found in "dragonsdogma.fandom.com', 'id': 1856},
     ]
 
+# Fixup for Fandom site inconsistencies
 for i in _all_items:
     match i['Type']:
         case 'Archistaff':
@@ -1848,6 +1849,11 @@ for i in _all_items:
             i['Type'] = 'Swords'
         case 'Warhammer':
             i['Type'] = 'Warhammers'
+
+    desc = i['desc']
+    desc = desc.replace('. ', '.\n')
+    desc = desc.replace('." ', '."\n')
+    i['desc'] = desc
 
 all_by_id = {x["ID"]: x for x in _all_items}
 all_by_name = {x["Name"]: x for x in _all_items}
