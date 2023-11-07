@@ -89,7 +89,7 @@
          </spacer>
         </item>
         <item row="1" column="0" colspan="3">
-         <widget class="Pers" name="vocations" native="true">
+         <widget class="Pers" name="person" native="true">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -169,7 +169,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset theme="document-open">
-     <normaloff>.</normaloff>.</iconset>
+     <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
    </property>
    <property name="text">
     <string>Open...</string>
@@ -181,7 +181,7 @@
    </property>
    <property name="icon">
     <iconset theme="document-save">
-     <normaloff>.</normaloff>.</iconset>
+     <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -193,7 +193,7 @@
    </property>
    <property name="icon">
     <iconset theme="document-save-as">
-     <normaloff>.</normaloff>.</iconset>
+     <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
    </property>
    <property name="text">
     <string>Save XML</string>

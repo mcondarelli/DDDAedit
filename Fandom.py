@@ -1855,5 +1855,41 @@ for i in _all_items:
     desc = desc.replace('." ', '."\n')
     i['desc'] = desc
 
+
 all_by_id = {x["ID"]: x for x in _all_items}
 all_by_name = {x["Name"]: x for x in _all_items}
+
+
+def is_armor(x):
+    item_type = all_by_id[x]['Type'] if isinstance(x, int ) else all_by_name[x]['Type']
+    return item_type in [
+        'Arms Armor',
+        'Chest Clothing',
+        'Cloak',
+        'Head Armor',
+        'Leg Armor',
+        'Leg Clothing',
+        'Torso Armor',
+    ]
+
+
+def is_weapon(x):
+    item_type = all_by_id[x]['Type'] if isinstance(x, int ) else all_by_name[x]['Type']
+    return item_type in [
+        'Archistaves',
+        'Daggers',
+        'Longbows',
+        'Longswords',
+        'Maces',
+        'Magick Bows',
+        'Magick Shields',
+        'Shields',
+        'Shortbows',
+        'Staves',
+        'Swords',
+        'Warhammers',
+    ]
+
+
+def is_equipment(x):
+    return is_armor(x) or is_weapon(x)

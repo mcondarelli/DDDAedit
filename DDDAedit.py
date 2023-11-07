@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
         self.main: Optional[QTabWidget] = None
         self.pers: Optional[QComboBox] = None
         self.pers_commit: Optional[QPushButton] = None
-        self.vocations: Optional[Pers] = None
+        self.person: Optional[Pers] = None
         self.items: Optional[QTableWidget]
         self.actionOpen: Optional[QAction] = None
         self.actionSave: Optional[QAction] = None
@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
             self.on_dddasav_load()
 
     def on_dddasav_load(self):
-        self.vocations.setEnabled(False)
+        self.person.setEnabled(False)
         self.pers.setCurrentIndex(-1)
         self.setCursor(QCursor(Qt.CursorShape.WaitCursor))
         try:
@@ -117,11 +117,11 @@ class MainWindow(QMainWindow):
 
     @pyqtSlot(str)
     def on_pers_currentTextChanged(self, txt):
-        self.vocations.set_data(DDDAwrapper.PersonWrapper(self.wrapper, txt))
+        self.person.set_data(self.wrapper.persons[txt])
 
     @pyqtSlot(int)
     def on_pers_currentIndexChanged(self, idx):
-        self.vocations.setEnabled(idx >= 0)
+        self.person.setEnabled(idx >= 0)
 
     @pyqtSlot()
     def on_wrapper_data_changed(self):

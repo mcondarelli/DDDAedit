@@ -1,4 +1,3 @@
-import difflib
 import shutil
 import struct
 import zlib
@@ -6,7 +5,7 @@ from collections import namedtuple
 from os import path
 from time import strftime, gmtime
 from typing import Optional
-from xml.etree import ElementTree as et
+from xml.etree import ElementTree as ET
 
 from PyQt6.QtCore import QObject, pyqtSignal, pyqtProperty
 
@@ -15,17 +14,80 @@ import Fandom
 Header = namedtuple('Header', ['u1', 'rsize', 'csize', 'u2', 'u3', 'u4', 'hash', 'u5'])
 
 
-class Tier:
-    tiers = [(0x0001, 'no stars'),
-             (0x0009, '1 star'),
-             (0x0011, '2 stars'),
-             (0x0021, '3 stars'),
-             (0x0041, 'dragonforged'),
-             (0x0201, 'silver forged'),
-             (0x2003, 'gold forged')]
-    by_id = {x[0]: x[1] for x in tiers}
-    by_tag = {x[1]: x[0] for x in tiers}
+class Flag:
+    def __init__(self, typ='invalid'):
+        self.kind = typ
 
+    def idx(self):
+        return -1
+
+    def tag(self):
+        return 'UNKNOWN'
+
+
+class Tier(Flag):
+    _tiers = [(0x0001, 'no stars'),         #   3 0003 0000 + 3
+              (0x0009, '1 star'),           #  13 000D 0008 + 5
+              (0x0011, '2 stars'),          #  19 0013 0010 + 3
+              (0x0021, '3 stars'),          #  35 0023 0020 + 3
+              (0x0041, 'dragonforged'),     #  67 0043 0040 + 3
+              (0x0201, 'silver forged'),    # 515 0203 0200 + 3
+              (0x0401, 'gold forged')]      #1027 0403 0400 + 3
+    _by_id = {x[0]: x[1] for x in _tiers}
+    _by_tag = {x[1]: x[0] for x in _tiers}
+
+    def __init__(self, tier, equip=None, purified=None):
+        super().__init__('tier')
+        if isinstance(tier, str):
+            if tier.isnumeric():
+                tier = int(tier)
+            else:
+                self._tag = tier
+                self._idx = Tier._by_tag[tier]
+                self._equipped = equip
+                self._purified = purified
+                return
+        if isinstance(tier, int):
+            self._purified = (tier & 0x80) != 0
+            self._equipped = (tier & 2) != 0
+            self._idx = tier & ~0x82
+            self._tag = Tier._by_id[self._idx]
+        else:
+            raise ValueError(f'ERROR: unexpected type {type(tier).__name__}')
+
+    def idx(self):
+        idx = self._idx
+        if self._equipped:
+            idx |= 2
+        if self._purified:
+            idx |= 0x80
+        return idx
+
+    def tag(self):
+        return self._tag
+
+    @staticmethod
+    def all_tags():
+        return [x[1] for x in Tier._tiers]
+
+    def is_purified(self):
+        return bool(self._purified)
+
+    def is_equipped(self):
+        return bool(self._equipped)
+
+
+class Jewel(Flag):
+    def __init__(self, flag):
+        super().__init__('jewel')
+        self._flag = flag
+        # TODO: parse jewelry flags
+
+    def idx(self):
+        return self._flag
+
+    def tag(self):
+        return str(self._flag)
 
 def _crc32(buf):
     crc = 0xffffffff
@@ -37,18 +99,59 @@ def _crc32(buf):
 
 
 class DDDAwrapper(QObject):
+    """
+    Wrapper class for the whole DDDA.sav file.
+    It is composed by many sections, only a few of them are currently handled:
+    - There are 4 "persons":
+      - the Player
+      - the Main Pawn
+      - Pawn A, if any, hired from the Rift
+      - Pawn B, if any, hired from the Rift
+    - each Person has several editable fields:
+      - Name
+      - Level
+      - Vocation
+      - Vocation affinity
+      - personal (equipped) Equipment
+      - personal Inventory
+    - Global Storage (accessed through "inns")
+    - Money
+    - Rift Crystals
+
+    Underlaying structure is a huge XML file (compressed and CRC validated on disk)
+    which is edited "in place".
+    Each subclass holds a pointer (`lxml.Element`) to the relevant section of XML.
+    """
     data_changed = pyqtSignal()
     pers_changed = pyqtSignal(int)
 
     def __init__(self, parent=None):
+        """
+        Initaialize an empty structure.
+        Note: there is currently *NO WAY* to initialize actual content
+        without an on-disc file produced by DDDA.
+
+        :param parent: QObject parent, currently unused
+        """
         super().__init__(parent)
+        self.persons = None
         self.original_xml = None
         self.valid: bool = False
         self.dirty: bool = False
-        self.data: Optional[et.Element] = None
+        self.data: Optional[ET.Element] = None
         self._fname: Optional[str] = None
 
     def from_file(self, fname: str):
+        """
+        Read a `DDDA.sav` savefile from disk.
+
+
+
+        It may `raise` `ValueError` exception in case file is corrupted.
+
+        :param fname: Name of the file to read
+        :return: Nothing
+        """
         if self._fname != fname:
             self.valid = False
             self._fname = fname
@@ -62,15 +165,16 @@ class DDDAwrapper(QObject):
                     raise ValueError(f'ERROR: hash mismatch ({crc} != {hdr.hash})')
                 xml = zlib.decompress(buf)
                 xml = xml.decode()
-                self.data = et.fromstring(xml)
+                self.data = ET.fromstring(xml)
                 if self.data is not None:
                     self.valid = True
                     self.dirty = False
                     self.data_changed.emit()
                     self.original_xml = xml
+                    self.persons = PersonWrapper.parse(self)
 
     def _to_xml(self):
-        xml = b'<?xml version="1.0" encoding="utf-8"?>\n' + et.tostring(self.data).replace(b' />', b'/>')
+        xml = b'<?xml version="1.0" encoding="utf-8"?>\n' + ET.tostring(self.data).replace(b' />', b'/>')
         return xml
 
     def compute_diff_table(self, callback):
@@ -92,7 +196,7 @@ class DDDAwrapper(QObject):
                 shutil.copy2(fname, sf)
         return fname
 
-    def to_xml_file(self, fname: str=None):
+    def to_xml_file(self, fname: str = None):
         fname = self._backup('.xml', fname)
         sss = self._to_xml()
         with open(fname, 'wb') as fo:
@@ -111,81 +215,146 @@ class DDDAwrapper(QObject):
         with open(fname, 'wb') as fo:
             fo.write(h)
             fo.write(z)
-            fo.write(b'\0'*(524288 - len(h) - len(z)))
+            fo.write(b'\0' * (524288 - len(h) - len(z)))
+
+    def person(self, name):
+        return self.persons[name]
 
 
 class ItemWrapper(QObject):
-    def __init__(self, xclass: et.Element, parent=None):
+    def __init__(self, xclass: ET.Element, parent):
         super().__init__(parent)
         self.xclass = xclass
+        self.equipped = isinstance(parent, EquipmentWrapper)
+        self._idx = None
+        self._type = None
 
-    #@pyqtProperty(int)
-    @property
-    def idx(self):
-        if int(self.xclass.find('./s16[@name="data.mNum"]').get('value')) > 0:
-            return int(self.xclass.find('./s16[@name="data.mItemNo"]').get('value'))
-        return -1
+    def _is_valid(self):
+        return int(self.xclass.find('./s16[@name="data.mNum"]').get('value')) > 0
+
+    def _get_idx(self):
+        if self._idx is None:
+            if self._is_valid():
+                self._idx = int(self.xclass.find('./s16[@name="data.mItemNo"]').get('value'))
+        return self._idx
+
+    def _get_type(self):
+        if self._type is None:
+            idx = self._get_idx()
+            if idx is not None:
+                self._type = Fandom.all_by_id[self.idx]['Type']
+        return self._type
+
+    def is_armor(self):
+        item_type = self._get_type()
+        return item_type in [
+            'Arms Armor',
+            'Chest Clothing',
+            'Cloak',
+            'Head Armor',
+            'Leg Armor',
+            'Leg Clothing',
+            'Torso Armor',
+        ]
+
+    def is_weapon(self):
+        item_type = self._get_type()
+        return item_type in [
+            'Archistaves',
+            'Daggers',
+            'Longbows',
+            'Longswords',
+            'Maces',
+            'Magick Bows',
+            'Magick Shields',
+            'Shields',
+            'Shortbows',
+            'Staves',
+            'Swords',
+            'Warhammers',
+        ]
+
+    def is_equipment(self):
+        return self.is_armor() or self.is_weapon()
+
+    def is_jewel(self):
+        item_type = self._get_type()
+        return item_type in ['Jewelry']
 
     # @pyqtProperty(int)
     @property
-    def tier(self) -> int:
-        if int(self.xclass.find('./s16[@name="data.mNum"]').get('value')) > 0:
-            return int(self.xclass.find('./u32[@name="data.mFlag"]').get('value'))
-        return -1
+    def idx(self):
+        # if int(self.xclass.find('./s16[@name="data.mNum"]').get('value')) > 0:
+        #     return int(self.xclass.find('./s16[@name="data.mItemNo"]').get('value'))
+        # return -1
+        idx = self._get_idx()
+        return idx if idx is not None else -1
+
+    # @pyqtProperty(int)
+    @property
+    def flag(self) -> Flag:
+        if self._is_valid():
+            value = int(self.xclass.find('./u32[@name="data.mFlag"]').get('value'))
+            if self.is_equipment():
+                return Tier(value)
+            elif self.is_jewel():
+                return Jewel(value)
+        return None
+
+    @flag.setter
+    def flag(self, tier: Flag):
+        if tier is not None:
+            self.xclass.find('./u32[@name="data.mFlag"]').set('value', str(tier.idx()))
+
+    @property
+    def flag_name(self):
+        return self.flag.tag()
+
+    @property
+    def flag_kind(self):
+        return self.flag.kind
 
 
 class EquipmentWrapper(QObject):
-    def __init__(self, xarray: et.Element, parent=None):
+    _slots = [
+        'Primary Weapon',
+        'Secondary Weapon',
+        'Chest Clothing',
+        'Leg Clothing',
+        'Head Armor',
+        'Torso Armor',
+        'Arms Armor',
+        'Leg Armor',
+        'Cloak',
+        'Jewelry 1',
+        'Jewelry 2',
+    ]
+
+    def __init__(self, xarray: ET.Element, parent):
         super().__init__(parent)
         self.xarray = xarray
         self.carray = self.xarray.findall('.//class[@type="sItemManager::cITEM_PARAM_DATA"]')
         if len(self.carray) != 12:
             print(f'Warning: {len(self.carray)} found (expected 12)')
-        self.iarray = [ItemWrapper(c) for c in self.carray]
+        self.slots = {slot: ItemWrapper(xclass, self) for slot, xclass in zip(self._slots, self.carray)}
 
-    @pyqtProperty(ItemWrapper)
-    def primary(self):
-        return self.iarray[0]
+    def __getitem__(self, item):
+        if isinstance(item, str):
+            return self.slots[item]
+        elif isinstance(item, int):
+            return self.slots[self._slots[item]]
+        else:
+            raise IndexError(f'Error: unknown index {item} ({type(item).__name__})')
 
-    @pyqtProperty(ItemWrapper)
-    def secondary(self):
-        return self.iarray[1]
+    @pyqtProperty(QObject)  # FIXME: it should be (PersonWrapper)
+    def owner(self):
+        return self.parent()
 
-    @pyqtProperty(ItemWrapper)
-    def shirt(self):
-        return self.iarray[2]
-
-    @pyqtProperty(ItemWrapper)
-    def pants(self):
-        return self.iarray[3]
-
-    @pyqtProperty(ItemWrapper)
-    def helmet(self):
-        return self.iarray[4]
-
-    @pyqtProperty(ItemWrapper)
-    def chest(self):
-        return self.iarray[5]
-
-    @pyqtProperty(ItemWrapper)
-    def gauntlets(self):
-        return self.iarray[6]
-
-    @pyqtProperty(ItemWrapper)
-    def greaves(self):
-        return self.iarray[7]
-
-    @pyqtProperty(ItemWrapper)
-    def cape(self):
-        return self.iarray[8]
-
-    @pyqtProperty(ItemWrapper)
-    def jewel1(self):
-        return self.iarray[9]
-
-    @pyqtProperty(ItemWrapper)
-    def jewel2(self):
-        return self.iarray[10]
+    def dump(self):
+        for name, data in self.slots.items():
+            if data.idx >= 0:
+                print(f'    {name:>20s} : {Fandom.all_by_id[data.idx]["Name"]:>25s} : {data.flag}')
+        print(f'------------------------------------------------------------------------------------')
 
 
 class PersonWrapper(QObject):
@@ -199,10 +368,15 @@ class PersonWrapper(QObject):
 
     _persons = ['Player', 'Main Pawn', 'Pawn A', 'Pawn B', 'Storage']
 
-    def __init__(self, wrapper: DDDAwrapper, who: str, parent=None):
-        super().__init__(parent)
+    @staticmethod
+    def parse(wrapper: DDDAwrapper):
+        return {person: PersonWrapper(wrapper, person) for person in PersonWrapper._persons}
+
+    def __init__(self, wrapper: DDDAwrapper, who: str):
+        super().__init__(wrapper)
         self.wrapper = wrapper
         self.data = wrapper.data
+        self._who = who
         self._equipment: Optional[EquipmentWrapper] = None
 
         stores = self.data.findall('.//array[@name="mItem"]/class[@type="cSAVE_DATA_ITEM"]')
@@ -229,13 +403,14 @@ class PersonWrapper(QObject):
                         self._store = stores[3].findall('./array/class[@type="sItemManager::cITEM_PARAM_DATA"]')
                         self._count = stores[3].find('./u32[@name="mItemCount"]')
                     case 4:
-                        self._store = self.data.findall('.//array[@name="mStorageItem"]/class[@type="sItemManager::cITEM_PARAM_DATA"]')
+                        self._store = self.data.findall(
+                            './/array[@name="mStorageItem"]/class[@type="sItemManager::cITEM_PARAM_DATA"]')
                         self._count = self.data.find('.//u32[@name="mStorageItemCount"]')
                     case _:
                         raise ValueError(f'Unknown person "{who}"')
                 break
         if pdata is not None:
-            self._equipment = EquipmentWrapper(pdata.find('.//array[@name="mEquipItem"]'))
+            self._equipment = EquipmentWrapper(pdata.find('.//array[@name="mEquipItem"]'), self)
             self._name = pdata.findall('.//array[@name="(u8*)mNameStr"]/u8')
             self._level = pdata.find(".//u8[@name='mLevel']")
             self._voc = pdata.find(".//u8[@name='mJob']")
@@ -246,11 +421,17 @@ class PersonWrapper(QObject):
             self._voc = None
             self._vlevels = None
 
-    def _index_of_row(self, row):
-        for n, r in enumerate(self._store):
-            if r == row:
-                return n
-        return -1
+        self.dump()
+
+    def dump(self):
+        print(f'===== {self._who}: {self.name} =======================================================')
+        if self._equipment is not None:
+            self._equipment.dump()
+        for row in self._store:
+            if self.row_valid(row):
+                print(f'    {self.row_item(row):04d} : {Fandom.all_by_id[self.row_item(row)]["Name"]:>25s} : {self.row_flag(row)}')
+        print(f'------------------------------------------------------------------------------------')
+        print()
 
     @pyqtProperty(str)
     def person(self):
@@ -292,13 +473,13 @@ class PersonWrapper(QObject):
 
     @pyqtProperty(int)
     def vocation_level(self):
-        return int(self._vlevels[self.vocation-1].get('value')) if self._level is not None else -1
+        return int(self._vlevels[self.vocation - 1].get('value')) if self._level is not None else -1
 
     @vocation_level.setter
     def vocation_level(self, value: int):
         # TODO: check value is in range [1..9]
         if self._vlevels is not None:
-            self._vlevels[self.vocation-1].set('value', str(value))
+            self._vlevels[self.vocation - 1].set('value', str(value))
 
     @pyqtProperty(EquipmentWrapper)
     def equipment(self):
@@ -333,7 +514,7 @@ class PersonWrapper(QObject):
         return int(row.find('./s8[@name="data.mOwnerId"]').get('value'))
 
     def row_inc(self, row, inc):
-        idx = self._index_of_row(row)
+        idx = self._store.index(row)
         if idx < 0:
             print(f'ERROR: row not found ({row})')
             return
@@ -369,7 +550,7 @@ class PersonWrapper(QObject):
                 row.find('./u16[@name="data.mDay2"]').set('value', "0")
                 row.find('./u16[@name="data.mDay3"]').set('value', "0")
                 row.find('./s8[@name="data.mMutationPool"]').set('value', "0")
-                row.find('./s8[@name="data.mOwnerId"]').set('value', "0")  # str(self._index)) differnt from zero for EQUIPPED items
+                row.find('./s8[@name="data.mOwnerId"]').set('value', "0")  # str(self._index)) != "0" for EQUIPPED items
                 row.find('./u32[@name="data.mKey"]').set('value', "0")
                 self.tot_inc(1)
                 self.rowchanged.emit(n)  # FIXME: this removes selection
@@ -381,26 +562,11 @@ class PersonWrapper(QObject):
             self._count.set('value', str(count))
 
 
-class InventoryWrapper(QObject):
-    changed = pyqtSignal()
-
-    def __init__(self, wrwpper: DDDAwrapper, root=et.Element, parent=None):
-        super().__init__(parent)
-        self.wrwpper = wrwpper
-        self.root = root
-
-    def rows(self):
-        return None
-
-    def edit(self, idx: int, add: int):
-        pass
-
-
 if __name__ == '__main__':
     ddda = DDDAwrapper()
     ddda.from_file('/tmp/t/DDDA.sav')
 
-    player = PersonWrapper(ddda, 'Player')
+    player = ddda.person('Main Pawn')
     print(player.name, player.level, player.vocation, player.vocation_level)
     for row in player.rows:
         if player.row_valid(row):
@@ -409,7 +575,7 @@ if __name__ == '__main__':
                   player.row_num(row),
                   player.row_owner(row),
                   player.row_flag(row))
-    print('Primary Weapon', player.equipment.primary.idx, player.equipment.primary.tier)
+    print('Primary Weapon', player.equipment.primary.idx, player.equipment.primary.flag)
     print('Secondary Weapon', player.equipment.secondary.idx)
     print('Clothing (shirt)', player.equipment.shirt.idx)
     print('Clothing (pants)', player.equipment.pants.idx)

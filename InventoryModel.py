@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt, pyqtSlot, QSortFilterProxyModel, QModelIndex
 
 import Fandom
-from AbstractModel import AbstractModel, DelegateBase
+from AbstractModel import AbstractModel
 from DDDAwrapper import Tier, PersonWrapper as PW
 from Fandom import all_by_id
 
@@ -84,14 +84,18 @@ class InventoryModel(AbstractModel):
     def get_flag(self, x):
         level = PW.row_flag(x)
         if self.is_equipment(x):
-            return Tier.by_id[level]
+            try:
+                return Tier(level).tag()
+            except KeyError:
+                print(f'Warning: unknown Tier id {level} ({level:04x})')
+                pass
         return level
 
     def set_flag(self, x, value):
         if isinstance(x, QModelIndex):
             x = self._inventory.rows[x.row()]
         if isinstance(value, str):
-            value = Tier.by_tag[value]
+            value = Tier(value).idx()
         PW.row_set_flag(x, value)
 
     def get_count(self, x):
@@ -122,9 +126,9 @@ class InventoryProxy(QSortFilterProxyModel):
 
 if __name__ == '__main__':
     import sys
-    from PyQt6.QtWidgets import QApplication, QWidget, QComboBox
+    from PyQt6.QtWidgets import QApplication
     from Storage import Storage
-    from DDDAwrapper import DDDAwrapper, PersonWrapper
+    from DDDAwrapper import DDDAwrapper
 
     app = QApplication(sys.argv)
     mw = Storage()

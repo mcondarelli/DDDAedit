@@ -28,77 +28,77 @@
     </spacer>
    </item>
    <item row="3" column="0">
-    <widget class="QComboBox" name="primary">
+    <widget class="EquipmentCombo" name="primary">
      <property name="placeholderText">
       <string>Primary</string>
      </property>
     </widget>
    </item>
    <item row="3" column="2">
-    <widget class="QComboBox" name="secondary">
+    <widget class="EquipmentCombo" name="secondary">
      <property name="placeholderText">
       <string>Secondary</string>
      </property>
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="QComboBox" name="jewel1">
+    <widget class="EquipmentCombo" name="jewel1">
      <property name="placeholderText">
       <string>Jewel</string>
      </property>
     </widget>
    </item>
    <item row="4" column="1">
-    <widget class="QComboBox" name="boots">
+    <widget class="EquipmentCombo" name="boots">
      <property name="placeholderText">
       <string>Boots</string>
      </property>
     </widget>
    </item>
    <item row="2" column="1">
-    <widget class="QComboBox" name="chest">
+    <widget class="EquipmentCombo" name="chest">
      <property name="placeholderText">
       <string>Chest</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QComboBox" name="arms">
+    <widget class="EquipmentCombo" name="arms">
      <property name="placeholderText">
       <string>Arrms</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QComboBox" name="jewel2">
+    <widget class="EquipmentCombo" name="jewel2">
      <property name="placeholderText">
       <string>Jewel</string>
      </property>
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QComboBox" name="head">
+    <widget class="EquipmentCombo" name="head">
      <property name="placeholderText">
       <string>Head</string>
      </property>
     </widget>
    </item>
    <item row="1" column="2">
-    <widget class="QComboBox" name="cape">
+    <widget class="EquipmentCombo" name="cape">
      <property name="placeholderText">
       <string>Cape</string>
      </property>
     </widget>
    </item>
    <item row="3" column="1">
-    <widget class="QComboBox" name="pants">
+    <widget class="EquipmentCombo" name="pants">
      <property name="placeholderText">
       <string>Pants</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QComboBox" name="torso">
+    <widget class="EquipmentCombo" name="torso">
      <property name="placeholderText">
       <string>Torso</string>
      </property>
@@ -128,6 +128,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>EquipmentCombo</class>
+   <extends>QComboBox</extends>
+   <header>Equipment</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -16,9 +16,9 @@ from ItemModel import ItemModel, ItemProxy
 class TierEditDelegate(AbstractModel.DelegateBase):
     def createEditor(self, parent, option, index):
         combobox = QComboBox(parent)
-        for i, (val, tag) in enumerate(Tier.tiers):
+        for i, tag in enumerate(Tier.all_tags()):
             combobox.insertItem(i, tag)
-            combobox.setItemData(i, val, Qt.ItemDataRole.UserRole)
+            combobox.setItemData(i, Tier(tag).idx(), Qt.ItemDataRole.UserRole)
         combobox.activated.connect(lambda value: self.commitData.emit(combobox))
         return combobox
 
@@ -123,7 +123,7 @@ class Storage(QWidget):
 
     @pyqtSlot(str)
     def on_owner_currentTextChanged(self, text):
-        self.person_wrapper = PersonWrapper(self.storage_wrapper, text)
+        self.person_wrapper = self.storage_wrapper.person(text)
         self.storage_model.select(self.person_wrapper)
         self.storage_proxy.setSourceModel(self.storage_model)
         self.storage.setModel(self.storage_proxy)
@@ -179,7 +179,7 @@ if __name__ == '__main__':
         def closeEvent(self, _):
             if not test_storage:
                 for r in range(self.table.rowCount()):
-                    print(f'| {self.table.item(r, 0).text():^20s} | {Tier.by_tag[self.table.item(r, 1).text()]:4d} |')
+                    print(f'| {self.table.item(r, 0).text():^20s} | {Tier(self.table.item(r, 1).text()).idx():4d} |')
 
 
     app = QApplication([])
